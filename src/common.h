@@ -1,9 +1,18 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-struct Location {
-    int coords[2];
+class Cords {
+public:
+    int x;
+    int y;
+
+    Cords(int x = 0, int y = 0);
+    
+    bool operator==(const Cords& other) const;
+    Cords operator+(const Cords& other) const;
 };
+
+#define DIFFLOCATION Cords(0,0)
 
 enum StepType {
     CLEAN,
@@ -15,17 +24,16 @@ enum StepType {
 
 struct Step {
     StepType type;
-    Location location;
-};
-const int DIRECTIONS[4][2] = {
-    {0, 1}, 
-    {1, 0},  
-    {0, -1}, 
-    {-1, 0}  
+    Cords cords;
 };
 
-constexpr int CLEAN = 0;
+const Cords DIRECTIONS[4] = {
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0}
+};
+
 constexpr int WALL = -1;
-constexpr int DOCKING_STATION = -2;
 
 #endif // COMMON_H
