@@ -16,7 +16,7 @@ public:
 
 private: 
     Algorithm algo;
-    House house
+    House house;
     Location location;
     int battery_capacity;
     float battery_left;

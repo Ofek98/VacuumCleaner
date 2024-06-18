@@ -1,7 +1,7 @@
 #include "Robot.h"
 
-Robot::Robot(House& house, int battery_capacity,Location docking_station)
-    : house(house), battery_capacity(battery_capacity),location(docking_station),battery_left(battery_capacity), is_charging(false),algo(*this){
+Robot::Robot(House& house, int battery_capacity, Location docking_station)
+    : house(house), battery_capacity(battery_capacity), location(docking_station), battery_left(battery_capacity), is_charging(false), algo(*this){
     steps_taken = std::vector<Step>();
     docking_station_path = std::vector<Location>({location});
 }

@@ -12,6 +12,7 @@ enum StepType {
     RETURN,
 };
 
+
 struct Step {
     StepType type;
     Location location;
@@ -23,6 +24,8 @@ const int DIRECTIONS[4][2] = {
     {-1, 0}  
 };
 
-constexpr int WALL = 1;
+constexpr int CLEAN = 0;
+constexpr int WALL = -1;
+constexpr int DOCKING_STATION = -2;
 
 #endif // COMMON_H
