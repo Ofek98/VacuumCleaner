@@ -3,6 +3,7 @@
 Robot::Robot(House& house, int battery_capacity,Cords docking_station)
     : house(house), battery_capacity(battery_capacity), location(docking_station), docking_station(docking_station),
       battery_left(battery_capacity), steps_taken(), docking_station_path({docking_station}), algo(*this) {
+
     steps_taken = std::vector<Step>();
     docking_station_path = std::vector<Cords>({location});
 }

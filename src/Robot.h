@@ -27,7 +27,7 @@ private:
     void clean();
     void charge();
     void move(Cords next_loc, bool is_returning);
-§    float decreaseBattery(); 
+    float decreaseBattery(); 
 };
 
 #endif // ROBOT_H

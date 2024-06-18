@@ -1,20 +1,20 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "House.h"
+#include "Robot.h"
+
 
 #define ERROR -1
 #define SUCCESS 0
 
-int openFile(char* file_name)
+House buildHouseFromFile(std::ifstream& file)
 {
-    std::ifstream file(file_name);
-
-    if(!file)
+    std::string my_text;
+    while(getline(file, my_text))
     {
-        return ERROR;
+        
     }
-
-    return SUCCESS;
 }
 
 
@@ -25,11 +25,13 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    if(openFile(argv[1]))
+    std::ifstream file(argv[1]);
+    if(!file)
     {
         std::cerr << "Input file \"" << argv[1] << "\" does not exist" << std::endl;
     }
-
+    buildHouseFromFile(file);
+    
 
 
     return 0;
