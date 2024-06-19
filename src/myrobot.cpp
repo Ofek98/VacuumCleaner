@@ -4,18 +4,8 @@
 #include "House.h"
 #include "Robot.h"
 
-
 #define ERROR -1
 #define SUCCESS 0
-
-House buildHouseFromFile(std::ifstream& file)
-{
-    std::string my_text;
-    while(getline(file, my_text))
-    {
-        
-    }
-}
 
 
 int main(int argc, char* argv[]) {
@@ -25,14 +15,25 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    //  open input file
     std::ifstream file(argv[1]);
     if(!file)
     {
         std::cerr << "Input file \"" << argv[1] << "\" does not exist" << std::endl;
     }
-    buildHouseFromFile(file);
-    
 
+
+    try
+    {
+        House house = House(file);
+        Robot robot = Robot(house, 3);
+        
+    }
+    catch(const std::runtime_error& e)
+    {
+        std::cerr << "Error in house creation: " << e.what() << std::endl;
+    }
+    
 
     return 0;
 }

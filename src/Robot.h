@@ -16,17 +16,17 @@ public:
 
 private: 
     House house;
-    Cords location;
-    Cords docking_station;
+    Coords location;
+    Coords docking_station;
     int battery_capacity;
     float battery_left;
     std::vector<Step> steps_taken;
-    std::vector<Cords> docking_station_path;
+    std::vector<Coords> docking_station_path;
     Algorithm algo;
 
     void clean();
     void charge();
-    void move(Cords next_loc, bool is_returning);
+    void move(Coords next_loc, bool is_returning);
     float decreaseBattery(); 
 };
 

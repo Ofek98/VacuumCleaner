@@ -21,12 +21,12 @@ Step Algorithm::moveToFreeDirection(){
     }
 
     int randomIndex = rand() % freeDirections.size();
-    Cords next_direction = DIRECTIONS[freeDirections[randomIndex]];
+    Coords next_direction = DIRECTIONS[freeDirections[randomIndex]];
     last_direction = next_direction;
     return {MOVE, next_direction};
 }
 
-Step decide_next_step(){
+Step Algorithm::decide_next_step(){
     
     if (last_direction == {-1,-1}) {
         battery_capacity = robot.getBatteryLeft();

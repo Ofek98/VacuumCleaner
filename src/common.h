@@ -1,15 +1,17 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-class Cords {
-public:
-    int x;
-    int y;
+#include <stddef.h>
 
-    Cords(int x = 0, int y = 0);
+class Coords {
+public:
+    size_t x;
+    size_t y;
+
+    Coords(size_t x = 0, size_t y = 0);
     
-    bool operator==(const Cords& other) const;
-    Cords operator+(const Cords& other) const;
+    bool operator==(const Coords& other) const;
+    Coords operator+(const Coords& other) const;
 };
 
 #define DIFFLOCATION Cords(0,0)
@@ -24,10 +26,10 @@ enum StepType {
 
 struct Step {
     StepType type;
-    Cords cords;
+    Coords cords;
 };
 
-const Cords DIRECTIONS[4] = {
+const Coords DIRECTIONS[4] = {
     {0, 1},
     {1, 0},
     {0, -1},
@@ -35,5 +37,6 @@ const Cords DIRECTIONS[4] = {
 };
 
 constexpr int WALL = -1;
+constexpr int DOCKING_STATION = -2;
 
 #endif // COMMON_H

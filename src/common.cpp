@@ -1,11 +1,11 @@
 #include "common.h"
 
-Cords::Cords(int x, int y) : x(x), y(y) {}
+Coords::Coords(int x, int y) : x(x), y(y) {}
 
-bool Cords::operator==(const Cords& other) const {
+bool Coords::operator==(const Coords& other) const {
     return (x == other.x && y == other.y);
 }
 
-Cords Cords::operator+(const Cords& other) const {
-    return Cords(x + other.x, y + other.y);
+Coords Coords::operator+(const Coords& other) const {
+    return Coords(x + other.x, y + other.y);
 }

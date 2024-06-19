@@ -13,10 +13,10 @@ public:
 private:
     Robot& robot;
     bool is_charging;
-    Cords last_direction;  
+    Coords last_direction;  
     int battery_capacity;
     int distance_from_docking_station;
-    Cords offset_from_docking_station;
+    Coords offset_from_docking_station;
     Step moveToFreeDirection();
 };
 
