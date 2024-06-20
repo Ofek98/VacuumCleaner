@@ -16,7 +16,6 @@ private:
     Coords last_direction;  
     int battery_capacity;
     int distance_from_docking_station;
-    Coords offset_from_docking_station;
     Step moveToFreeDirection();
 };
 
