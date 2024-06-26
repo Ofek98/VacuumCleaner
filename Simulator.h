@@ -21,7 +21,7 @@ class Simulator {
     Robot robot;
     House house;
 public:
-    Simulator(size_t max_battery_steps, House::Matrix tiles);
+    Simulator(size_t max_battery_steps, House::Matrix tiles, Coords docking_station);
     RunResults run(size_t total_steps);
 };
 

@@ -10,6 +10,7 @@ struct InputValues
     size_t max_battery_steps;
     size_t total_steps;
     House::Matrix tiles;
+    Coords docking_station;
 };
 
 InputValues readInputFile(std::ifstream& file)
@@ -49,19 +50,14 @@ InputValues readInputFile(std::ifstream& file)
         {
             // +1 takes the added surrounding walls into account
             input_values.tiles(x+1, y+1) = x < line.length() ? House::Tile(line[x]) : House::Tile(0);
+            if(input_values.tiles(x+1, y+1).getStatus() == DOCKING_STATION) {
+                // TODO: check if theres more than one docking stations.
+                input_values.docking_station = Coords(x+1,y+1);
+            }
         }
         y++;
     }
-   
-    for (size_t x = 0; x < tiles.getDimX(); x++)
-    {
-        for (size_t y = 0; y < tiles.getDimY(); y++)
-        {
-            if(tiles(x, y).getStatus() == DOCKING_STATION) {
-                
-            }
-        }
-    }
+
 
     input_values.success = true;
     return input_values;
@@ -119,7 +115,7 @@ int main(int argc, char* argv[]) {
             return EXIT_FAILURE;
         }
 
-        Simulator simulator = Simulator(input_values.max_battery_steps, input_values.tiles);
+        Simulator simulator = Simulator(input_values.max_battery_steps, input_values.tiles, input_values.docking_station);
 
         writeOutputFile(simulator.run(input_values.total_steps));
 

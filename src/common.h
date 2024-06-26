@@ -10,17 +10,18 @@ public:
 
     Coords(int x = 0, int y = 0);
     
+    Coords reverse() const;
     bool operator==(const Coords& other) const;
     Coords operator+(const Coords& other) const;
 };
 
-#define DIFFLOCATION Cords(0,0)
+#define DIFFLOCATION Coords(0,0)
+#define NO_DIRECTION Coords(-1,-1)
 
 enum StepType {
     CLEAN,
     MOVE,
     CHARGE,
-    RETURN,
 };
 
 

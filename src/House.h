@@ -10,6 +10,8 @@
 
 class House {
     size_t total_dirt;
+    Coords docking_station;
+
 public:
 
     class Tile {
@@ -27,7 +29,7 @@ public:
         void surroundWithWalls();
         std::vector<Tile> vec;
         size_t dim_x = 0, dim_y = 0;
-        
+
     public:    
 
         Matrix() {};

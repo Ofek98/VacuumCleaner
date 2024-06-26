@@ -15,7 +15,7 @@ private:
     bool is_charging;
     Coords last_direction;  
     int battery_capacity;
-    int distance_from_docking_station;
+    std::vector<Coords> path_from_docking_station;
     Step moveToFreeDirection();
 };
 
