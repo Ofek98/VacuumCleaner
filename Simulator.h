@@ -9,14 +9,20 @@
 #include <vector>
 #include <string>
 
+struct RunResults
+{
+    std::vector<Step> steps_taken;
+    size_t dirt_left;
+    size_t battery_left;
+    bool is_docking;
+};
 
 class Simulator {
     Robot robot;
     House house;
 public:
-    Simulator(size_t max_battery_steps, size_t total_steps, House::Matrix tiles);
-    run(size_t total_steps);
-
+    Simulator(size_t max_battery_steps, House::Matrix tiles);
+    RunResults run(size_t total_steps);
 };
 
 #endif // SIMULATOR_H

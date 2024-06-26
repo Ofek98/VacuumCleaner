@@ -33,7 +33,7 @@ public:
         Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls=false);
         Tile& operator()(size_t x, size_t y);
         Tile& operator()(Coords location);
-        int getDimX()
+        size_t getDimX()
         {
             return dim_x;
         }
@@ -41,9 +41,12 @@ public:
 
     Matrix tiles;
     House(Matrix tiles);
-    int getDirtLevel(Coords location);
+    size_t getDirtLevel(Coords location);
     void cleanOnce(Coords location);
     bool isWall(Coords location);
+    size_t getTotalDirt();
+    Coords getDockingStationCoords();
+    
 };
 
 #endif // HOUSE_H
