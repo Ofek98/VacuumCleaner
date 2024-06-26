@@ -2,7 +2,7 @@
 
 Robot::Robot(House& house, int battery_capacity,Coords docking_station)
     : house(house), battery_capacity(battery_capacity), location(docking_station), docking_station(docking_station),
-      battery_left(battery_capacity), steps_taken(), docking_station_path({docking_station}), algo(*this) {
+      battery_left(battery_capacity), steps_taken(), docking_station_path({docking_station}) {
 
     steps_taken = std::vector<Step>();
     docking_station_path = std::vector<Coords>({location});
@@ -39,11 +39,11 @@ void Robot::clean() {
     decreaseBattery();
 }
 
-int Robot::getCurrentCordsDirt(){
+size_t Robot::getCurrentCordsDirt() const{
     return house.getDirtLevel(location);
 }
 
-int* Robot::getSurroundingWalls() {
+int* Robot::getSurroundingWalls() const {
     static int walls[4]; 
     for (int i = 0; i < 4; i++) {
         Coords checkCords = location + DIRECTIONS[i];  
@@ -52,6 +52,9 @@ int* Robot::getSurroundingWalls() {
     return walls;
 }
 
+void Robot::setAlgorithm(){
+    algo = Algorithm(*this);
+}
 
 void Robot::move(Coords next_loc, bool is_returning) {
     if (is_returning) {
@@ -65,14 +68,11 @@ void Robot::move(Coords next_loc, bool is_returning) {
     decreaseBattery();
 }
 
-//Cords Robot::getCords() {
-//    return location;
-//}
 
 float Robot::decreaseBattery() {
     if (battery_left >= 1){
         battery_left -= 1;
-        return battery_left
+        return battery_left;
     }
     return -1;
 }

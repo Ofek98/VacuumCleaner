@@ -17,7 +17,7 @@ Step Algorithm::moveToFreeDirection(){
     }
     if (freeDirections.empty()) {
     // No free directions
-    return {CHARGE, DIFFLOCATION}; 
+        return {CHARGE, DIFFLOCATION}; 
     }
 
     int randomIndex = rand() % freeDirections.size();

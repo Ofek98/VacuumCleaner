@@ -9,10 +9,11 @@
 class Robot {
 public:
     Robot(House& house, size_t battery_capacity);
-    size_t* getFreeCells();
+    int* getSurroundingWalls() const;
     Step performNextStep();
-    size_t getCurrentCordsDirt();
-    float getBatteryLeft();
+    size_t getCurrentCordsDirt() const;
+    float getBatteryLeft() const;
+    void setAlgorithm();
 
 private: 
     House house;
