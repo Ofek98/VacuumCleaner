@@ -5,10 +5,10 @@
 
 class Coords {
 public:
-    size_t x;
-    size_t y;
+    int x;
+    int y;
 
-    Coords(size_t x = 0, size_t y = 0);
+    Coords(int x = 0, int y = 0);
     
     bool operator==(const Coords& other) const;
     Coords operator+(const Coords& other) const;
