@@ -46,9 +46,22 @@ bool House::Tile::isWall() const
     return status == WALL;
 }
 
-House::Matrix::Matrix(size_t dim_x, size_t dim_y) : dim_x(dim_x), dim_y(dim_y)
+void House::Matrix::surroundWithWalls() {
+    for (size_t x = 0; x < dim_x; x++)
+    {
+        (*this)(x, 0) = (*this)(x, dim_y-1) = Tile(WALL);
+    }
+    for (size_t y = 0; y < dim_y; y++)
+    {
+        (*this)(0, y) = (*this)(dim_x-1, y) = Tile(WALL);
+    }
+}
+
+House::Matrix::Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls=false) : dim_x(dim_x + surround_with_walls), dim_y(dim_y + surround_with_walls)
 {
-    vec.resize(dim_x*dim_y, Tile(0));
+    vec.resize((dim_x)*(dim_y), Tile(0));
+    if(surround_with_walls) 
+        surroundWithWalls();
 }
 
 House::Tile& House::Matrix::operator()(size_t x, size_t y)
@@ -63,30 +76,7 @@ House::Tile& House::Matrix::operator()(Coords location)
     return (*this)(location.x, location.y);
 }
 
-House::House(std::ifstream& tiles_file)
-{
-    std::string line;
-    size_t lines_count = 0;
-    size_t max_line_length = 0;
-    while(std::getline(tiles_file, line))
-    {
-        if(max_line_length < line.length())
-            max_line_length = line.length();
-        lines_count++;
-    }
-
-    tiles = Matrix(max_line_length, lines_count);
-
-    int x = 0, y = 0;
-    while(std::getline(tiles_file, line))
-    {
-        for (size_t x = 0; x < tiles.getDimX(); x++)
-        {
-            tiles(x, y) = x < line.length() ? Tile(line[x]) : Tile(0);
-        }
-        y++;
-    }
-}
+House::House(Matrix tiles): tiles(tiles) {}
 
 int House::getDirtLevel(Coords location)
 {

@@ -8,17 +8,17 @@
 
 class Robot {
 public:
-    Robot(House& house, int battery_capacity);
-    int* getFreeCells();
+    Robot(House& house, size_t battery_capacity);
+    size_t* getFreeCells();
     Step performNextStep();
-    int getCurrentCordsDirt();
+    size_t getCurrentCordsDirt();
     float getBatteryLeft();
 
 private: 
     House house;
     Coords location;
     Coords docking_station;
-    int battery_capacity;
+    size_t battery_capacity;
     float battery_left;
     std::vector<Step> steps_taken;
     std::vector<Coords> docking_station_path;

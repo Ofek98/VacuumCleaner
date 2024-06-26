@@ -9,6 +9,8 @@
 
 
 class House {
+public:
+
     class Tile {
         int status = 0;
     public:
@@ -21,13 +23,14 @@ class House {
 
     class Matrix
     {
+        void surroundWithWalls();
+    public:    
         std::vector<Tile> vec;
         size_t dim_x = 0, dim_y = 0;
 
-    public:
         Matrix() {};
 
-        Matrix(size_t dim_x, size_t dim_y);
+        Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls=false);
         Tile& operator()(size_t x, size_t y);
         Tile& operator()(Coords location);
         int getDimX()
@@ -37,8 +40,7 @@ class House {
     };
 
     Matrix tiles;
-public:
-    House(std::ifstream& tiles_file);
+    House(Matrix tiles);
     int getDirtLevel(Coords location);
     void cleanOnce(Coords location);
     bool isWall(Coords location);
