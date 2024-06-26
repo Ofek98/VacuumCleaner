@@ -26,7 +26,7 @@ enum StepType {
 
 struct Step {
     StepType type;
-    Coords cords;
+    Coords coords;
 };
 
 const Coords DIRECTIONS[4] = {

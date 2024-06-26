@@ -9,6 +9,7 @@
 
 
 class House {
+    size_t total_dirt;
 public:
 
     class Tile {
@@ -24,18 +25,21 @@ public:
     class Matrix
     {
         void surroundWithWalls();
-    public:    
         std::vector<Tile> vec;
         size_t dim_x = 0, dim_y = 0;
+        
+    public:    
 
         Matrix() {};
 
         Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls=false);
         Tile& operator()(size_t x, size_t y);
         Tile& operator()(Coords location);
-        size_t getDimX()
-        {
+        size_t getDimX() const {
             return dim_x;
+        }
+        size_t getDimY() const {
+            return dim_y;
         }
     };
 

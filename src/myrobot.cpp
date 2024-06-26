@@ -2,10 +2,7 @@
 #include <string>
 #include <fstream>
 #include "House.h"
-#include "Robot.h"
-
-#define ERROR -1
-#define SUCCESS 0
+#include "Simulator.h"
 
 struct InputValues
 {   
@@ -56,11 +53,49 @@ InputValues readInputFile(std::ifstream& file)
         y++;
     }
    
+    for (size_t x = 0; x < tiles.getDimX(); x++)
+    {
+        for (size_t y = 0; y < tiles.getDimY(); y++)
+        {
+            if(tiles(x, y).getStatus() == DOCKING_STATION) {
+                
+            }
+        }
+    }
+
     input_values.success = true;
     return input_values;
 }
 
 
+bool writeOutputFile(RunResults res)
+{
+    std::ofstream file("output.txt"); // Open output file
+
+    if (!file) {
+        std::cerr << "Failed to open the file" << std::endl;
+        return false;
+    }
+
+    file << "Steps performed by the vaccum cleaner:" << std::endl;
+
+    for(Step step: res.steps_taken) {
+        file << "(" << step.coords.x << ", " << step.coords.y << "): " << step.type << std::endl;
+    }
+
+    file << "Total number of steps performed: " << res.steps_taken.size() << std::endl;
+
+    file << (res.battery_left ? "Vaccum cleaner still has" + std::to_string(res.battery_left) + "battery" : "Vaccum cleaner is dead") << std::endl;
+
+    file << "Mission" << ((!res.dirt_left && res.is_docking) ? "succeeded" : "failed") << std::endl;
+
+    file << "Amount of dirt left in the house: " << res.dirt_left << std::endl;
+    file << "Vaccum cleaner is " << (res.is_docking ? "" : "not ") << "at the docking station" << std::endl;
+
+    file.close();
+
+    return 0;
+}
 
 int main(int argc, char* argv[]) {
     // Check the number of arguments
@@ -79,21 +114,24 @@ int main(int argc, char* argv[]) {
     InputValues input_values;
     try {
         input_values = readInputFile(file);
+
+        if(!input_values.success) {
+            return EXIT_FAILURE;
+        }
+
+        Simulator simulator = Simulator(input_values.max_battery_steps, input_values.tiles);
+
+        writeOutputFile(simulator.run(input_values.total_steps));
+
+        return EXIT_SUCCESS;
     }
     catch(const std::runtime_error& e) {
         std::cerr << "Error in input file reading: " << e.what() << std::endl;
     }
     catch(...) {
-        std::cerr << "Unknown error in input file reading" << std::endl;
-    }
-    
-    if(!input_values.success) {
-        return ERROR;
+        std::cerr << "Unknown error" << std::endl;
     }
 
-    Simulator simulator = Simulator(input_values.)
-
-
-    return 0;
+    return EXIT_FAILURE;
 }
 

@@ -76,9 +76,9 @@ House::Tile& House::Matrix::operator()(Coords location)
     return (*this)(location.x, location.y);
 }
 
-House::House(Matrix tiles): tiles(tiles) {}
+House::House(Matrix tiles): tiles(tiles), docking_station(tiles.docking_station) {}
 
-int House::getDirtLevel(Coords location)
+size_t House::getDirtLevel(Coords location)
 {
     int status = tiles(location).getStatus();
     return status >= 0 ? status : 0;

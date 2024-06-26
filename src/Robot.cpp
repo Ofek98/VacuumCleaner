@@ -10,7 +10,7 @@ Robot::Robot(House& house, int battery_capacity,Coords docking_station)
 
 Step Robot::performNextStep(){
     Step step = algo.decide_next_step();
-    Coords dir = step.cords();
+    Coords dir = step.coords();
     Coords next_loc = location + dir;
     switch (step.type){
         case CLEAN:
