@@ -24,8 +24,8 @@ public:
     class Matrix
     {
         std::vector<Tile> vec;
-        size_t dim_x = 0;
-        size_t dim_y = 0;
+        size_t dim_x;
+        size_t dim_y;
 
         void surroundWithWalls();
         class ElementProxy {
@@ -43,13 +43,14 @@ public:
 
     public:         
         Matrix() {};
-        Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls=false);
+        Matrix(size_t dim_x, size_t dim_y);
         ElementProxy operator()(size_t x, size_t y);
         ElementProxy operator()(Coords location);
         Tile operator()(size_t x, size_t y) const;
         Tile operator()(Coords location) const;
         size_t getDimX() const;
         size_t getDimY() const;
+
     };
 
 

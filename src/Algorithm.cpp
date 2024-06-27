@@ -9,10 +9,12 @@ Step Algorithm::moveToFreeDirection(){
     std::vector<int> freeDirections;
     // Collect indices of directions without walls
     for (int i = 0; i < 4; ++i) {
-        if (surrounding_walls[i]) {  
+        if (!surrounding_walls[i]) {  
             freeDirections.push_back(i);
         }
     }
+    delete surrounding_walls;
+
     if (freeDirections.empty()) {
         // No free directions - can happen only if we stuck on docking station
         return {CHARGE, DIFFLOCATION}; 
@@ -25,7 +27,7 @@ Step Algorithm::moveToFreeDirection(){
 }
 
 Step Algorithm::decide_next_step(){
-    
+    printf("in 30: %f\n", robot->getBatteryLeft());
     if (last_direction == NO_DIRECTION) {
         battery_capacity = robot->getBatteryLeft();
         if (battery_capacity < 2){
@@ -37,9 +39,11 @@ Step Algorithm::decide_next_step(){
     }
     else {
         if (is_charging && robot->getBatteryLeft() < battery_capacity){
+            printf("in 42: %f\n", robot->getBatteryLeft());
             return {CHARGE, DIFFLOCATION};
         }
         if (!is_charging && path_from_docking_station.size() == 0 && robot->getBatteryLeft() < battery_capacity){
+            printf("in 46: %f\n", robot->getBatteryLeft());
             is_charging = true;
             return {CHARGE, DIFFLOCATION};
         }
@@ -59,11 +63,13 @@ Step Algorithm::decide_next_step(){
             if (DIRECTIONS[i] == last_direction) {
                 if (!surrounding_walls[i]){
                     path_from_docking_station.push_back(last_direction);
+                    delete surrounding_walls;
                     return {MOVE,last_direction};
                 }
                 else{
                     Step next_step = moveToFreeDirection();
                     path_from_docking_station.push_back(next_step.coords);
+                    delete surrounding_walls;
                     return next_step;
                 }
             }

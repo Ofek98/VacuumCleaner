@@ -8,7 +8,6 @@ Step Robot::performNextStep(){
     Step step = algo.decide_next_step();
     Coords dir = step.coords;
     Coords next_loc = location + dir;
-    std::cout << step.coords.x << "," << step.coords.y << " : " << step.type << std::endl;
     switch (step.type){
         case CLEAN:
             clean();
@@ -22,11 +21,12 @@ Step Robot::performNextStep(){
     }
     step.coords = next_loc;
     steps_taken.push_back(step);
+    std::cout << step.coords.x << "," << step.coords.y << " : " << step.type << std::endl;
     return step;
 }
 
 void Robot::charge() {
-    battery_left = std::max((float)battery_capacity, battery_left + battery_capacity/20);
+    battery_left = std::min((float)battery_capacity, battery_left + battery_capacity/20);
 }
 
 void Robot::clean() {
@@ -39,7 +39,7 @@ size_t Robot::getCurrentCoordsDirt() const{
 }
 
 bool* Robot::getSurroundingWalls() {
-    static bool walls[4]; 
+    bool* walls = new bool[4]; 
     for (int i = 0; i < 4; i++) {
         walls[i] = house.isWall(location + DIRECTIONS[i]);  
     }

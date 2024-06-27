@@ -61,10 +61,9 @@ void House::Matrix::surroundWithWalls() {
     }
 }
 
-House::Matrix::Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls) : dim_x(dim_x + surround_with_walls), dim_y(dim_y + surround_with_walls) {
-    vec.resize((dim_x + surround_with_walls)*(dim_y + surround_with_walls), Tile(0));
-    if(surround_with_walls) 
-        surroundWithWalls();
+House::Matrix::Matrix(size_t dim_x, size_t dim_y) : dim_x(dim_x+2), dim_y(dim_y+2) {
+    vec.resize(this->dim_x * this->dim_y, Tile(0));
+    surroundWithWalls();
 }
 
 House::Matrix::ElementProxy::ElementProxy(Matrix& mat, size_t x, size_t y): mat(mat), x(x), y(y) {}
@@ -87,7 +86,7 @@ int House::Matrix::ElementProxy::getStatus() const {
 }
 
 bool House::Matrix::ElementProxy::cleanOnce() {
-    return ((Tile)*this).cleanOnce();
+    return mat.vec[mat.getDimX()*y + x].cleanOnce();
 }
 
 bool House::Matrix::ElementProxy::isWall() const {
@@ -105,8 +104,9 @@ House::Matrix::ElementProxy House::Matrix::operator()(Coords location) {
 }
 
 House::Tile House::Matrix::operator()(size_t x, size_t y) const {
-    if (x >= dim_x || y >= dim_y)
-        throw std::out_of_range("matrix indices out of range");
+    if (x >= dim_x || y >= dim_y) {
+        throw std::out_of_range("matrix indices out of range: " + std::to_string(x) + ", " + std::to_string(y));
+    }
     return vec[getDimX()*y + x]; 
 }
 

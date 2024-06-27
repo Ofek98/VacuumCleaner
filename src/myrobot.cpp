@@ -34,7 +34,7 @@ InputValues readInputFile(std::ifstream& file)
         line_count++;
     }
 
-    input_values.tiles = House::Matrix(max_line_length, line_count-2, true); 
+    input_values.tiles = House::Matrix(max_line_length, line_count-2); 
 
     int y = 0;
     file.clear();                 // Clear EOF flag
