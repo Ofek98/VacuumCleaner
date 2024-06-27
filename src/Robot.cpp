@@ -26,7 +26,7 @@ Step Robot::performNextStep(){
 }
 
 void Robot::charge() {
-    battery_left = std::min((float)battery_capacity, battery_left + battery_capacity/20);
+    battery_left = std::min((float)battery_capacity, battery_left + ((float)battery_capacity)/20);
 }
 
 void Robot::clean() {

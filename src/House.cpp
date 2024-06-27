@@ -114,7 +114,7 @@ House::Tile House::Matrix::operator()(Coords location) const {
     return (*this)(location.x, location.y);
 }
 
-House::House(Matrix tiles, Coords docking_station): tiles(tiles), docking_station(docking_station) {}
+House::House(Matrix tiles, Coords docking_station, size_t total_dirt): total_dirt(total_dirt), tiles(tiles), docking_station(docking_station) {}
 
 size_t House::getDirtLevel(Coords location) const {
     int status = tiles(location).getStatus();

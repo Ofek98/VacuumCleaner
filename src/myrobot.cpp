@@ -9,6 +9,7 @@ struct InputValues
     bool success = false;
     size_t max_battery_steps;
     size_t total_steps;
+    size_t total_dirt = 0;
     House::Matrix tiles;
     Coords docking_station;
 };
@@ -51,9 +52,13 @@ InputValues readInputFile(std::ifstream& file)
         {
             // +1 takes the added surrounding walls into account
             input_values.tiles(x+1, y+1) = x < line.length() ? House::Tile(line[x]) : House::Tile(0);
-            if(input_values.tiles(x+1, y+1).getStatus() == DOCKING_STATION) {
+            int tile_status = input_values.tiles(x+1, y+1).getStatus();
+            if(tile_status == DOCKING_STATION) {
                 // TODO: check if theres more than one docking stations.
                 input_values.docking_station = Coords(x+1,y+1);
+            }
+            else if(tile_status > 0) {
+                input_values.total_dirt += tile_status;
             }
         }
         y++;
@@ -82,9 +87,9 @@ bool writeOutputFile(RunResults res)
 
     file << "Total number of steps performed: " << res.steps_taken.size() << std::endl;
 
-    file << (res.battery_left ? "Vaccum cleaner still has" + std::to_string(res.battery_left) + "battery" : "Vaccum cleaner is dead") << std::endl;
+    file << (res.battery_left ? "Vaccum cleaner still has " + std::to_string(res.battery_left) + " battery" : "Vaccum cleaner is dead") << std::endl;
 
-    file << "Mission" << ((!res.dirt_left && res.is_docking) ? "succeeded" : "failed") << std::endl;
+    file << "Mission " << ((!res.dirt_left && res.is_docking) ? "succeeded" : "failed") << std::endl;
 
     file << "Amount of dirt left in the house: " << res.dirt_left << std::endl;
     file << "Vaccum cleaner is " << (res.is_docking ? "" : "not ") << "at the docking station" << std::endl;
@@ -111,13 +116,12 @@ int main(int argc, char* argv[]) {
 
     InputValues input_values;
         input_values = readInputFile(file);
-
         
         if(!input_values.success) {
             return EXIT_FAILURE;
         }
 
-        Simulator simulator = Simulator(input_values.max_battery_steps, input_values.tiles, input_values.docking_station);
+        Simulator simulator = Simulator(input_values.max_battery_steps, input_values.tiles, input_values.docking_station, input_values.total_dirt);
 
         writeOutputFile(simulator.run(input_values.total_steps));
 

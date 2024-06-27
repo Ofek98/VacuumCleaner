@@ -20,7 +20,7 @@ class Simulator {
     House house;
     Robot robot;
 public:
-    Simulator(size_t max_battery_steps, House::Matrix tiles, Coords docking_station);
+    Simulator(size_t max_battery_steps, House::Matrix tiles, Coords docking_station, size_t total_dirt);
     RunResults run(size_t total_steps);
 };
 

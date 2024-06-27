@@ -54,7 +54,7 @@ public:
     };
 
 
-    House(Matrix tiles, Coords docking_station);
+    House(Matrix tiles, Coords docking_station, size_t total_dirt);
     size_t getDirtLevel(Coords location) const;
     void cleanOnce(Coords location);
     bool isWall(Coords location) const;

@@ -1,6 +1,6 @@
 #include "Simulator.h"
 
-Simulator::Simulator(size_t max_battery_steps, House::Matrix tiles, Coords docking_station): house(tiles, docking_station), robot(house, max_battery_steps) {}
+Simulator::Simulator(size_t max_battery_steps, House::Matrix tiles, Coords docking_station, size_t total_dirt): house(tiles, docking_station, total_dirt), robot(house, max_battery_steps) {}
 
 RunResults Simulator::run(size_t total_steps) {
     for (size_t i = 0; i < total_steps; i++)
