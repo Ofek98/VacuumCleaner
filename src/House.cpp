@@ -57,37 +57,66 @@ void House::Matrix::surroundWithWalls() {
     }
 }
 
-House::Matrix::Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls=false) : dim_x(dim_x + surround_with_walls), dim_y(dim_y + surround_with_walls)
-{
+House::Matrix::Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls=false) : dim_x(dim_x + surround_with_walls), dim_y(dim_y + surround_with_walls) {
     vec.resize((dim_x)*(dim_y), Tile(0));
     if(surround_with_walls) 
         surroundWithWalls();
 }
 
-House::Tile& House::Matrix::operator()(size_t x, size_t y)
-{
-    if (x >= dim_x || y >= dim_y)
-        throw std::out_of_range("matrix indices out of range");
-    return vec[dim_x*y + x];
+House::Tile House::Matrix::ElementProxy::operator=(Tile value){
+    mat.vec[mat.getDimX()*y + x] = value;
+    return value;
 }
 
-House::Tile& House::Matrix::operator()(Coords location)
-{
+House::Tile House::Matrix::ElementProxy::operator=(const ElementProxy& e){
+    return *this = static_cast<Tile>(e);
+}
+
+House::Matrix::ElementProxy::operator Tile() const {
+    return mat.vec[mat.getDimX()*y + x];
+}
+
+int House::Matrix::ElementProxy::getStatus() const {
+    return ((Tile)*this).getStatus();
+}
+
+void House::Matrix::ElementProxy::cleanOnce() {
+    ((Tile)*this).cleanOnce();
+}
+
+bool House::Matrix::ElementProxy::isWall() const {
+    return ((Tile)*this).isWall();
+}
+
+House::Matrix::ElementProxy House::Matrix::operator()(size_t x, size_t y) {
+    if (x >= dim_x || y >= dim_y)
+        throw std::out_of_range("matrix indices out of range");
+    return {*this, x, y}; 
+}
+
+House::Matrix::ElementProxy House::Matrix::operator()(Coords location) {
     return (*this)(location.x, location.y);
 }
 
-House::House(Matrix tiles): tiles(tiles), docking_station(tiles.docking_station) {}
+House::Tile House::Matrix::operator()(size_t x, size_t y) const {
+    if (x >= dim_x || y >= dim_y)
+        throw std::out_of_range("matrix indices out of range");
+    return vec[getDimX()*y + x]; 
+}
 
-size_t House::getDirtLevel(Coords location)
-{
+House::Tile House::Matrix::operator()(Coords location) const {
+    return (*this)(location.x, location.y);
+}
+
+House::House(Matrix tiles, Coords docking_station): tiles(tiles), docking_station(docking_station) {}
+
+size_t House::getDirtLevel(Coords location) const {
     int status = tiles(location).getStatus();
     return status >= 0 ? status : 0;
 }
-void House::cleanOnce(Coords location)
-{
+void House::cleanOnce(Coords location) {
     tiles(location).cleanOnce();
 }
-bool House::isWall(Coords location)
-{
+bool House::isWall(Coords location) const {
     return tiles(location).isWall();
 }

@@ -2,7 +2,7 @@
 
 Robot::Robot(House& house, size_t battery_capacity)
     : house(house), battery_capacity(battery_capacity), location(house.getDockingStationCoords()),
-      battery_left(battery_capacity) {}
+      battery_left(battery_capacity), algo(this) {}
 
 Step Robot::performNextStep(){
     Step step = algo.decide_next_step();
@@ -33,7 +33,7 @@ void Robot::clean() {
     decreaseBattery();
 }
 
-size_t Robot::getCurrentCordsDirt() const{
+size_t Robot::getCurrentCoordsDirt() const{
     return house.getDirtLevel(location);
 }
 
@@ -45,20 +45,15 @@ bool* Robot::getSurroundingWalls() {
     return walls;
 }
 
-void Robot::setAlgorithm(){
-    algo = Algorithm(*this);
-}
-
 void Robot::move(Coords next_loc) {
     location = next_loc;
     decreaseBattery();
 }
 
-
 float Robot::decreaseBattery() {
     return battery_left >= 1 ? battery_left-- : -1; 
 }
 
-float Robot::getBatteryLeft() {
+float Robot::getBatteryLeft() const {
     return battery_left;
 }

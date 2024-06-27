@@ -11,7 +11,7 @@ public:
     Robot(House& house, size_t battery_capacity);
     bool* getSurroundingWalls();
     Step performNextStep();
-    size_t getCurrentCordsDirt() const;
+    size_t getCurrentCoordsDirt() const;
     float getBatteryLeft() const;
     void setAlgorithm();
 

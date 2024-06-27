@@ -6,12 +6,12 @@
 
 class Algorithm {
 public:
-    Algorithm(Robot& robot);
+    Algorithm(Robot* robot);
 
     Step decide_next_step();
 
 private:
-    Robot& robot;
+    Robot* robot;
     bool is_charging;
     Coords last_direction;  
     int battery_capacity;
