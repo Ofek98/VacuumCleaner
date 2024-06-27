@@ -36,7 +36,7 @@ InputValues readInputFile(std::ifstream& file)
     
     input_values.tiles = House::Matrix(max_line_length, line_count-2, true); 
 
-    int x = 0, y = 0;
+    int y = 0;
     file.clear();                 // Clear EOF flag
     file.seekg(0, std::ios::beg); // Move to the beginning of the file
 

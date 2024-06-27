@@ -4,6 +4,9 @@
 #include "Robot.h"
 #include "common.h"
 
+
+class Robot;
+
 class Algorithm {
 public:
     Algorithm(Robot* robot);

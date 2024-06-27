@@ -4,7 +4,7 @@ TARGET = myrobot
 SRCDIR = src
 OUTDIR = bin
 
-$(OUTDIR)/$(TARGET): $(SRCDIR)/myrobot.cpp | $(OUTDIR)
+$(OUTDIR)/$(TARGET): $(SRCDIR)/myrobot.cpp $(SRCDIR)/common.cpp $(SRCDIR)/House.cpp $(SRCDIR)/Simulator.cpp $(SRCDIR)/Algorithm.cpp $(SRCDIR)/Robot.cpp | $(OUTDIR)
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 $(OUTDIR):
