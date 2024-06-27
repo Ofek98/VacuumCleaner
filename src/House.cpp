@@ -62,7 +62,7 @@ void House::Matrix::surroundWithWalls() {
 }
 
 House::Matrix::Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls) : dim_x(dim_x + surround_with_walls), dim_y(dim_y + surround_with_walls) {
-    vec.resize((dim_x)*(dim_y), Tile(0));
+    vec.resize((dim_x + surround_with_walls)*(dim_y + surround_with_walls), Tile(0));
     if(surround_with_walls) 
         surroundWithWalls();
 }

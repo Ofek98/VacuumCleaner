@@ -3,6 +3,7 @@
 
 #include <stddef.h>
 #include <vector>
+#include <iostream>
 
 class Coords {
 public:

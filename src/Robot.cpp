@@ -8,6 +8,7 @@ Step Robot::performNextStep(){
     Step step = algo.decide_next_step();
     Coords dir = step.coords;
     Coords next_loc = location + dir;
+    std::cout << step.coords.x << "," << step.coords.y << " : " << step.type << std::endl;
     switch (step.type){
         case CLEAN:
             clean();

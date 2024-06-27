@@ -22,31 +22,32 @@ InputValues readInputFile(std::ifstream& file)
     size_t max_line_length = 0;
     while(std::getline(file, line))
     {
+        // TODO: not number error handling / less then one line / max_battery_steps not specified
         if(line_count == 0) {
             input_values.max_battery_steps = std::stoi(line);
         }  
         else if(line_count == 1) {
             input_values.total_steps = std::stoi(line);
         }
-        if(max_line_length < line.length())
-            max_line_length = line.length();
+        if(max_line_length < line.size()) 
+            max_line_length = line.size();
         line_count++;
     }
 
-    
     input_values.tiles = House::Matrix(max_line_length, line_count-2, true); 
 
     int y = 0;
     file.clear();                 // Clear EOF flag
     file.seekg(0, std::ios::beg); // Move to the beginning of the file
-
+    
     // skip the first 2 lines
     std::getline(file, line);
     std::getline(file, line);
 
+    // fill wall-surrounded matrix with tiles by input file
     while(std::getline(file, line))
     {
-        for (size_t x = 0; x < input_values.tiles.getDimX(); x++)
+        for (size_t x = 0; x < max_line_length; x++)
         {
             // +1 takes the added surrounding walls into account
             input_values.tiles(x+1, y+1) = x < line.length() ? House::Tile(line[x]) : House::Tile(0);
@@ -109,9 +110,9 @@ int main(int argc, char* argv[]) {
     }
 
     InputValues input_values;
-    try {
         input_values = readInputFile(file);
 
+        
         if(!input_values.success) {
             return EXIT_FAILURE;
         }
@@ -121,6 +122,8 @@ int main(int argc, char* argv[]) {
         writeOutputFile(simulator.run(input_values.total_steps));
 
         return EXIT_SUCCESS;
+    try {
+
     }
     catch(const std::runtime_error& e) {
         std::cerr << "Error in input file reading: " << e.what() << std::endl;

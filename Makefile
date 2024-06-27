@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -Wextra -Werror -pedantic
+CXXFLAGS = -std=c++20 -Wall -Wextra -Werror -pedantic -g
 TARGET = myrobot
 SRCDIR = src
 OUTDIR = bin
