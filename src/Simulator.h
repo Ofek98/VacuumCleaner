@@ -6,7 +6,6 @@
 #include "Robot.h"
 #include <stdexcept>
 #include <fstream>
-#include <vector>
 #include <string>
 
 struct RunResults
@@ -18,8 +17,8 @@ struct RunResults
 };
 
 class Simulator {
-    Robot robot;
     House house;
+    Robot robot;
 public:
     Simulator(size_t max_battery_steps, House::Matrix tiles, Coords docking_station);
     RunResults run(size_t total_steps);

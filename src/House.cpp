@@ -16,6 +16,7 @@ House::Tile::Tile(char status_char)
     
     case 'D':
         status = DOCKING_STATION;
+        break;
     
     default:
         if('0' <= status_char && status_char <= '9')
@@ -35,10 +36,13 @@ int House::Tile::getStatus() const
     return status;
 }
 
-void House::Tile::cleanOnce()
+bool House::Tile::cleanOnce()
 {
-    if(status > 0)
+    if(status > 0) {
         status--;
+        return true;
+    }
+    return false;
 }
 
 bool House::Tile::isWall() const
@@ -57,11 +61,13 @@ void House::Matrix::surroundWithWalls() {
     }
 }
 
-House::Matrix::Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls=false) : dim_x(dim_x + surround_with_walls), dim_y(dim_y + surround_with_walls) {
+House::Matrix::Matrix(size_t dim_x, size_t dim_y, bool surround_with_walls) : dim_x(dim_x + surround_with_walls), dim_y(dim_y + surround_with_walls) {
     vec.resize((dim_x)*(dim_y), Tile(0));
     if(surround_with_walls) 
         surroundWithWalls();
 }
+
+House::Matrix::ElementProxy::ElementProxy(Matrix& mat, size_t x, size_t y): mat(mat), x(x), y(y) {}
 
 House::Tile House::Matrix::ElementProxy::operator=(Tile value){
     mat.vec[mat.getDimX()*y + x] = value;
@@ -80,8 +86,8 @@ int House::Matrix::ElementProxy::getStatus() const {
     return ((Tile)*this).getStatus();
 }
 
-void House::Matrix::ElementProxy::cleanOnce() {
-    ((Tile)*this).cleanOnce();
+bool House::Matrix::ElementProxy::cleanOnce() {
+    return ((Tile)*this).cleanOnce();
 }
 
 bool House::Matrix::ElementProxy::isWall() const {
@@ -115,8 +121,26 @@ size_t House::getDirtLevel(Coords location) const {
     return status >= 0 ? status : 0;
 }
 void House::cleanOnce(Coords location) {
-    tiles(location).cleanOnce();
+    if(tiles(location).cleanOnce()) {
+        total_dirt--;
+    }
 }
 bool House::isWall(Coords location) const {
     return tiles(location).isWall();
+}
+
+size_t House::Matrix::getDimX() const {
+    return dim_x;
+}
+
+size_t House::Matrix::getDimY() const {
+    return dim_y;
+}
+
+Coords House::getDockingStationCoords() const {
+    return docking_station;
+}
+
+size_t House::getTotalDirt() const {
+    return total_dirt;
 }

@@ -97,7 +97,7 @@ int main(int argc, char* argv[]) {
     // Check the number of arguments
     if (argc < 2) {
         std::cerr << "Usage: " << argv[0] << " <house_input_file>" << std::endl;
-        return 1;
+        return EXIT_FAILURE;
     }
 
     //  open input file
@@ -105,6 +105,7 @@ int main(int argc, char* argv[]) {
     if(!file)
     {
         std::cerr << "Input file \"" << argv[1] << "\" does not exist" << std::endl;
+        return EXIT_FAILURE;
     }
 
     InputValues input_values;

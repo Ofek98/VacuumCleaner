@@ -1,7 +1,7 @@
 #include "Robot.h"
 
 Robot::Robot(House& house, size_t battery_capacity)
-    : house(house), battery_capacity(battery_capacity), location(house.getDockingStationCoords()),
+    : house(house), location(house.getDockingStationCoords()), battery_capacity(battery_capacity),
       battery_left(battery_capacity), algo(this) {}
 
 Step Robot::performNextStep(){
@@ -56,4 +56,8 @@ float Robot::decreaseBattery() {
 
 float Robot::getBatteryLeft() const {
     return battery_left;
+}
+
+std::vector<Step> Robot::getStepsTaken() {
+    return steps_taken;
 }

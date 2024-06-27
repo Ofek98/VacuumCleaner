@@ -4,7 +4,6 @@
 #include "Algorithm.h"
 #include "House.h"
 #include "common.h"
-#include <vector>
 
 class Robot {
 public:
@@ -13,7 +12,7 @@ public:
     Step performNextStep();
     size_t getCurrentCoordsDirt() const;
     float getBatteryLeft() const;
-    void setAlgorithm();
+    std::vector<Step> getStepsTaken();
 
 private: 
     House house;

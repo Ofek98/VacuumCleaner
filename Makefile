@@ -4,11 +4,15 @@ TARGET = myrobot
 SRCDIR = src
 OUTDIR = bin
 
-$(OUTDIR)/$(TARGET): $(SRCDIR)/myrobot.cpp $(SRCDIR)/common.cpp $(SRCDIR)/House.cpp $(SRCDIR)/Simulator.cpp $(SRCDIR)/Algorithm.cpp $(SRCDIR)/Robot.cpp | $(OUTDIR)
-	$(CXX) $(CXXFLAGS) $< -o $@
+# Add all cpp files from SRCDIR to a variable
+SOURCES = $(wildcard $(SRCDIR)/*.cpp)
+
+$(OUTDIR)/$(TARGET): $(SOURCES) | $(OUTDIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 $(OUTDIR):
 	mkdir -p $(OUTDIR)
 
 clean:
 	rm -rf $(OUTDIR)/$(TARGET)
+

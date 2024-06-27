@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 
-Algorithm::Algorithm(Robot* robot) : is_charging(false), last_direction({-1,-1}) {}
+Algorithm::Algorithm(Robot* robot) : robot(robot), is_charging(false), last_direction({-1,-1}) {}
 
 Step Algorithm::moveToFreeDirection(){
     bool* surrounding_walls = robot->getSurroundingWalls(); 
@@ -33,13 +33,14 @@ Step Algorithm::decide_next_step(){
         }
         Step next_step = moveToFreeDirection();
         path_from_docking_station.push_back(next_step.coords);
+        return next_step;
     }
     else {
         if (is_charging && robot->getBatteryLeft() < battery_capacity){
             return {CHARGE, DIFFLOCATION};
         }
         if (!is_charging && path_from_docking_station.size() == 0 && robot->getBatteryLeft() < battery_capacity){
-            is_charging == true;
+            is_charging = true;
             return {CHARGE, DIFFLOCATION};
         }
         if (robot->getBatteryLeft()-2 < path_from_docking_station.size()) {
@@ -51,23 +52,23 @@ Step Algorithm::decide_next_step(){
         if (robot->getCurrentCoordsDirt() > 0){
             return {CLEAN, DIFFLOCATION};
         }
-        else{
-            is_charging = false;
-            bool* surrounding_walls = robot->getSurroundingWalls(); 
-            for (int i = 0; i < 4; ++i) {
-                if (DIRECTIONS[i] == last_direction) {
-                    if (!surrounding_walls[i]){
-                        path_from_docking_station.push_back(last_direction);
-                        return {MOVE,last_direction};
-                    }
-                    else{
-                        Step next_step = moveToFreeDirection();
-                        path_from_docking_station.push_back(next_step.coords);
-                        return next_step;
-                    }
+
+        is_charging = false;
+        bool* surrounding_walls = robot->getSurroundingWalls(); 
+        for (int i = 0; i < 4; ++i) {
+            if (DIRECTIONS[i] == last_direction) {
+                if (!surrounding_walls[i]){
+                    path_from_docking_station.push_back(last_direction);
+                    return {MOVE,last_direction};
+                }
+                else{
+                    Step next_step = moveToFreeDirection();
+                    path_from_docking_station.push_back(next_step.coords);
+                    return next_step;
                 }
             }
-
-        }
+        }     
+        // We would never reach here
+        return {CHARGE,DIFFLOCATION};   
     }
 }

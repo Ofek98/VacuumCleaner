@@ -1,9 +1,8 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
 
-#include "Robot.h"
-#include "common.h"
 
+#include "common.h"
 
 class Robot;
 
@@ -21,5 +20,7 @@ private:
     std::vector<Coords> path_from_docking_station;
     Step moveToFreeDirection();
 };
+
+#include "Robot.h"
 
 #endif // ALGORITHM_H
