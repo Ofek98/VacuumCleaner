@@ -1,0 +1,95 @@
+\hypertarget{classSimulator}{}\doxysection{Simulator Class Reference}
+\label{classSimulator}\index{Simulator@{Simulator}}
+
+
+The \mbox{\hyperlink{classSimulator}{Simulator}} class represents a vacuum cleaner simulator.  
+
+
+
+
+{\ttfamily \#include $<$Simulator.\+h$>$}
+
+
+
+Collaboration diagram for Simulator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classSimulator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSimulator_af1f509da6c8e621496ed9e74e5410dd4}{Simulator}} (size\+\_\+t max\+\_\+battery\+\_\+steps, \mbox{\hyperlink{classHouse_1_1Matrix}{House\+::\+Matrix}} tiles, \mbox{\hyperlink{classCoords}{Coords}} docking\+\_\+station, size\+\_\+t total\+\_\+dirt)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classSimulator}{Simulator}} object with the specified parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRunResults}{Run\+Results}} \mbox{\hyperlink{classSimulator_a16dd2bc125e46164ebe249704278dac7}{run}} (size\+\_\+t total\+\_\+steps)
+\begin{DoxyCompactList}\small\item\em Runs the simulation for the specified number of steps. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classSimulator}{Simulator}} class represents a vacuum cleaner simulator. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSimulator_af1f509da6c8e621496ed9e74e5410dd4}\label{classSimulator_af1f509da6c8e621496ed9e74e5410dd4}} 
+\index{Simulator@{Simulator}!Simulator@{Simulator}}
+\index{Simulator@{Simulator}!Simulator@{Simulator}}
+\doxysubsubsection{\texorpdfstring{Simulator()}{Simulator()}}
+{\footnotesize\ttfamily Simulator\+::\+Simulator (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{max\+\_\+battery\+\_\+steps,  }\item[{\mbox{\hyperlink{classHouse_1_1Matrix}{House\+::\+Matrix}}}]{tiles,  }\item[{\mbox{\hyperlink{classCoords}{Coords}}}]{docking\+\_\+station,  }\item[{size\+\_\+t}]{total\+\_\+dirt }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classSimulator}{Simulator}} object with the specified parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+\_\+battery\+\_\+steps} & The maximum number of steps the robot\textquotesingle{}s battery can last. \\
+\hline
+{\em tiles} & The matrix representing the layout of the house. \\
+\hline
+{\em docking\+\_\+station} & The coordinates of the docking station. \\
+\hline
+{\em total\+\_\+dirt} & The total amount of dirt in the house. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSimulator_a16dd2bc125e46164ebe249704278dac7}\label{classSimulator_a16dd2bc125e46164ebe249704278dac7}} 
+\index{Simulator@{Simulator}!run@{run}}
+\index{run@{run}!Simulator@{Simulator}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRunResults}{Run\+Results}} Simulator\+::run (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{total\+\_\+steps }\end{DoxyParamCaption})}
+
+
+
+Runs the simulation for the specified number of steps. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+\_\+steps} & The total number of steps to run the simulation for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The results of the simulation run. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimulator_a16dd2bc125e46164ebe249704278dac7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{classSimulator_a16dd2bc125e46164ebe249704278dac7_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Simulator_8h}{Simulator.\+h}}\item 
+src/\mbox{\hyperlink{Simulator_8cpp}{Simulator.\+cpp}}\end{DoxyCompactItemize}

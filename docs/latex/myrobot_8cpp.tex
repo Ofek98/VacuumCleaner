@@ -1,0 +1,118 @@
+\hypertarget{myrobot_8cpp}{}\doxysection{src/myrobot.cpp File Reference}
+\label{myrobot_8cpp}\index{src/myrobot.cpp@{src/myrobot.cpp}}
+
+
+This file contains the implementation of a vacuum cleaner simulation program.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include \char`\"{}House.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Simulator.\+h\char`\"{}}\newline
+Include dependency graph for myrobot.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{myrobot_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structInputValues}{Input\+Values}}
+\begin{DoxyCompactList}\small\item\em Structure to store input values read from the input file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structInputValues}{Input\+Values}} \mbox{\hyperlink{myrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6}{read\+Input\+File}} (std\+::ifstream \&file)
+\begin{DoxyCompactList}\small\item\em Reads the input file and extracts the input values. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{myrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853}{write\+Output\+File}} (\mbox{\hyperlink{structRunResults}{Run\+Results}} res)
+\begin{DoxyCompactList}\small\item\em Writes the output file with the simulation results. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{myrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em The main function of the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of a vacuum cleaner simulation program. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{myrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{myrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{myrobot.cpp@{myrobot.cpp}!main@{main}}
+\index{main@{main}!myrobot.cpp@{myrobot.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+The main function of the program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of command-\/line arguments. \\
+\hline
+{\em argv} & The array of command-\/line arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The exit status of the program. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{myrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{myrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6}\label{myrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6}} 
+\index{myrobot.cpp@{myrobot.cpp}!readInputFile@{readInputFile}}
+\index{readInputFile@{readInputFile}!myrobot.cpp@{myrobot.cpp}}
+\doxysubsubsection{\texorpdfstring{readInputFile()}{readInputFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structInputValues}{Input\+Values}} read\+Input\+File (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{file }\end{DoxyParamCaption})}
+
+
+
+Reads the input file and extracts the input values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The input file stream. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structInputValues}{Input\+Values}} The extracted input values. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{myrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{myrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853}\label{myrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853}} 
+\index{myrobot.cpp@{myrobot.cpp}!writeOutputFile@{writeOutputFile}}
+\index{writeOutputFile@{writeOutputFile}!myrobot.cpp@{myrobot.cpp}}
+\doxysubsubsection{\texorpdfstring{writeOutputFile()}{writeOutputFile()}}
+{\footnotesize\ttfamily bool write\+Output\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRunResults}{Run\+Results}}}]{res }\end{DoxyParamCaption})}
+
+
+
+Writes the output file with the simulation results. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & The simulation results. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if the output file was written successfully, false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{myrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853_icgraph}
+\end{center}
+\end{figure}

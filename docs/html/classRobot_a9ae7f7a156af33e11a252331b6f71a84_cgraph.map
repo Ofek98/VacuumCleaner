@@ -1,0 +1,4 @@
+<map id="Robot::getSurroundingWalls" name="Robot::getSurroundingWalls">
+<area shape="rect" id="node1" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="5,5,208,32"/>
+<area shape="rect" id="node2" href="$classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="256,5,367,32"/>
+</map>

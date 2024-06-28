@@ -1,3 +1,8 @@
+/**
+ * @file Simulator.cpp
+ * @brief This file contains the implementation of the Simulator class.
+ */
+
 #include "Simulator.h"
 
 Simulator::Simulator(size_t max_battery_steps, House::Matrix tiles, Coords docking_station, size_t total_dirt): house(tiles, docking_station, total_dirt), robot(house, max_battery_steps) {}

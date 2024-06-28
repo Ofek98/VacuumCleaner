@@ -1,0 +1,4 @@
+<map id="Coords::reverse" name="Coords::reverse">
+<area shape="rect" id="node1" title="Returns the reverse of the current Coords object." alt="" coords="5,5,129,32"/>
+<area shape="rect" id="node2" href="$classCoords.html#aed78c48aa4707e43979a4a29fed7ed5c" title="Constructs a Coords object with the given x and y coordinates." alt="" coords="177,5,297,32"/>
+</map>

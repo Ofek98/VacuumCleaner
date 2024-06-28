@@ -1,0 +1,155 @@
+\hypertarget{classCoords}{}\doxysection{Coords Class Reference}
+\label{classCoords}\index{Coords@{Coords}}
+
+
+The \mbox{\hyperlink{classCoords}{Coords}} class represents the coordinates of a tile in a matrix of tiles.  
+
+
+
+
+{\ttfamily \#include $<$common.\+h$>$}
+
+
+
+Collaboration diagram for Coords\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classCoords__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCoords_aed78c48aa4707e43979a4a29fed7ed5c}{Coords}} (int \mbox{\hyperlink{classCoords_a59992d986e76375f31828d32c05cd15d}{x}}=0, int \mbox{\hyperlink{classCoords_a7ed64d02fb7550f1506a93fcfab7f16f}{y}}=0)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classCoords}{Coords}} object with the given x and y coordinates. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCoords}{Coords}} \mbox{\hyperlink{classCoords_a34d7f9a610ac2089faec90ad97d67148}{reverse}} () const
+\begin{DoxyCompactList}\small\item\em Returns the reverse of the current \mbox{\hyperlink{classCoords}{Coords}} object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCoords_aced8091d0235466b471f0cd84966663f}{operator==}} (const \mbox{\hyperlink{classCoords}{Coords}} \&other) const
+\begin{DoxyCompactList}\small\item\em Checks if the current \mbox{\hyperlink{classCoords}{Coords}} object is equal to another \mbox{\hyperlink{classCoords}{Coords}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCoords}{Coords}} \mbox{\hyperlink{classCoords_af77d62a549f28bebcd89bfa331935fe7}{operator+}} (const \mbox{\hyperlink{classCoords}{Coords}} \&other) const
+\begin{DoxyCompactList}\small\item\em Adds two \mbox{\hyperlink{classCoords}{Coords}} objects together. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classCoords_a59992d986e76375f31828d32c05cd15d}{x}}
+\item 
+int \mbox{\hyperlink{classCoords_a7ed64d02fb7550f1506a93fcfab7f16f}{y}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classCoords}{Coords}} class represents the coordinates of a tile in a matrix of tiles. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCoords_aed78c48aa4707e43979a4a29fed7ed5c}\label{classCoords_aed78c48aa4707e43979a4a29fed7ed5c}} 
+\index{Coords@{Coords}!Coords@{Coords}}
+\index{Coords@{Coords}!Coords@{Coords}}
+\doxysubsubsection{\texorpdfstring{Coords()}{Coords()}}
+{\footnotesize\ttfamily Coords\+::\+Coords (\begin{DoxyParamCaption}\item[{int}]{x = {\ttfamily 0},  }\item[{int}]{y = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classCoords}{Coords}} object with the given x and y coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate. \\
+\hline
+{\em y} & The y-\/coordinate. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{classCoords_aed78c48aa4707e43979a4a29fed7ed5c_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCoords_af77d62a549f28bebcd89bfa331935fe7}\label{classCoords_af77d62a549f28bebcd89bfa331935fe7}} 
+\index{Coords@{Coords}!operator+@{operator+}}
+\index{operator+@{operator+}!Coords@{Coords}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCoords}{Coords}} Coords\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classCoords}{Coords}} \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Adds two \mbox{\hyperlink{classCoords}{Coords}} objects together. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \mbox{\hyperlink{classCoords}{Coords}} object to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sum of the two \mbox{\hyperlink{classCoords}{Coords}} objects\+: (x1+x2, y1+y2). 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{classCoords_af77d62a549f28bebcd89bfa331935fe7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classCoords_aced8091d0235466b471f0cd84966663f}\label{classCoords_aced8091d0235466b471f0cd84966663f}} 
+\index{Coords@{Coords}!operator==@{operator==}}
+\index{operator==@{operator==}!Coords@{Coords}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Coords\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classCoords}{Coords}} \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the current \mbox{\hyperlink{classCoords}{Coords}} object is equal to another \mbox{\hyperlink{classCoords}{Coords}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \mbox{\hyperlink{classCoords}{Coords}} object to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the two \mbox{\hyperlink{classCoords}{Coords}} objects are equal, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCoords_a34d7f9a610ac2089faec90ad97d67148}\label{classCoords_a34d7f9a610ac2089faec90ad97d67148}} 
+\index{Coords@{Coords}!reverse@{reverse}}
+\index{reverse@{reverse}!Coords@{Coords}}
+\doxysubsubsection{\texorpdfstring{reverse()}{reverse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCoords}{Coords}} Coords\+::reverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the reverse of the current \mbox{\hyperlink{classCoords}{Coords}} object. 
+
+\begin{DoxyReturn}{Returns}
+The reverse of the current \mbox{\hyperlink{classCoords}{Coords}} object\+: (-\/x, -\/y). 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{classCoords_a34d7f9a610ac2089faec90ad97d67148_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classCoords_a59992d986e76375f31828d32c05cd15d}\label{classCoords_a59992d986e76375f31828d32c05cd15d}} 
+\index{Coords@{Coords}!x@{x}}
+\index{x@{x}!Coords@{Coords}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily int Coords\+::x}
+
+The x-\/coordinate of the tile. \mbox{\Hypertarget{classCoords_a7ed64d02fb7550f1506a93fcfab7f16f}\label{classCoords_a7ed64d02fb7550f1506a93fcfab7f16f}} 
+\index{Coords@{Coords}!y@{y}}
+\index{y@{y}!Coords@{Coords}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily int Coords\+::y}
+
+The y-\/coordinate of the tile. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{common_8h}{common.\+h}}\item 
+src/common.\+cpp\end{DoxyCompactItemize}

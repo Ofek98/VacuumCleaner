@@ -1,0 +1,11 @@
+<map id="src/House.h" name="src/House.h">
+<area shape="rect" id="node1" title="This file contains the declaration of the House class." alt="" coords="145,5,243,32"/>
+<area shape="rect" id="node2" href="$House_8cpp.html" title="Implementation file for the House class." alt="" coords="5,80,119,107"/>
+<area shape="rect" id="node3" href="$myrobot_8cpp.html" title="This file contains the implementation of a vacuum cleaner simulation program." alt="" coords="65,229,192,256"/>
+<area shape="rect" id="node4" href="$Robot_8h.html" title="This file contains the declaration of the Robot class." alt="" coords="351,80,445,107"/>
+<area shape="rect" id="node8" href="$Simulator_8h.html" title="This file contains the declaration of the Simulator class and the RunResults struct." alt="" coords="195,155,313,181"/>
+<area shape="rect" id="node5" href="$Algorithm_8h.html" title="This file contains the declaration of the Algorithm class." alt="" coords="337,155,459,181"/>
+<area shape="rect" id="node7" href="$Robot_8cpp.html" title="This file contains the implementation of the Robot class." alt="" coords="483,155,593,181"/>
+<area shape="rect" id="node6" href="$Algorithm_8cpp.html" title="Implementation file for the Algorithm class." alt="" coords="375,229,511,256"/>
+<area shape="rect" id="node9" href="$Simulator_8cpp.html" title="This file contains the implementation of the Simulator class." alt="" coords="216,229,351,256"/>
+</map>

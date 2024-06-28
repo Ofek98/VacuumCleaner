@@ -1,0 +1,13 @@
+<map id="src/Simulator.h" name="src/Simulator.h">
+<area shape="rect" id="node1" title="This file contains the declaration of the Simulator class and the RunResults struct." alt="" coords="257,5,375,32"/>
+<area shape="rect" id="node2" href="$common_8h.html" title="This file contains the declaration of the Coords class, StepType enum, Step struct,..." alt="" coords="91,229,181,256"/>
+<area shape="rect" id="node6" href="$House_8h.html" title="This file contains the declaration of the House class." alt="" coords="316,155,391,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="235,229,322,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="349,229,422,256"/>
+<area shape="rect" id="node9" title=" " alt="" coords="448,229,507,256"/>
+<area shape="rect" id="node10" href="$Robot_8h.html" title="This file contains the declaration of the Robot class." alt="" coords="156,80,228,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,304,80,331"/>
+<area shape="rect" id="node4" title=" " alt="" coords="105,304,167,331"/>
+<area shape="rect" id="node5" title=" " alt="" coords="192,304,272,331"/>
+<area shape="rect" id="node11" href="$Algorithm_8h.html" title="This file contains the declaration of the Algorithm class." alt="" coords="143,155,241,181"/>
+</map>

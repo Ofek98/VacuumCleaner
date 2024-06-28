@@ -1,0 +1,174 @@
+\hypertarget{classHouse_1_1Matrix}{}\doxysection{House\+::Matrix Class Reference}
+\label{classHouse_1_1Matrix}\index{House::Matrix@{House::Matrix}}
+
+
+The \mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} class represents a matrix of tiles in the house.  
+
+
+
+
+{\ttfamily \#include $<$House.\+h$>$}
+
+
+
+Collaboration diagram for House\+::Matrix\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{classHouse_1_1Matrix__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHouse_1_1Matrix_a0e20f5715ad8f85307ba4237c249e974}\label{classHouse_1_1Matrix_a0e20f5715ad8f85307ba4237c249e974}} 
+\mbox{\hyperlink{classHouse_1_1Matrix_a0e20f5715ad8f85307ba4237c249e974}{Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Constructs an empty \mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHouse_1_1Matrix_ac77879ffb89ba273769e278dff7747fe}{Matrix}} (size\+\_\+t dim\+\_\+x, size\+\_\+t dim\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} object with the given dimensions. \end{DoxyCompactList}\item 
+Element\+Proxy \mbox{\hyperlink{classHouse_1_1Matrix_ab0b4ae02a07e2707389154fb13c21485}{operator()}} (size\+\_\+t x, size\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Accesses the element at the given coordinates. \end{DoxyCompactList}\item 
+Element\+Proxy \mbox{\hyperlink{classHouse_1_1Matrix_a940e2e41bce8627c6879913087899e76}{operator()}} (\mbox{\hyperlink{classCoords}{Coords}} location)
+\begin{DoxyCompactList}\small\item\em Accesses the element at the given coordinates. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHouse_1_1Tile}{Tile}} \mbox{\hyperlink{classHouse_1_1Matrix_a74217b7a353cca630f09a46a841b0f4c}{operator()}} (size\+\_\+t x, size\+\_\+t y) const
+\begin{DoxyCompactList}\small\item\em Gets the value of the element at the given coordinates. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHouse_1_1Tile}{Tile}} \mbox{\hyperlink{classHouse_1_1Matrix_aa4a8a74fc68f5d8618e539cb7191f718}{operator()}} (\mbox{\hyperlink{classCoords}{Coords}} location) const
+\begin{DoxyCompactList}\small\item\em Gets the value of the element at the given coordinates. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classHouse_1_1Matrix_a01b85f8877ec8a686c02ced188c233d7}{get\+DimX}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of columns in the matrix. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classHouse_1_1Matrix_a34805797a253a42e44de8564b8e9cb71}{get\+DimY}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of rows in the matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} class represents a matrix of tiles in the house. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHouse_1_1Matrix_ac77879ffb89ba273769e278dff7747fe}\label{classHouse_1_1Matrix_ac77879ffb89ba273769e278dff7747fe}} 
+\index{House::Matrix@{House::Matrix}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!House::Matrix@{House::Matrix}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}}
+{\footnotesize\ttfamily House\+::\+Matrix\+::\+Matrix (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{dim\+\_\+x,  }\item[{size\+\_\+t}]{dim\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} object with the given dimensions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dim\+\_\+x} & The number of columns. \\
+\hline
+{\em dim\+\_\+y} & The number of rows. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHouse_1_1Matrix_a01b85f8877ec8a686c02ced188c233d7}\label{classHouse_1_1Matrix_a01b85f8877ec8a686c02ced188c233d7}} 
+\index{House::Matrix@{House::Matrix}!getDimX@{getDimX}}
+\index{getDimX@{getDimX}!House::Matrix@{House::Matrix}}
+\doxysubsubsection{\texorpdfstring{getDimX()}{getDimX()}}
+{\footnotesize\ttfamily size\+\_\+t House\+::\+Matrix\+::get\+DimX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of columns in the matrix. 
+
+\begin{DoxyReturn}{Returns}
+The number of columns. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Matrix_a34805797a253a42e44de8564b8e9cb71}\label{classHouse_1_1Matrix_a34805797a253a42e44de8564b8e9cb71}} 
+\index{House::Matrix@{House::Matrix}!getDimY@{getDimY}}
+\index{getDimY@{getDimY}!House::Matrix@{House::Matrix}}
+\doxysubsubsection{\texorpdfstring{getDimY()}{getDimY()}}
+{\footnotesize\ttfamily size\+\_\+t House\+::\+Matrix\+::get\+DimY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of rows in the matrix. 
+
+\begin{DoxyReturn}{Returns}
+The number of rows. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Matrix_a940e2e41bce8627c6879913087899e76}\label{classHouse_1_1Matrix_a940e2e41bce8627c6879913087899e76}} 
+\index{House::Matrix@{House::Matrix}!operator()@{operator()}}
+\index{operator()@{operator()}!House::Matrix@{House::Matrix}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily House\+::\+Matrix\+::\+Element\+Proxy House\+::\+Matrix\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCoords}{Coords}}}]{location }\end{DoxyParamCaption})}
+
+
+
+Accesses the element at the given coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em location} & The coordinates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Element\+Proxy object representing the element. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Matrix_aa4a8a74fc68f5d8618e539cb7191f718}\label{classHouse_1_1Matrix_aa4a8a74fc68f5d8618e539cb7191f718}} 
+\index{House::Matrix@{House::Matrix}!operator()@{operator()}}
+\index{operator()@{operator()}!House::Matrix@{House::Matrix}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHouse_1_1Tile}{House\+::\+Tile}} House\+::\+Matrix\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCoords}{Coords}}}]{location }\end{DoxyParamCaption}) const}
+
+
+
+Gets the value of the element at the given coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em location} & The coordinates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the element. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Matrix_ab0b4ae02a07e2707389154fb13c21485}\label{classHouse_1_1Matrix_ab0b4ae02a07e2707389154fb13c21485}} 
+\index{House::Matrix@{House::Matrix}!operator()@{operator()}}
+\index{operator()@{operator()}!House::Matrix@{House::Matrix}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily House\+::\+Matrix\+::\+Element\+Proxy House\+::\+Matrix\+::operator() (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{x,  }\item[{size\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Accesses the element at the given coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate. \\
+\hline
+{\em y} & The y-\/coordinate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Element\+Proxy object representing the element. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Matrix_a74217b7a353cca630f09a46a841b0f4c}\label{classHouse_1_1Matrix_a74217b7a353cca630f09a46a841b0f4c}} 
+\index{House::Matrix@{House::Matrix}!operator()@{operator()}}
+\index{operator()@{operator()}!House::Matrix@{House::Matrix}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHouse_1_1Tile}{House\+::\+Tile}} House\+::\+Matrix\+::operator() (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{x,  }\item[{size\+\_\+t}]{y }\end{DoxyParamCaption}) const}
+
+
+
+Gets the value of the element at the given coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate. \\
+\hline
+{\em y} & The y-\/coordinate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the element. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{House_8h}{House.\+h}}\item 
+src/\mbox{\hyperlink{House_8cpp}{House.\+cpp}}\end{DoxyCompactItemize}

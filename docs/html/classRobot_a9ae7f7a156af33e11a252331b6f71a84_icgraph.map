@@ -1,0 +1,7 @@
+<map id="Robot::getSurroundingWalls" name="Robot::getSurroundingWalls">
+<area shape="rect" id="node1" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="755,5,957,32"/>
+<area shape="rect" id="node2" href="$classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3" title="Decides the next step for the robot." alt="" coords="499,5,707,32"/>
+<area shape="rect" id="node3" href="$classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="271,5,451,32"/>
+<area shape="rect" id="node4" href="$classSimulator.html#a16dd2bc125e46164ebe249704278dac7" title="Runs the simulation for the specified number of steps." alt="" coords="108,5,223,32"/>
+<area shape="rect" id="node5" href="$myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The main function of the program." alt="" coords="5,5,60,32"/>
+</map>

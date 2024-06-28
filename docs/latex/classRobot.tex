@@ -1,0 +1,188 @@
+\hypertarget{classRobot}{}\doxysection{Robot Class Reference}
+\label{classRobot}\index{Robot@{Robot}}
+
+
+Represents a vacuum cleaning robot.  
+
+
+
+
+{\ttfamily \#include $<$Robot.\+h$>$}
+
+
+
+Collaboration diagram for Robot\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classRobot__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRobot_a362015afd9a5714b709028b5a4760c7e}{Robot}} (\mbox{\hyperlink{classHouse}{House}} \&house, size\+\_\+t battery\+\_\+capacity)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classRobot}{Robot}} object. \end{DoxyCompactList}\item 
+bool $\ast$ \mbox{\hyperlink{classRobot_a9ae7f7a156af33e11a252331b6f71a84}{get\+Surrounding\+Walls}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the surrounding walls of the robot\textquotesingle{}s current location. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structStep}{Step}} \mbox{\hyperlink{classRobot_ae1d2d755c0240a6dab680bcfef652dad}{perform\+Next\+Step}} ()
+\begin{DoxyCompactList}\small\item\em Performs the next step of the cleaning algorithm. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classRobot_ab8c1af6c01e1faf8110ef989a05eff3a}{get\+Current\+Coords\+Dirt}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the amount of dirt at the robot\textquotesingle{}s current location. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classRobot_a3903147a2aa0eb3151e2d192404f90cb}{get\+Battery\+Left}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the remaining battery level of the robot. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structStep}{Step}} $>$ \mbox{\hyperlink{classRobot_adb90a14c0aa539757df01e9bff6cbdc0}{get\+Steps\+Taken}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the steps taken by the robot during the cleaning process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a vacuum cleaning robot. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRobot_a362015afd9a5714b709028b5a4760c7e}\label{classRobot_a362015afd9a5714b709028b5a4760c7e}} 
+\index{Robot@{Robot}!Robot@{Robot}}
+\index{Robot@{Robot}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{Robot()}{Robot()}}
+{\footnotesize\ttfamily Robot\+::\+Robot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classHouse}{House}} \&}]{house,  }\item[{size\+\_\+t}]{battery\+\_\+capacity }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classRobot}{Robot}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em house} & The house to clean. \\
+\hline
+{\em battery\+\_\+capacity} & The battery capacity of the robot. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRobot_a3903147a2aa0eb3151e2d192404f90cb}\label{classRobot_a3903147a2aa0eb3151e2d192404f90cb}} 
+\index{Robot@{Robot}!getBatteryLeft@{getBatteryLeft}}
+\index{getBatteryLeft@{getBatteryLeft}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{getBatteryLeft()}{getBatteryLeft()}}
+{\footnotesize\ttfamily float Robot\+::get\+Battery\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the remaining battery level of the robot. 
+
+\begin{DoxyReturn}{Returns}
+The remaining battery level as a float value. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_a3903147a2aa0eb3151e2d192404f90cb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classRobot_ab8c1af6c01e1faf8110ef989a05eff3a}\label{classRobot_ab8c1af6c01e1faf8110ef989a05eff3a}} 
+\index{Robot@{Robot}!getCurrentCoordsDirt@{getCurrentCoordsDirt}}
+\index{getCurrentCoordsDirt@{getCurrentCoordsDirt}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{getCurrentCoordsDirt()}{getCurrentCoordsDirt()}}
+{\footnotesize\ttfamily size\+\_\+t Robot\+::get\+Current\+Coords\+Dirt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the amount of dirt at the robot\textquotesingle{}s current location. 
+
+\begin{DoxyReturn}{Returns}
+The amount of dirt at the current location. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_ab8c1af6c01e1faf8110ef989a05eff3a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_ab8c1af6c01e1faf8110ef989a05eff3a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classRobot_adb90a14c0aa539757df01e9bff6cbdc0}\label{classRobot_adb90a14c0aa539757df01e9bff6cbdc0}} 
+\index{Robot@{Robot}!getStepsTaken@{getStepsTaken}}
+\index{getStepsTaken@{getStepsTaken}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{getStepsTaken()}{getStepsTaken()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structStep}{Step}} $>$ Robot\+::get\+Steps\+Taken (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the steps taken by the robot during the cleaning process. 
+
+\begin{DoxyReturn}{Returns}
+A vector of \mbox{\hyperlink{structStep}{Step}} objects representing the steps taken. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_adb90a14c0aa539757df01e9bff6cbdc0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classRobot_a9ae7f7a156af33e11a252331b6f71a84}\label{classRobot_a9ae7f7a156af33e11a252331b6f71a84}} 
+\index{Robot@{Robot}!getSurroundingWalls@{getSurroundingWalls}}
+\index{getSurroundingWalls@{getSurroundingWalls}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{getSurroundingWalls()}{getSurroundingWalls()}}
+{\footnotesize\ttfamily bool $\ast$ Robot\+::get\+Surrounding\+Walls (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the surrounding walls of the robot\textquotesingle{}s current location. 
+
+\begin{DoxyReturn}{Returns}
+A boolean array representing the presence of walls in the surrounding directions. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_a9ae7f7a156af33e11a252331b6f71a84_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_a9ae7f7a156af33e11a252331b6f71a84_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classRobot_ae1d2d755c0240a6dab680bcfef652dad}\label{classRobot_ae1d2d755c0240a6dab680bcfef652dad}} 
+\index{Robot@{Robot}!performNextStep@{performNextStep}}
+\index{performNextStep@{performNextStep}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{performNextStep()}{performNextStep()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structStep}{Step}} Robot\+::perform\+Next\+Step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Performs the next step of the cleaning algorithm. 
+
+\begin{DoxyReturn}{Returns}
+The step performed by the robot. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_ae1d2d755c0240a6dab680bcfef652dad_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_ae1d2d755c0240a6dab680bcfef652dad_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Robot_8h}{Robot.\+h}}\item 
+src/\mbox{\hyperlink{Robot_8cpp}{Robot.\+cpp}}\end{DoxyCompactItemize}

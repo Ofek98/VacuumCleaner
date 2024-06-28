@@ -1,5 +1,9 @@
 #include "common.h"
 
+ /* @file common.cpp
+ * @brief Implementation of the common functions and classes used in the Vacuum Cleaner project.
+ */
+
 Coords::Coords(int x, int y) : x(x), y(y) {}
 
 Coords Coords::reverse() const {

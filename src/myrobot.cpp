@@ -1,19 +1,33 @@
+/**
+ * @file myrobot.cpp
+ * @brief This file contains the implementation of a vacuum cleaner simulation program.
+ */
+
 #include <iostream>
 #include <string>
 #include <fstream>
 #include "House.h"
 #include "Simulator.h"
 
+/**
+ * @brief Structure to store input values read from the input file.
+ */
 struct InputValues
 {   
-    bool success = false;
-    size_t max_battery_steps;
-    size_t total_steps;
-    size_t total_dirt = 0;
-    House::Matrix tiles;
-    Coords docking_station;
+    bool success = false; /**< Flag indicating if the input file was read successfully. */
+    size_t max_battery_steps; /**< Maximum number of battery steps. */
+    size_t total_steps; /**< Total number of steps to be performed. */
+    size_t total_dirt = 0; /**< Total amount of dirt in the house. */
+    House::Matrix tiles; /**< Matrix representing the house layout. */
+    Coords docking_station; /**< Coordinates of the docking station. */
 };
 
+/**
+ * @brief Reads the input file and extracts the input values.
+ * 
+ * @param file The input file stream.
+ * @return InputValues The extracted input values.
+ */
 InputValues readInputFile(std::ifstream& file)
 {
     InputValues input_values;
@@ -64,12 +78,16 @@ InputValues readInputFile(std::ifstream& file)
         y++;
     }
 
-
     input_values.success = true;
     return input_values;
 }
 
-
+/**
+ * @brief Writes the output file with the simulation results.
+ * 
+ * @param res The simulation results.
+ * @return bool True if the output file was written successfully, false otherwise.
+ */
 bool writeOutputFile(RunResults res)
 {
     std::ofstream file("output.txt"); // Open output file
@@ -79,7 +97,7 @@ bool writeOutputFile(RunResults res)
         return false;
     }
 
-    file << "Steps performed by the vaccum cleaner:" << std::endl;
+    file << "Steps performed by the vacuum cleaner:" << std::endl;
 
     for(Step step: res.steps_taken) {
         file << "(" << step.coords.x << ", " << step.coords.y << "): " << step.type << std::endl;
@@ -87,18 +105,25 @@ bool writeOutputFile(RunResults res)
 
     file << "Total number of steps performed: " << res.steps_taken.size() << std::endl;
 
-    file << (res.battery_left ? "Vaccum cleaner still has " + std::to_string(res.battery_left) + " battery" : "Vaccum cleaner is dead") << std::endl;
+    file << (res.battery_left ? "Vacuum cleaner still has " + std::to_string(res.battery_left) + " battery" : "Vacuum cleaner is dead") << std::endl;
 
     file << "Mission " << ((!res.dirt_left && res.is_docking) ? "succeeded" : "failed") << std::endl;
 
     file << "Amount of dirt left in the house: " << res.dirt_left << std::endl;
-    file << "Vaccum cleaner is " << (res.is_docking ? "" : "not ") << "at the docking station" << std::endl;
+    file << "Vacuum cleaner is " << (res.is_docking ? "" : "not ") << "at the docking station" << std::endl;
 
     file.close();
 
     return 0;
 }
 
+/**
+ * @brief The main function of the program.
+ * 
+ * @param argc The number of command-line arguments.
+ * @param argv The array of command-line arguments.
+ * @return int The exit status of the program.
+ */
 int main(int argc, char* argv[]) {
     // Check the number of arguments
     if (argc < 2) {
@@ -115,17 +140,17 @@ int main(int argc, char* argv[]) {
     }
 
     InputValues input_values;
-        input_values = readInputFile(file);
-        
-        if(!input_values.success) {
-            return EXIT_FAILURE;
-        }
+    input_values = readInputFile(file);
+    
+    if(!input_values.success) {
+        return EXIT_FAILURE;
+    }
 
-        Simulator simulator = Simulator(input_values.max_battery_steps, input_values.tiles, input_values.docking_station, input_values.total_dirt);
+    Simulator simulator = Simulator(input_values.max_battery_steps, input_values.tiles, input_values.docking_station, input_values.total_dirt);
 
-        writeOutputFile(simulator.run(input_values.total_steps));
+    writeOutputFile(simulator.run(input_values.total_steps));
 
-        return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
     try {
 
     }

@@ -1,0 +1,66 @@
+\hypertarget{structRunResults}{}\doxysection{Run\+Results Struct Reference}
+\label{structRunResults}\index{RunResults@{RunResults}}
+
+
+The \mbox{\hyperlink{structRunResults}{Run\+Results}} struct represents the results of a simulation run.  
+
+
+
+
+{\ttfamily \#include $<$Simulator.\+h$>$}
+
+
+
+Collaboration diagram for Run\+Results\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{structRunResults__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structStep}{Step}} $>$ \mbox{\hyperlink{structRunResults_a94c0015484c02e0a8da6f5d41a1df35e}{steps\+\_\+taken}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structRunResults_aa45a199a5a4297f57f7e2a66ef386aa2}{dirt\+\_\+left}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structRunResults_a07bcb037b1b19eb73aa3723dc31f5b7b}{battery\+\_\+left}}
+\item 
+bool \mbox{\hyperlink{structRunResults_a063a20c0db6d49189be0d611dcc5229c}{is\+\_\+docking}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{structRunResults}{Run\+Results}} struct represents the results of a simulation run. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structRunResults_a07bcb037b1b19eb73aa3723dc31f5b7b}\label{structRunResults_a07bcb037b1b19eb73aa3723dc31f5b7b}} 
+\index{RunResults@{RunResults}!battery\_left@{battery\_left}}
+\index{battery\_left@{battery\_left}!RunResults@{RunResults}}
+\doxysubsubsection{\texorpdfstring{battery\_left}{battery\_left}}
+{\footnotesize\ttfamily size\+\_\+t Run\+Results\+::battery\+\_\+left}
+
+The remaining battery level of the robot after the simulation. \mbox{\Hypertarget{structRunResults_aa45a199a5a4297f57f7e2a66ef386aa2}\label{structRunResults_aa45a199a5a4297f57f7e2a66ef386aa2}} 
+\index{RunResults@{RunResults}!dirt\_left@{dirt\_left}}
+\index{dirt\_left@{dirt\_left}!RunResults@{RunResults}}
+\doxysubsubsection{\texorpdfstring{dirt\_left}{dirt\_left}}
+{\footnotesize\ttfamily size\+\_\+t Run\+Results\+::dirt\+\_\+left}
+
+The amount of dirt left in the house after the simulation. \mbox{\Hypertarget{structRunResults_a063a20c0db6d49189be0d611dcc5229c}\label{structRunResults_a063a20c0db6d49189be0d611dcc5229c}} 
+\index{RunResults@{RunResults}!is\_docking@{is\_docking}}
+\index{is\_docking@{is\_docking}!RunResults@{RunResults}}
+\doxysubsubsection{\texorpdfstring{is\_docking}{is\_docking}}
+{\footnotesize\ttfamily bool Run\+Results\+::is\+\_\+docking}
+
+Indicates whether the robot is at the docking station at the end of the simulation. \mbox{\Hypertarget{structRunResults_a94c0015484c02e0a8da6f5d41a1df35e}\label{structRunResults_a94c0015484c02e0a8da6f5d41a1df35e}} 
+\index{RunResults@{RunResults}!steps\_taken@{steps\_taken}}
+\index{steps\_taken@{steps\_taken}!RunResults@{RunResults}}
+\doxysubsubsection{\texorpdfstring{steps\_taken}{steps\_taken}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structStep}{Step}}$>$ Run\+Results\+::steps\+\_\+taken}
+
+The steps taken by the robot during the simulation. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Simulator_8h}{Simulator.\+h}}\end{DoxyCompactItemize}

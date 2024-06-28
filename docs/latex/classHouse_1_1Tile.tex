@@ -1,0 +1,117 @@
+\hypertarget{classHouse_1_1Tile}{}\doxysection{House\+::Tile Class Reference}
+\label{classHouse_1_1Tile}\index{House::Tile@{House::Tile}}
+
+
+The \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} class represents a single tile in the house.  
+
+
+
+
+{\ttfamily \#include $<$House.\+h$>$}
+
+
+
+Collaboration diagram for House\+::Tile\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{classHouse_1_1Tile__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHouse_1_1Tile_a8ada807dcd280b8332b2c379ac865abe}{Tile}} (int status)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} object with the given status. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHouse_1_1Tile_aa72bd233cee229afe8821aebe2d7071f}{Tile}} (char status\+\_\+char)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} object by the given status character. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classHouse_1_1Tile_ae51255e78282a8d9c7cee4547b38ab64}{get\+Status}} () const
+\begin{DoxyCompactList}\small\item\em Gets the status of the tile. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHouse_1_1Tile_a84723dba688a5b10ed00367b6ec687ae}{clean\+Once}} ()
+\begin{DoxyCompactList}\small\item\em Cleans the tile once. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHouse_1_1Tile_a5b32edad4861f7893c976beb08f8d266}{is\+Wall}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the tile is a wall. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} class represents a single tile in the house. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHouse_1_1Tile_a8ada807dcd280b8332b2c379ac865abe}\label{classHouse_1_1Tile_a8ada807dcd280b8332b2c379ac865abe}} 
+\index{House::Tile@{House::Tile}!Tile@{Tile}}
+\index{Tile@{Tile}!House::Tile@{House::Tile}}
+\doxysubsubsection{\texorpdfstring{Tile()}{Tile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily House\+::\+Tile\+::\+Tile (\begin{DoxyParamCaption}\item[{int}]{status }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} object with the given status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & The status of the tile. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHouse_1_1Tile_aa72bd233cee229afe8821aebe2d7071f}\label{classHouse_1_1Tile_aa72bd233cee229afe8821aebe2d7071f}} 
+\index{House::Tile@{House::Tile}!Tile@{Tile}}
+\index{Tile@{Tile}!House::Tile@{House::Tile}}
+\doxysubsubsection{\texorpdfstring{Tile()}{Tile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily House\+::\+Tile\+::\+Tile (\begin{DoxyParamCaption}\item[{char}]{status\+\_\+char }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} object by the given status character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status\+\_\+char} & The status character of the tile. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHouse_1_1Tile_a84723dba688a5b10ed00367b6ec687ae}\label{classHouse_1_1Tile_a84723dba688a5b10ed00367b6ec687ae}} 
+\index{House::Tile@{House::Tile}!cleanOnce@{cleanOnce}}
+\index{cleanOnce@{cleanOnce}!House::Tile@{House::Tile}}
+\doxysubsubsection{\texorpdfstring{cleanOnce()}{cleanOnce()}}
+{\footnotesize\ttfamily bool House\+::\+Tile\+::clean\+Once (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cleans the tile once. 
+
+\begin{DoxyReturn}{Returns}
+True if the tile was successfully cleaned, false otherwise (if it was clean already). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Tile_ae51255e78282a8d9c7cee4547b38ab64}\label{classHouse_1_1Tile_ae51255e78282a8d9c7cee4547b38ab64}} 
+\index{House::Tile@{House::Tile}!getStatus@{getStatus}}
+\index{getStatus@{getStatus}!House::Tile@{House::Tile}}
+\doxysubsubsection{\texorpdfstring{getStatus()}{getStatus()}}
+{\footnotesize\ttfamily int House\+::\+Tile\+::get\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the status of the tile. 
+
+\begin{DoxyReturn}{Returns}
+The status of the tile. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Tile_a5b32edad4861f7893c976beb08f8d266}\label{classHouse_1_1Tile_a5b32edad4861f7893c976beb08f8d266}} 
+\index{House::Tile@{House::Tile}!isWall@{isWall}}
+\index{isWall@{isWall}!House::Tile@{House::Tile}}
+\doxysubsubsection{\texorpdfstring{isWall()}{isWall()}}
+{\footnotesize\ttfamily bool House\+::\+Tile\+::is\+Wall (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the tile is a wall. 
+
+\begin{DoxyReturn}{Returns}
+True if the tile is a wall, false otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{House_8h}{House.\+h}}\item 
+src/\mbox{\hyperlink{House_8cpp}{House.\+cpp}}\end{DoxyCompactItemize}

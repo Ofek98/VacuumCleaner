@@ -1,0 +1,4 @@
+<map id="Robot::getCurrentCoordsDirt" name="Robot::getCurrentCoordsDirt">
+<area shape="rect" id="node1" title="Retrieves the amount of dirt at the robot&#39;s current location." alt="" coords="5,5,212,32"/>
+<area shape="rect" id="node2" href="$classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12" title="Gets the dirt level at the given location." alt="" coords="260,5,411,32"/>
+</map>

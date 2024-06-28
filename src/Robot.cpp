@@ -1,4 +1,12 @@
+
+
+/**
+ * @file Robot.cpp
+ * @brief This file contains the implementation of the Robot class.
+ */
+
 #include "Robot.h"
+
 
 Robot::Robot(House& house, size_t battery_capacity)
     : house(house), location(house.getDockingStationCoords()), battery_capacity(battery_capacity),

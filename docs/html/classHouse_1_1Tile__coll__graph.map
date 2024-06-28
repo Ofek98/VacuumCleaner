@@ -1,0 +1,3 @@
+<map id="House::Tile" name="House::Tile">
+<area shape="rect" id="node1" title="The Tile class represents a single tile in the house." alt="" coords="5,5,120,141"/>
+</map>

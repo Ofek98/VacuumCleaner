@@ -1,0 +1,9 @@
+<map id="Robot::performNextStep" name="Robot::performNextStep">
+<area shape="rect" id="node1" title="Performs the next step of the cleaning algorithm." alt="" coords="5,56,185,83"/>
+<area shape="rect" id="node2" href="$classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3" title="Decides the next step for the robot." alt="" coords="233,56,441,83"/>
+<area shape="rect" id="node3" href="$classRobot.html#a3903147a2aa0eb3151e2d192404f90cb" title="Retrieves the remaining battery level of the robot." alt="" coords="512,5,673,32"/>
+<area shape="rect" id="node4" href="$classRobot.html#ab8c1af6c01e1faf8110ef989a05eff3a" title="Retrieves the amount of dirt at the robot&#39;s current location." alt="" coords="489,56,696,83"/>
+<area shape="rect" id="node6" href="$classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="491,107,694,133"/>
+<area shape="rect" id="node5" href="$classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12" title="Gets the dirt level at the given location." alt="" coords="744,56,895,83"/>
+<area shape="rect" id="node7" href="$classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="764,107,875,133"/>
+</map>

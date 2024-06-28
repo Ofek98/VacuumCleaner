@@ -1,0 +1,138 @@
+\hypertarget{common_8h}{}\doxysection{src/common.h File Reference}
+\label{common_8h}\index{src/common.h@{src/common.h}}
+
+
+This file contains the declaration of the \mbox{\hyperlink{classCoords}{Coords}} class, Step\+Type enum, \mbox{\hyperlink{structStep}{Step}} struct, and other constants and variables used in the vacuum cleaner program.  
+
+
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+Include dependency graph for common.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{common_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{common_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCoords}{Coords}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classCoords}{Coords}} class represents the coordinates of a tile in a matrix of tiles. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structStep}{Step}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{structStep}{Step}} struct represents a step in a cleaning process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{common_8h_a8e9aa7f20b8ab324b1b9b4903622af59}{DIFFLOCATION}}~\mbox{\hyperlink{classCoords}{Coords}}(0,0)
+\item 
+\#define \mbox{\hyperlink{common_8h_afdfc0257053ff7e2b248e78e71241087}{NO\+\_\+\+DIRECTION}}~\mbox{\hyperlink{classCoords}{Coords}}(-\/1,-\/1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6e}{Step\+Type}} \{ \mbox{\hyperlink{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6ea66c5c37af65c297c098d96df666bf6da}{CLEAN}}
+, \mbox{\hyperlink{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6eaed3ef32890b6da0919b57254c5206c62}{MOVE}}
+, \mbox{\hyperlink{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6eaea7debd6c1f7cf2d27b8774acac4109f}{CHARGE}}
+ \}
+\begin{DoxyCompactList}\small\item\em The Step\+Type enum represents the type of a step. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classCoords}{Coords}} \mbox{\hyperlink{common_8h_a4244916beb220142c02b950e3b8a171c}{DIRECTIONS}} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em An array of \mbox{\hyperlink{classCoords}{Coords}} objects representing the four cardinal directions\+: up, right, down, and left. \end{DoxyCompactList}\item 
+constexpr int \mbox{\hyperlink{common_8h_a685d683470e08faeb8d2bc5504f3f288}{WALL}} = -\/1
+\item 
+constexpr int \mbox{\hyperlink{common_8h_a4f0d2bf26bd710aa80837abd5d786f25}{DOCKING\+\_\+\+STATION}} = -\/2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the declaration of the \mbox{\hyperlink{classCoords}{Coords}} class, Step\+Type enum, \mbox{\hyperlink{structStep}{Step}} struct, and other constants and variables used in the vacuum cleaner program. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{common_8h_a8e9aa7f20b8ab324b1b9b4903622af59}\label{common_8h_a8e9aa7f20b8ab324b1b9b4903622af59}} 
+\index{common.h@{common.h}!DIFFLOCATION@{DIFFLOCATION}}
+\index{DIFFLOCATION@{DIFFLOCATION}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{DIFFLOCATION}{DIFFLOCATION}}
+{\footnotesize\ttfamily \#define DIFFLOCATION~\mbox{\hyperlink{classCoords}{Coords}}(0,0)}
+
+A constant representing a zero difference in location. \mbox{\Hypertarget{common_8h_afdfc0257053ff7e2b248e78e71241087}\label{common_8h_afdfc0257053ff7e2b248e78e71241087}} 
+\index{common.h@{common.h}!NO\_DIRECTION@{NO\_DIRECTION}}
+\index{NO\_DIRECTION@{NO\_DIRECTION}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{NO\_DIRECTION}{NO\_DIRECTION}}
+{\footnotesize\ttfamily \#define NO\+\_\+\+DIRECTION~\mbox{\hyperlink{classCoords}{Coords}}(-\/1,-\/1)}
+
+A constant representing no direction (for edge cases). 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6e}\label{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6e}} 
+\index{common.h@{common.h}!StepType@{StepType}}
+\index{StepType@{StepType}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{StepType}{StepType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6e}{Step\+Type}}}
+
+
+
+The Step\+Type enum represents the type of a step. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLEAN@{CLEAN}!common.h@{common.h}}\index{common.h@{common.h}!CLEAN@{CLEAN}}}\mbox{\Hypertarget{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6ea66c5c37af65c297c098d96df666bf6da}\label{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6ea66c5c37af65c297c098d96df666bf6da}} 
+CLEAN&Represents a cleaning step. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOVE@{MOVE}!common.h@{common.h}}\index{common.h@{common.h}!MOVE@{MOVE}}}\mbox{\Hypertarget{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6eaed3ef32890b6da0919b57254c5206c62}\label{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6eaed3ef32890b6da0919b57254c5206c62}} 
+MOVE&Represents a movement step. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHARGE@{CHARGE}!common.h@{common.h}}\index{common.h@{common.h}!CHARGE@{CHARGE}}}\mbox{\Hypertarget{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6eaea7debd6c1f7cf2d27b8774acac4109f}\label{common_8h_aa95d0c190a57f9bc63ec7e09473e4c6eaea7debd6c1f7cf2d27b8774acac4109f}} 
+CHARGE&Represents a charging step. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{common_8h_a4244916beb220142c02b950e3b8a171c}\label{common_8h_a4244916beb220142c02b950e3b8a171c}} 
+\index{common.h@{common.h}!DIRECTIONS@{DIRECTIONS}}
+\index{DIRECTIONS@{DIRECTIONS}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{DIRECTIONS}{DIRECTIONS}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classCoords}{Coords}} DIRECTIONS\mbox{[}4\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{0, 1\}, }
+\DoxyCodeLine{    \{1, 0\}, }
+\DoxyCodeLine{    \{0, -\/1\}, }
+\DoxyCodeLine{    \{-\/1, 0\} }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+An array of \mbox{\hyperlink{classCoords}{Coords}} objects representing the four cardinal directions\+: up, right, down, and left. 
+
+\mbox{\Hypertarget{common_8h_a4f0d2bf26bd710aa80837abd5d786f25}\label{common_8h_a4f0d2bf26bd710aa80837abd5d786f25}} 
+\index{common.h@{common.h}!DOCKING\_STATION@{DOCKING\_STATION}}
+\index{DOCKING\_STATION@{DOCKING\_STATION}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{DOCKING\_STATION}{DOCKING\_STATION}}
+{\footnotesize\ttfamily constexpr int DOCKING\+\_\+\+STATION = -\/2\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+A constant representing a docking station. \mbox{\Hypertarget{common_8h_a685d683470e08faeb8d2bc5504f3f288}\label{common_8h_a685d683470e08faeb8d2bc5504f3f288}} 
+\index{common.h@{common.h}!WALL@{WALL}}
+\index{WALL@{WALL}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{WALL}{WALL}}
+{\footnotesize\ttfamily constexpr int WALL = -\/1\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+A constant representing a wall. 

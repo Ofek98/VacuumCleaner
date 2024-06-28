@@ -1,0 +1,5 @@
+<map id="InputValues" name="InputValues">
+<area shape="rect" id="node1" title="Structure to store input values read from the input file." alt="" coords="61,248,223,369"/>
+<area shape="rect" id="node2" href="$classCoords.html" title="The Coords class represents the coordinates of a tile in a matrix of tiles." alt="" coords="5,27,129,163"/>
+<area shape="rect" id="node3" href="$classHouse_1_1Matrix.html" title="The Matrix class represents a matrix of tiles in the house." alt="" coords="160,5,273,185"/>
+</map>

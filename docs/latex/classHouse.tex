@@ -1,0 +1,174 @@
+\hypertarget{classHouse}{}\doxysection{House Class Reference}
+\label{classHouse}\index{House@{House}}
+
+
+The \mbox{\hyperlink{classHouse}{House}} class represents a house with tiles that can be cleaned by a vacuum cleaner.  
+
+
+
+
+{\ttfamily \#include $<$House.\+h$>$}
+
+
+
+Collaboration diagram for House\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classHouse__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} class represents a matrix of tiles in the house. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classHouse_1_1Tile}{Tile}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} class represents a single tile in the house. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHouse_acdc833f89708b6fdfce7d50add408cc8}{House}} (\mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} tiles, \mbox{\hyperlink{classCoords}{Coords}} docking\+\_\+station, size\+\_\+t total\+\_\+dirt)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classHouse}{House}} object with the given matrix of tiles, docking station coordinates, and total dirt level. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classHouse_adbb5a6d3f124bd1c56a93f220a956b12}{get\+Dirt\+Level}} (\mbox{\hyperlink{classCoords}{Coords}} location) const
+\begin{DoxyCompactList}\small\item\em Gets the dirt level at the given location. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHouse_af060f3a7a72dfd36a758959cbd5d2750}{clean\+Once}} (\mbox{\hyperlink{classCoords}{Coords}} location)
+\begin{DoxyCompactList}\small\item\em Cleans the tile at the given location once. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHouse_a54575b69be7a183b12fca956bdc01cbc}{is\+Wall}} (\mbox{\hyperlink{classCoords}{Coords}} location) const
+\begin{DoxyCompactList}\small\item\em Checks if the tile at the given location is a wall. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classHouse_a6933baa6d1980789a0d4caea151a1ed8}{get\+Total\+Dirt}} () const
+\begin{DoxyCompactList}\small\item\em Gets the total dirt level of the house. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCoords}{Coords}} \mbox{\hyperlink{classHouse_af06feafc0472ce4d10eb555e4d04b765}{get\+Docking\+Station\+Coords}} () const
+\begin{DoxyCompactList}\small\item\em Gets the coordinates of the docking station. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classHouse}{House}} class represents a house with tiles that can be cleaned by a vacuum cleaner. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHouse_acdc833f89708b6fdfce7d50add408cc8}\label{classHouse_acdc833f89708b6fdfce7d50add408cc8}} 
+\index{House@{House}!House@{House}}
+\index{House@{House}!House@{House}}
+\doxysubsubsection{\texorpdfstring{House()}{House()}}
+{\footnotesize\ttfamily House\+::\+House (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}}}]{tiles,  }\item[{\mbox{\hyperlink{classCoords}{Coords}}}]{docking\+\_\+station,  }\item[{size\+\_\+t}]{total\+\_\+dirt }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classHouse}{House}} object with the given matrix of tiles, docking station coordinates, and total dirt level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiles} & The matrix of tiles representing the house. \\
+\hline
+{\em docking\+\_\+station} & The coordinates of the docking station. \\
+\hline
+{\em total\+\_\+dirt} & The total dirt level of the house. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHouse_af060f3a7a72dfd36a758959cbd5d2750}\label{classHouse_af060f3a7a72dfd36a758959cbd5d2750}} 
+\index{House@{House}!cleanOnce@{cleanOnce}}
+\index{cleanOnce@{cleanOnce}!House@{House}}
+\doxysubsubsection{\texorpdfstring{cleanOnce()}{cleanOnce()}}
+{\footnotesize\ttfamily void House\+::clean\+Once (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCoords}{Coords}}}]{location }\end{DoxyParamCaption})}
+
+
+
+Cleans the tile at the given location once. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em location} & The coordinates of the location. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHouse_adbb5a6d3f124bd1c56a93f220a956b12}\label{classHouse_adbb5a6d3f124bd1c56a93f220a956b12}} 
+\index{House@{House}!getDirtLevel@{getDirtLevel}}
+\index{getDirtLevel@{getDirtLevel}!House@{House}}
+\doxysubsubsection{\texorpdfstring{getDirtLevel()}{getDirtLevel()}}
+{\footnotesize\ttfamily size\+\_\+t House\+::get\+Dirt\+Level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCoords}{Coords}}}]{location }\end{DoxyParamCaption}) const}
+
+
+
+Gets the dirt level at the given location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em location} & The coordinates of the location. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dirt level at the location. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classHouse_adbb5a6d3f124bd1c56a93f220a956b12_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classHouse_af06feafc0472ce4d10eb555e4d04b765}\label{classHouse_af06feafc0472ce4d10eb555e4d04b765}} 
+\index{House@{House}!getDockingStationCoords@{getDockingStationCoords}}
+\index{getDockingStationCoords@{getDockingStationCoords}!House@{House}}
+\doxysubsubsection{\texorpdfstring{getDockingStationCoords()}{getDockingStationCoords()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCoords}{Coords}} House\+::get\+Docking\+Station\+Coords (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the coordinates of the docking station. 
+
+\begin{DoxyReturn}{Returns}
+The coordinates of the docking station. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_a6933baa6d1980789a0d4caea151a1ed8}\label{classHouse_a6933baa6d1980789a0d4caea151a1ed8}} 
+\index{House@{House}!getTotalDirt@{getTotalDirt}}
+\index{getTotalDirt@{getTotalDirt}!House@{House}}
+\doxysubsubsection{\texorpdfstring{getTotalDirt()}{getTotalDirt()}}
+{\footnotesize\ttfamily size\+\_\+t House\+::get\+Total\+Dirt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the total dirt level of the house. 
+
+\begin{DoxyReturn}{Returns}
+The total dirt level. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classHouse_a6933baa6d1980789a0d4caea151a1ed8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classHouse_a54575b69be7a183b12fca956bdc01cbc}\label{classHouse_a54575b69be7a183b12fca956bdc01cbc}} 
+\index{House@{House}!isWall@{isWall}}
+\index{isWall@{isWall}!House@{House}}
+\doxysubsubsection{\texorpdfstring{isWall()}{isWall()}}
+{\footnotesize\ttfamily bool House\+::is\+Wall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCoords}{Coords}}}]{location }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the tile at the given location is a wall. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em location} & The coordinates of the location. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the tile is a wall, false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classHouse_a54575b69be7a183b12fca956bdc01cbc_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{House_8h}{House.\+h}}\item 
+src/\mbox{\hyperlink{House_8cpp}{House.\+cpp}}\end{DoxyCompactItemize}

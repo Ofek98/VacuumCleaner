@@ -1,3 +1,7 @@
+/**
+ * @file Algorithm.cpp
+ * @brief Implementation file for the Algorithm class.
+ */
 #include "Algorithm.h"
 #include <cstdlib>
 #include <iostream>

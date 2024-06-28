@@ -1,3 +1,12 @@
+/**
+ * @file House.cpp
+ * @brief Implementation file for the House class.
+ * 
+ * This file contains the implementation of the House class and its member functions.
+ * The House class represents a house with a matrix of tiles, where each tile can have
+ * a status indicating the amount of dirt or other properties such as walls or docking stations.
+ * The House class provides functions to access and manipulate the tiles in the house.
+ */
 #include "House.h"
 
 House::Tile::Tile(int status): status(status) {}

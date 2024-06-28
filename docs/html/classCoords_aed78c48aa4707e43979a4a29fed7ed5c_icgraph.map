@@ -1,0 +1,5 @@
+<map id="Coords::Coords" name="Coords::Coords">
+<area shape="rect" id="node1" title="Constructs a Coords object with the given x and y coordinates." alt="" coords="195,31,315,57"/>
+<area shape="rect" id="node2" href="$classCoords.html#af77d62a549f28bebcd89bfa331935fe7" title="Adds two Coords objects together." alt="" coords="5,5,147,32"/>
+<area shape="rect" id="node3" href="$classCoords.html#a34d7f9a610ac2089faec90ad97d67148" title="Returns the reverse of the current Coords object." alt="" coords="14,56,138,83"/>
+</map>

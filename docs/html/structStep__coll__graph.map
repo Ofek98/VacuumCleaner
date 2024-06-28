@@ -1,0 +1,4 @@
+<map id="Step" name="Step">
+<area shape="rect" id="node1" title="The Step struct represents a step in a cleaning process." alt="" coords="34,204,101,281"/>
+<area shape="rect" id="node2" href="$classCoords.html" title="The Coords class represents the coordinates of a tile in a matrix of tiles." alt="" coords="5,5,129,141"/>
+</map>
