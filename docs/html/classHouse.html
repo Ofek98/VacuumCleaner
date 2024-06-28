@@ -64,6 +64,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classHouse-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">House Class Reference</div>  </div>
@@ -79,7 +80,9 @@ Collaboration diagram for House:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHouse__coll__graph.png" border="0" usemap="#aHouse_coll__map" alt="Collaboration graph"/></div>
 <map name="aHouse_coll__map" id="aHouse_coll__map">
-<area shape="rect" title="The House class represents a house with tiles that can be cleaned by a vacuum cleaner." alt="" coords="5,5,212,259"/>
+<area shape="rect" title="The House class represents a house with tiles that can be cleaned by a vacuum cleaner." alt="" coords="109,365,316,619"/>
+<area shape="rect" href="classCoords.html" title="The Coords class represents the coordinates of a tile in a matrix of tiles." alt="" coords="5,71,201,237"/>
+<area shape="rect" href="classHouse_1_1Matrix.html" title="The Matrix class represents a matrix of tiles in the house." alt="" coords="226,5,421,303"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -94,7 +97,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acdc833f89708b6fdfce7d50add408cc8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse.html#acdc833f89708b6fdfce7d50add408cc8">House</a> (<a class="el" href="classHouse_1_1Matrix.html">Matrix</a> tiles, <a class="el" href="classCoords.html">Coords</a> docking_station, size_t total_dirt)</td></tr>
+<tr class="memitem:acdc833f89708b6fdfce7d50add408cc8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse.html#acdc833f89708b6fdfce7d50add408cc8">House</a> (<a class="el" href="classHouse_1_1Matrix.html">Matrix</a> <a class="el" href="classHouse.html#ac6e49fade58eeacd72cb6b1027c74209">tiles</a>, <a class="el" href="classCoords.html">Coords</a> <a class="el" href="classHouse.html#ace7e2dc1bebdc0abb861b88073485767">docking_station</a>, size_t <a class="el" href="classHouse.html#aea9ba01109432ab6319528d9d987019c">total_dirt</a>)</td></tr>
 <tr class="memdesc:acdc833f89708b6fdfce7d50add408cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classHouse.html" title="The House class represents a house with tiles that can be cleaned by a vacuum cleaner.">House</a> object with the given matrix of tiles, docking station coordinates, and total dirt level.  <a href="classHouse.html#acdc833f89708b6fdfce7d50add408cc8">More...</a><br /></td></tr>
 <tr class="separator:acdc833f89708b6fdfce7d50add408cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbb5a6d3f124bd1c56a93f220a956b12"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12">getDirtLevel</a> (<a class="el" href="classCoords.html">Coords</a> location) const</td></tr>
@@ -112,6 +115,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af06feafc0472ce4d10eb555e4d04b765"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCoords.html">Coords</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse.html#af06feafc0472ce4d10eb555e4d04b765">getDockingStationCoords</a> () const</td></tr>
 <tr class="memdesc:af06feafc0472ce4d10eb555e4d04b765"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the coordinates of the docking station.  <a href="classHouse.html#af06feafc0472ce4d10eb555e4d04b765">More...</a><br /></td></tr>
 <tr class="separator:af06feafc0472ce4d10eb555e4d04b765"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aea9ba01109432ab6319528d9d987019c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse.html#aea9ba01109432ab6319528d9d987019c">total_dirt</a></td></tr>
+<tr class="separator:aea9ba01109432ab6319528d9d987019c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6e49fade58eeacd72cb6b1027c74209"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHouse_1_1Matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse.html#ac6e49fade58eeacd72cb6b1027c74209">tiles</a></td></tr>
+<tr class="separator:ac6e49fade58eeacd72cb6b1027c74209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace7e2dc1bebdc0abb861b88073485767"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCoords.html">Coords</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse.html#ace7e2dc1bebdc0abb861b88073485767">docking_station</a></td></tr>
+<tr class="separator:ace7e2dc1bebdc0abb861b88073485767"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classHouse.html" title="The House class represents a house with tiles that can be cleaned by a vacuum cleaner.">House</a> class represents a house with tiles that can be cleaned by a vacuum cleaner. </p>
@@ -184,6 +196,18 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHouse_af060f3a7a72dfd36a758959cbd5d2750_icgraph.png" border="0" usemap="#aclassHouse_af060f3a7a72dfd36a758959cbd5d2750_icgraph" alt=""/></div>
+<map name="aclassHouse_af060f3a7a72dfd36a758959cbd5d2750_icgraph" id="aclassHouse_af060f3a7a72dfd36a758959cbd5d2750_icgraph">
+<area shape="rect" title="Cleans the tile at the given location once." alt="" coords="649,5,788,32"/>
+<area shape="rect" href="classRobot.html#a3d7b4ac9e0c1a9970c3ad9ec43577d6e" title="Cleans the current location once." alt="" coords="499,5,601,32"/>
+<area shape="rect" href="classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="271,5,451,32"/>
+<area shape="rect" href="classSimulator.html#a16dd2bc125e46164ebe249704278dac7" title="Runs the simulation for the specified number of steps." alt="" coords="108,5,223,32"/>
+<area shape="rect" href="myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The main function of the program." alt="" coords="5,5,60,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -306,14 +330,82 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHouse_a54575b69be7a183b12fca956bdc01cbc_icgraph.png" border="0" usemap="#aclassHouse_a54575b69be7a183b12fca956bdc01cbc_icgraph" alt=""/></div>
 <map name="aclassHouse_a54575b69be7a183b12fca956bdc01cbc_icgraph" id="aclassHouse_a54575b69be7a183b12fca956bdc01cbc_icgraph">
-<area shape="rect" title="Checks if the tile at the given location is a wall." alt="" coords="1005,5,1116,32"/>
-<area shape="rect" href="classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="755,5,957,32"/>
+<area shape="rect" title="Checks if the tile at the given location is a wall." alt="" coords="1285,5,1396,32"/>
+<area shape="rect" href="classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="1035,5,1237,32"/>
 <area shape="rect" href="classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3" title="Decides the next step for the robot." alt="" coords="499,5,707,32"/>
+<area shape="rect" href="classAlgorithm.html#aad869c5e3510ebc86d22884b2886cb33" title="Randomly moves the robot to a free (non&#45;wall) direction." alt="" coords="755,31,987,57"/>
 <area shape="rect" href="classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="271,5,451,32"/>
 <area shape="rect" href="classSimulator.html#a16dd2bc125e46164ebe249704278dac7" title="Runs the simulation for the specified number of steps." alt="" coords="108,5,223,32"/>
 <area shape="rect" href="myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The main function of the program." alt="" coords="5,5,60,32"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ace7e2dc1bebdc0abb861b88073485767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace7e2dc1bebdc0abb861b88073485767">&#9670;&nbsp;</a></span>docking_station</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCoords.html">Coords</a> House::docking_station</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac6e49fade58eeacd72cb6b1027c74209"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6e49fade58eeacd72cb6b1027c74209">&#9670;&nbsp;</a></span>tiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classHouse_1_1Matrix.html">Matrix</a> House::tiles</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea9ba01109432ab6319528d9d987019c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea9ba01109432ab6319528d9d987019c">&#9670;&nbsp;</a></span>total_dirt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t House::total_dirt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

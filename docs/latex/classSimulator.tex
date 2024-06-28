@@ -15,7 +15,7 @@ Collaboration diagram for Simulator\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=212pt]{classSimulator__coll__graph}
+\includegraphics[height=550pt]{classSimulator__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -25,6 +25,13 @@ Collaboration diagram for Simulator\+:\nopagebreak
 \begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classSimulator}{Simulator}} object with the specified parameters. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structRunResults}{Run\+Results}} \mbox{\hyperlink{classSimulator_a16dd2bc125e46164ebe249704278dac7}{run}} (size\+\_\+t total\+\_\+steps)
 \begin{DoxyCompactList}\small\item\em Runs the simulation for the specified number of steps. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHouse}{House}} \mbox{\hyperlink{classSimulator_ae3969a41fae359ebff08c2161aeee2f0}{house}}
+\item 
+\mbox{\hyperlink{classRobot}{Robot}} \mbox{\hyperlink{classSimulator_ad017b2771f9f76ae9ff4f8244d525140}{robot}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -88,6 +95,21 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSimulator_ae3969a41fae359ebff08c2161aeee2f0}\label{classSimulator_ae3969a41fae359ebff08c2161aeee2f0}} 
+\index{Simulator@{Simulator}!house@{house}}
+\index{house@{house}!Simulator@{Simulator}}
+\doxysubsubsection{\texorpdfstring{house}{house}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHouse}{House}} Simulator\+::house\hspace{0.3cm}{\ttfamily [private]}}
+
+The house object representing the house to be cleaned in the simulation. \mbox{\Hypertarget{classSimulator_ad017b2771f9f76ae9ff4f8244d525140}\label{classSimulator_ad017b2771f9f76ae9ff4f8244d525140}} 
+\index{Simulator@{Simulator}!robot@{robot}}
+\index{robot@{robot}!Simulator@{Simulator}}
+\doxysubsubsection{\texorpdfstring{robot}{robot}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRobot}{Robot}} Simulator\+::robot\hspace{0.3cm}{\ttfamily [private]}}
+
+The robot object representing the vacuum cleaner. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

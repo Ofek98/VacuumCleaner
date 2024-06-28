@@ -1,0 +1,4 @@
+<map id="Robot::move" name="Robot::move">
+<area shape="rect" id="node1" title="Moves the robot to the specified location." alt="" coords="5,5,111,32"/>
+<area shape="rect" id="node2" href="$classRobot.html#a366f4df9efd795d339ef4ac14579d600" title="Decreases the battery level of the robot by one step." alt="" coords="159,5,333,32"/>
+</map>

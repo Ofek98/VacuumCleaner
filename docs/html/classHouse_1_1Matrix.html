@@ -68,6 +68,8 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classHouse_1_1Matrix-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">House::Matrix Class Reference</div>  </div>
@@ -83,22 +85,28 @@ Collaboration diagram for House::Matrix:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHouse_1_1Matrix__coll__graph.png" border="0" usemap="#aHouse_1_1Matrix_coll__map" alt="Collaboration graph"/></div>
 <map name="aHouse_1_1Matrix_coll__map" id="aHouse_1_1Matrix_coll__map">
-<area shape="rect" title="The Matrix class represents a matrix of tiles in the house." alt="" coords="5,5,192,259"/>
+<area shape="rect" title="The Matrix class represents a matrix of tiles in the house." alt="" coords="5,5,200,303"/>
 </map>
 </div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix_1_1ElementProxy.html">ElementProxy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classHouse_1_1Matrix_1_1ElementProxy.html" title="The ElementProxy class represents a proxy object for accessing elements in the matrix.">ElementProxy</a> class represents a proxy object for accessing elements in the matrix.  <a href="classHouse_1_1Matrix_1_1ElementProxy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0e20f5715ad8f85307ba4237c249e974"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#a0e20f5715ad8f85307ba4237c249e974">Matrix</a> ()</td></tr>
 <tr class="memdesc:a0e20f5715ad8f85307ba4237c249e974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty <a class="el" href="classHouse_1_1Matrix.html" title="The Matrix class represents a matrix of tiles in the house.">Matrix</a> object.  <a href="classHouse_1_1Matrix.html#a0e20f5715ad8f85307ba4237c249e974">More...</a><br /></td></tr>
 <tr class="separator:a0e20f5715ad8f85307ba4237c249e974"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac77879ffb89ba273769e278dff7747fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#ac77879ffb89ba273769e278dff7747fe">Matrix</a> (size_t dim_x, size_t dim_y)</td></tr>
+<tr class="memitem:ac77879ffb89ba273769e278dff7747fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#ac77879ffb89ba273769e278dff7747fe">Matrix</a> (size_t <a class="el" href="classHouse_1_1Matrix.html#a9c118b7769d972d817d8805d4d452608">dim_x</a>, size_t <a class="el" href="classHouse_1_1Matrix.html#a33ca781fd0545bb24b60ba58a88ded1e">dim_y</a>)</td></tr>
 <tr class="memdesc:ac77879ffb89ba273769e278dff7747fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classHouse_1_1Matrix.html" title="The Matrix class represents a matrix of tiles in the house.">Matrix</a> object with the given dimensions.  <a href="classHouse_1_1Matrix.html#ac77879ffb89ba273769e278dff7747fe">More...</a><br /></td></tr>
 <tr class="separator:ac77879ffb89ba273769e278dff7747fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0b4ae02a07e2707389154fb13c21485"><td class="memItemLeft" align="right" valign="top">ElementProxy&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#ab0b4ae02a07e2707389154fb13c21485">operator()</a> (size_t x, size_t y)</td></tr>
+<tr class="memitem:ab0b4ae02a07e2707389154fb13c21485"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHouse_1_1Matrix_1_1ElementProxy.html">ElementProxy</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#ab0b4ae02a07e2707389154fb13c21485">operator()</a> (size_t x, size_t y)</td></tr>
 <tr class="memdesc:ab0b4ae02a07e2707389154fb13c21485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the element at the given coordinates.  <a href="classHouse_1_1Matrix.html#ab0b4ae02a07e2707389154fb13c21485">More...</a><br /></td></tr>
 <tr class="separator:ab0b4ae02a07e2707389154fb13c21485"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a940e2e41bce8627c6879913087899e76"><td class="memItemLeft" align="right" valign="top">ElementProxy&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#a940e2e41bce8627c6879913087899e76">operator()</a> (<a class="el" href="classCoords.html">Coords</a> location)</td></tr>
+<tr class="memitem:a940e2e41bce8627c6879913087899e76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHouse_1_1Matrix_1_1ElementProxy.html">ElementProxy</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#a940e2e41bce8627c6879913087899e76">operator()</a> (<a class="el" href="classCoords.html">Coords</a> location)</td></tr>
 <tr class="memdesc:a940e2e41bce8627c6879913087899e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the element at the given coordinates.  <a href="classHouse_1_1Matrix.html#a940e2e41bce8627c6879913087899e76">More...</a><br /></td></tr>
 <tr class="separator:a940e2e41bce8627c6879913087899e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74217b7a353cca630f09a46a841b0f4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHouse_1_1Tile.html">Tile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#a74217b7a353cca630f09a46a841b0f4c">operator()</a> (size_t x, size_t y) const</td></tr>
@@ -113,6 +121,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a34805797a253a42e44de8564b8e9cb71"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#a34805797a253a42e44de8564b8e9cb71">getDimY</a> () const</td></tr>
 <tr class="memdesc:a34805797a253a42e44de8564b8e9cb71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of rows in the matrix.  <a href="classHouse_1_1Matrix.html#a34805797a253a42e44de8564b8e9cb71">More...</a><br /></td></tr>
 <tr class="separator:a34805797a253a42e44de8564b8e9cb71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:af9f19e4e616109888eed1fae1083c901"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#af9f19e4e616109888eed1fae1083c901">surroundWithWalls</a> ()</td></tr>
+<tr class="memdesc:af9f19e4e616109888eed1fae1083c901"><td class="mdescLeft">&#160;</td><td class="mdescRight">Surrounds the matrix with walls.  <a href="classHouse_1_1Matrix.html#af9f19e4e616109888eed1fae1083c901">More...</a><br /></td></tr>
+<tr class="separator:af9f19e4e616109888eed1fae1083c901"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ab191b77625e57b77290ae5603e2e2d91"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classHouse_1_1Tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#ab191b77625e57b77290ae5603e2e2d91">vec</a></td></tr>
+<tr class="separator:ab191b77625e57b77290ae5603e2e2d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c118b7769d972d817d8805d4d452608"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#a9c118b7769d972d817d8805d4d452608">dim_x</a></td></tr>
+<tr class="separator:a9c118b7769d972d817d8805d4d452608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ca781fd0545bb24b60ba58a88ded1e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHouse_1_1Matrix.html#a33ca781fd0545bb24b60ba58a88ded1e">dim_y</a></td></tr>
+<tr class="separator:a33ca781fd0545bb24b60ba58a88ded1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classHouse_1_1Matrix.html" title="The Matrix class represents a matrix of tiles in the house.">Matrix</a> class represents a matrix of tiles in the house. </p>
@@ -178,6 +201,15 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHouse_1_1Matrix_ac77879ffb89ba273769e278dff7747fe_cgraph.png" border="0" usemap="#aclassHouse_1_1Matrix_ac77879ffb89ba273769e278dff7747fe_cgraph" alt=""/></div>
+<map name="aclassHouse_1_1Matrix_ac77879ffb89ba273769e278dff7747fe_cgraph" id="aclassHouse_1_1Matrix_ac77879ffb89ba273769e278dff7747fe_cgraph">
+<area shape="rect" title="Constructs a Matrix object with the given dimensions." alt="" coords="5,13,168,39"/>
+<area shape="rect" href="classHouse_1_1Matrix.html#af9f19e4e616109888eed1fae1083c901" title="Surrounds the matrix with walls." alt="" coords="216,5,424,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -199,6 +231,15 @@ Public Member Functions</h2></td></tr>
 
 <p>Gets the number of columns in the matrix. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of columns. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHouse_1_1Matrix_a01b85f8877ec8a686c02ced188c233d7_icgraph.png" border="0" usemap="#aclassHouse_1_1Matrix_a01b85f8877ec8a686c02ced188c233d7_icgraph" alt=""/></div>
+<map name="aclassHouse_1_1Matrix_a01b85f8877ec8a686c02ced188c233d7_icgraph" id="aclassHouse_1_1Matrix_a01b85f8877ec8a686c02ced188c233d7_icgraph">
+<area shape="rect" title="Gets the number of columns in the matrix." alt="" coords="240,5,419,32"/>
+<area shape="rect" href="classHouse_1_1Matrix.html#a74217b7a353cca630f09a46a841b0f4c" title="Gets the value of the element at the given coordinates." alt="" coords="5,5,192,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -229,7 +270,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">House::Matrix::ElementProxy House::Matrix::operator() </td>
+          <td class="memname"><a class="el" href="classHouse_1_1Matrix_1_1ElementProxy.html">House::Matrix::ElementProxy</a> House::Matrix::operator() </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classCoords.html">Coords</a>&#160;</td>
           <td class="paramname"><em>location</em></td><td>)</td>
@@ -245,7 +286,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The ElementProxy object representing the element. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classHouse_1_1Matrix_1_1ElementProxy.html" title="The ElementProxy class represents a proxy object for accessing elements in the matrix.">ElementProxy</a> object representing the element. </dd></dl>
 
 </div>
 </div>
@@ -283,7 +324,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">House::Matrix::ElementProxy House::Matrix::operator() </td>
+          <td class="memname"><a class="el" href="classHouse_1_1Matrix_1_1ElementProxy.html">House::Matrix::ElementProxy</a> House::Matrix::operator() </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -310,7 +351,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The ElementProxy object representing the element. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classHouse_1_1Matrix_1_1ElementProxy.html" title="The ElementProxy class represents a proxy object for accessing elements in the matrix.">ElementProxy</a> object representing the element. </dd></dl>
 
 </div>
 </div>
@@ -349,6 +390,118 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The value of the element. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHouse_1_1Matrix_a74217b7a353cca630f09a46a841b0f4c_cgraph.png" border="0" usemap="#aclassHouse_1_1Matrix_a74217b7a353cca630f09a46a841b0f4c_cgraph" alt=""/></div>
+<map name="aclassHouse_1_1Matrix_a74217b7a353cca630f09a46a841b0f4c_cgraph" id="aclassHouse_1_1Matrix_a74217b7a353cca630f09a46a841b0f4c_cgraph">
+<area shape="rect" title="Gets the value of the element at the given coordinates." alt="" coords="5,5,192,32"/>
+<area shape="rect" href="classHouse_1_1Matrix.html#a01b85f8877ec8a686c02ced188c233d7" title="Gets the number of columns in the matrix." alt="" coords="240,5,419,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af9f19e4e616109888eed1fae1083c901"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9f19e4e616109888eed1fae1083c901">&#9670;&nbsp;</a></span>surroundWithWalls()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void House::Matrix::surroundWithWalls </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Surrounds the matrix with walls. </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHouse_1_1Matrix_af9f19e4e616109888eed1fae1083c901_icgraph.png" border="0" usemap="#aclassHouse_1_1Matrix_af9f19e4e616109888eed1fae1083c901_icgraph" alt=""/></div>
+<map name="aclassHouse_1_1Matrix_af9f19e4e616109888eed1fae1083c901_icgraph" id="aclassHouse_1_1Matrix_af9f19e4e616109888eed1fae1083c901_icgraph">
+<area shape="rect" title="Surrounds the matrix with walls." alt="" coords="216,5,424,47"/>
+<area shape="rect" href="classHouse_1_1Matrix.html#ac77879ffb89ba273769e278dff7747fe" title="Constructs a Matrix object with the given dimensions." alt="" coords="5,13,168,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9c118b7769d972d817d8805d4d452608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c118b7769d972d817d8805d4d452608">&#9670;&nbsp;</a></span>dim_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t House::Matrix::dim_x</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33ca781fd0545bb24b60ba58a88ded1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33ca781fd0545bb24b60ba58a88ded1e">&#9670;&nbsp;</a></span>dim_y</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t House::Matrix::dim_y</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab191b77625e57b77290ae5603e2e2d91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab191b77625e57b77290ae5603e2e2d91">&#9670;&nbsp;</a></span>vec</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classHouse_1_1Tile.html">Tile</a>&gt; House::Matrix::vec</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

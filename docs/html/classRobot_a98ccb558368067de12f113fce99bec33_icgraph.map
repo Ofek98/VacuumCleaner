@@ -1,0 +1,6 @@
+<map id="Robot::move" name="Robot::move">
+<area shape="rect" id="node1" title="Moves the robot to the specified location." alt="" coords="499,5,604,32"/>
+<area shape="rect" id="node2" href="$classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="271,5,451,32"/>
+<area shape="rect" id="node3" href="$classSimulator.html#a16dd2bc125e46164ebe249704278dac7" title="Runs the simulation for the specified number of steps." alt="" coords="108,5,223,32"/>
+<area shape="rect" id="node4" href="$myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The main function of the program." alt="" coords="5,5,60,32"/>
+</map>

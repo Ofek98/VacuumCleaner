@@ -1,0 +1,5 @@
+<map id="Robot::clean" name="Robot::clean">
+<area shape="rect" id="node1" title="Cleans the current location once." alt="" coords="5,31,108,57"/>
+<area shape="rect" id="node2" href="$classHouse.html#af060f3a7a72dfd36a758959cbd5d2750" title="Cleans the tile at the given location once." alt="" coords="174,5,313,32"/>
+<area shape="rect" id="node3" href="$classRobot.html#a366f4df9efd795d339ef4ac14579d600" title="Decreases the battery level of the robot by one step." alt="" coords="156,56,331,83"/>
+</map>

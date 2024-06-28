@@ -15,16 +15,34 @@ Collaboration diagram for Algorithm\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=226pt]{classAlgorithm__coll__graph}
+\includegraphics[height=550pt]{classAlgorithm__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classAlgorithm_a5ff12149d958cd46fa95faa41c9db9fc}{Algorithm}} (\mbox{\hyperlink{classRobot}{Robot}} $\ast$robot)
+\mbox{\hyperlink{classAlgorithm_a5ff12149d958cd46fa95faa41c9db9fc}{Algorithm}} (\mbox{\hyperlink{classRobot}{Robot}} $\ast$\mbox{\hyperlink{classAlgorithm_af379e7579218ccb23a36fed018e49d0b}{robot}})
 \begin{DoxyCompactList}\small\item\em Constructs an \mbox{\hyperlink{classAlgorithm}{Algorithm}} object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structStep}{Step}} \mbox{\hyperlink{classAlgorithm_aa2f47d51e5ec6ac67ab0c52a3c13afa3}{decide\+\_\+next\+\_\+step}} ()
 \begin{DoxyCompactList}\small\item\em Decides the next step for the robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structStep}{Step}} \mbox{\hyperlink{classAlgorithm_aad869c5e3510ebc86d22884b2886cb33}{move\+To\+Free\+Direction}} ()
+\begin{DoxyCompactList}\small\item\em Randomly moves the robot to a free (non-\/wall) direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRobot}{Robot}} $\ast$ \mbox{\hyperlink{classAlgorithm_af379e7579218ccb23a36fed018e49d0b}{robot}}
+\item 
+bool \mbox{\hyperlink{classAlgorithm_a16772d296cb43ee3cd5ce5fc55e3cef2}{is\+\_\+charging}}
+\item 
+\mbox{\hyperlink{classCoords}{Coords}} \mbox{\hyperlink{classAlgorithm_a767b155410123e4ca06fc486916cb4cf}{last\+\_\+direction}}
+\item 
+int \mbox{\hyperlink{classAlgorithm_aa9df65cdd228672014a21b5f4646e3b9}{battery\+\_\+capacity}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classCoords}{Coords}} $>$ \mbox{\hyperlink{classAlgorithm_a75506ed675be1b7323f06270dd27f5e4}{path\+\_\+from\+\_\+docking\+\_\+station}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -76,7 +94,67 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{classAlgorithm_aa2f47d51e5ec6ac67ab0c52a3c13afa3_icgraph}
 \end{center}
 \end{figure}
+\mbox{\Hypertarget{classAlgorithm_aad869c5e3510ebc86d22884b2886cb33}\label{classAlgorithm_aad869c5e3510ebc86d22884b2886cb33}} 
+\index{Algorithm@{Algorithm}!moveToFreeDirection@{moveToFreeDirection}}
+\index{moveToFreeDirection@{moveToFreeDirection}!Algorithm@{Algorithm}}
+\doxysubsubsection{\texorpdfstring{moveToFreeDirection()}{moveToFreeDirection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structStep}{Step}} Algorithm\+::move\+To\+Free\+Direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Randomly moves the robot to a free (non-\/wall) direction. 
+
+\begin{DoxyReturn}{Returns}
+The step to take to move to a free direction. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classAlgorithm_aad869c5e3510ebc86d22884b2886cb33_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classAlgorithm_aad869c5e3510ebc86d22884b2886cb33_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classAlgorithm_aa9df65cdd228672014a21b5f4646e3b9}\label{classAlgorithm_aa9df65cdd228672014a21b5f4646e3b9}} 
+\index{Algorithm@{Algorithm}!battery\_capacity@{battery\_capacity}}
+\index{battery\_capacity@{battery\_capacity}!Algorithm@{Algorithm}}
+\doxysubsubsection{\texorpdfstring{battery\_capacity}{battery\_capacity}}
+{\footnotesize\ttfamily int Algorithm\+::battery\+\_\+capacity\hspace{0.3cm}{\ttfamily [private]}}
+
+The battery capacity of the robot. \mbox{\Hypertarget{classAlgorithm_a16772d296cb43ee3cd5ce5fc55e3cef2}\label{classAlgorithm_a16772d296cb43ee3cd5ce5fc55e3cef2}} 
+\index{Algorithm@{Algorithm}!is\_charging@{is\_charging}}
+\index{is\_charging@{is\_charging}!Algorithm@{Algorithm}}
+\doxysubsubsection{\texorpdfstring{is\_charging}{is\_charging}}
+{\footnotesize\ttfamily bool Algorithm\+::is\+\_\+charging\hspace{0.3cm}{\ttfamily [private]}}
+
+A flag indicating if the robot is currently charging. \mbox{\Hypertarget{classAlgorithm_a767b155410123e4ca06fc486916cb4cf}\label{classAlgorithm_a767b155410123e4ca06fc486916cb4cf}} 
+\index{Algorithm@{Algorithm}!last\_direction@{last\_direction}}
+\index{last\_direction@{last\_direction}!Algorithm@{Algorithm}}
+\doxysubsubsection{\texorpdfstring{last\_direction}{last\_direction}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCoords}{Coords}} Algorithm\+::last\+\_\+direction\hspace{0.3cm}{\ttfamily [private]}}
+
+The last direction the robot moved in. \mbox{\Hypertarget{classAlgorithm_a75506ed675be1b7323f06270dd27f5e4}\label{classAlgorithm_a75506ed675be1b7323f06270dd27f5e4}} 
+\index{Algorithm@{Algorithm}!path\_from\_docking\_station@{path\_from\_docking\_station}}
+\index{path\_from\_docking\_station@{path\_from\_docking\_station}!Algorithm@{Algorithm}}
+\doxysubsubsection{\texorpdfstring{path\_from\_docking\_station}{path\_from\_docking\_station}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classCoords}{Coords}}$>$ Algorithm\+::path\+\_\+from\+\_\+docking\+\_\+station\hspace{0.3cm}{\ttfamily [private]}}
+
+The path from the docking station to the current location. \mbox{\Hypertarget{classAlgorithm_af379e7579218ccb23a36fed018e49d0b}\label{classAlgorithm_af379e7579218ccb23a36fed018e49d0b}} 
+\index{Algorithm@{Algorithm}!robot@{robot}}
+\index{robot@{robot}!Algorithm@{Algorithm}}
+\doxysubsubsection{\texorpdfstring{robot}{robot}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRobot}{Robot}}$\ast$ Algorithm\+::robot\hspace{0.3cm}{\ttfamily [private]}}
+
+A pointer to the \mbox{\hyperlink{classRobot}{Robot}} object. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

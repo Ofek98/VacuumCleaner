@@ -15,7 +15,7 @@ Collaboration diagram for House\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=235pt]{classHouse__coll__graph}
+\includegraphics[width=350pt]{classHouse__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Classes}
@@ -28,7 +28,7 @@ class \mbox{\hyperlink{classHouse_1_1Tile}{Tile}}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classHouse_acdc833f89708b6fdfce7d50add408cc8}{House}} (\mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} tiles, \mbox{\hyperlink{classCoords}{Coords}} docking\+\_\+station, size\+\_\+t total\+\_\+dirt)
+\mbox{\hyperlink{classHouse_acdc833f89708b6fdfce7d50add408cc8}{House}} (\mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} \mbox{\hyperlink{classHouse_ac6e49fade58eeacd72cb6b1027c74209}{tiles}}, \mbox{\hyperlink{classCoords}{Coords}} \mbox{\hyperlink{classHouse_ace7e2dc1bebdc0abb861b88073485767}{docking\+\_\+station}}, size\+\_\+t \mbox{\hyperlink{classHouse_aea9ba01109432ab6319528d9d987019c}{total\+\_\+dirt}})
 \begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classHouse}{House}} object with the given matrix of tiles, docking station coordinates, and total dirt level. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classHouse_adbb5a6d3f124bd1c56a93f220a956b12}{get\+Dirt\+Level}} (\mbox{\hyperlink{classCoords}{Coords}} location) const
 \begin{DoxyCompactList}\small\item\em Gets the dirt level at the given location. \end{DoxyCompactList}\item 
@@ -40,6 +40,15 @@ size\+\_\+t \mbox{\hyperlink{classHouse_a6933baa6d1980789a0d4caea151a1ed8}{get\+
 \begin{DoxyCompactList}\small\item\em Gets the total dirt level of the house. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classCoords}{Coords}} \mbox{\hyperlink{classHouse_af06feafc0472ce4d10eb555e4d04b765}{get\+Docking\+Station\+Coords}} () const
 \begin{DoxyCompactList}\small\item\em Gets the coordinates of the docking station. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classHouse_aea9ba01109432ab6319528d9d987019c}{total\+\_\+dirt}}
+\item 
+\mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} \mbox{\hyperlink{classHouse_ac6e49fade58eeacd72cb6b1027c74209}{tiles}}
+\item 
+\mbox{\hyperlink{classCoords}{Coords}} \mbox{\hyperlink{classHouse_ace7e2dc1bebdc0abb861b88073485767}{docking\+\_\+station}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -83,6 +92,13 @@ Cleans the tile at the given location once.
 {\em location} & The coordinates of the location. \\
 \hline
 \end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classHouse_af060f3a7a72dfd36a758959cbd5d2750_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classHouse_adbb5a6d3f124bd1c56a93f220a956b12}\label{classHouse_adbb5a6d3f124bd1c56a93f220a956b12}} 
 \index{House@{House}!getDirtLevel@{getDirtLevel}}
 \index{getDirtLevel@{getDirtLevel}!House@{House}}
@@ -166,6 +182,27 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{classHouse_a54575b69be7a183b12fca956bdc01cbc_icgraph}
 \end{center}
 \end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classHouse_ace7e2dc1bebdc0abb861b88073485767}\label{classHouse_ace7e2dc1bebdc0abb861b88073485767}} 
+\index{House@{House}!docking\_station@{docking\_station}}
+\index{docking\_station@{docking\_station}!House@{House}}
+\doxysubsubsection{\texorpdfstring{docking\_station}{docking\_station}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCoords}{Coords}} House\+::docking\+\_\+station\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHouse_ac6e49fade58eeacd72cb6b1027c74209}\label{classHouse_ac6e49fade58eeacd72cb6b1027c74209}} 
+\index{House@{House}!tiles@{tiles}}
+\index{tiles@{tiles}!House@{House}}
+\doxysubsubsection{\texorpdfstring{tiles}{tiles}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} House\+::tiles\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHouse_aea9ba01109432ab6319528d9d987019c}\label{classHouse_aea9ba01109432ab6319528d9d987019c}} 
+\index{House@{House}!total\_dirt@{total\_dirt}}
+\index{total\_dirt@{total\_dirt}!House@{House}}
+\doxysubsubsection{\texorpdfstring{total\_dirt}{total\_dirt}}
+{\footnotesize\ttfamily size\+\_\+t House\+::total\+\_\+dirt\hspace{0.3cm}{\ttfamily [private]}}
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

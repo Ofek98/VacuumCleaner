@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_68',['y',['../classCoords.html#a7ed64d02fb7550f1506a93fcfab7f16f',1,'Coords']]]
+  ['vec_87',['vec',['../classHouse_1_1Matrix.html#ab191b77625e57b77290ae5603e2e2d91',1,'House::Matrix']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['wall_134',['WALL',['../common_8h.html#a685d683470e08faeb8d2bc5504f3f288',1,'common.h']]]
+  ['mat_168',['mat',['../classHouse_1_1Matrix_1_1ElementProxy.html#a0a63029b777187708f70d6120990b118',1,'House::Matrix::ElementProxy']]],
+  ['max_5fbattery_5fsteps_169',['max_battery_steps',['../structInputValues.html#aadd4323f1b3a3a2054900d484e28433c',1,'InputValues']]]
 ];

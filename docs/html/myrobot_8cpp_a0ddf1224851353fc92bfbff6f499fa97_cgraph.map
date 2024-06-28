@@ -1,15 +1,21 @@
 <map id="main" name="main">
-<area shape="rect" id="node1" title="The main function of the program." alt="" coords="5,73,60,100"/>
-<area shape="rect" id="node2" href="$myrobot_8cpp.html#a1c48a72fb91e60f8c93bceaa0a9599d6" title="Reads the input file and extracts the input values." alt="" coords="116,23,223,49"/>
-<area shape="rect" id="node3" href="$classSimulator.html#a16dd2bc125e46164ebe249704278dac7" title="Runs the simulation for the specified number of steps." alt="" coords="112,73,227,100"/>
-<area shape="rect" id="node13" href="$myrobot_8cpp.html#a407afdbc0e803d02b9ca9c8ef24a8853" title="Writes the output file with the simulation results." alt="" coords="108,124,231,151"/>
-<area shape="rect" id="node4" href="$classRobot.html#a3903147a2aa0eb3151e2d192404f90cb" title="Retrieves the remaining battery level of the robot." alt="" coords="785,16,947,43"/>
-<area shape="rect" id="node5" href="$classRobot.html#adb90a14c0aa539757df01e9bff6cbdc0" title="Retrieves the steps taken by the robot during the cleaning process." alt="" coords="287,48,450,75"/>
-<area shape="rect" id="node6" href="$classHouse.html#a6933baa6d1980789a0d4caea151a1ed8" title="Gets the total dirt level of the house." alt="" coords="295,99,442,125"/>
-<area shape="rect" id="node7" href="$classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="279,149,459,176"/>
-<area shape="rect" id="node8" href="$classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3" title="Decides the next step for the robot." alt="" coords="507,129,715,156"/>
-<area shape="rect" id="node9" href="$classRobot.html#ab8c1af6c01e1faf8110ef989a05eff3a" title="Retrieves the amount of dirt at the robot&#39;s current location." alt="" coords="763,104,969,131"/>
-<area shape="rect" id="node11" href="$classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="765,155,967,181"/>
-<area shape="rect" id="node10" href="$classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12" title="Gets the dirt level at the given location." alt="" coords="1017,104,1168,131"/>
-<area shape="rect" id="node12" href="$classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="1037,155,1148,181"/>
+<area shape="rect" id="node1" title="The main function of the program." alt="" coords="5,82,60,109"/>
+<area shape="rect" id="node2" href="$myrobot_8cpp.html#a1c48a72fb91e60f8c93bceaa0a9599d6" title="Reads the input file and extracts the input values." alt="" coords="116,31,223,58"/>
+<area shape="rect" id="node3" href="$classSimulator.html#a16dd2bc125e46164ebe249704278dac7" title="Runs the simulation for the specified number of steps." alt="" coords="112,82,227,109"/>
+<area shape="rect" id="node19" href="$myrobot_8cpp.html#a407afdbc0e803d02b9ca9c8ef24a8853" title="Writes the output file with the simulation results." alt="" coords="108,133,231,159"/>
+<area shape="rect" id="node4" href="$classRobot.html#a3903147a2aa0eb3151e2d192404f90cb" title="Retrieves the remaining battery level of the robot." alt="" coords="798,6,959,33"/>
+<area shape="rect" id="node5" href="$classRobot.html#adb90a14c0aa539757df01e9bff6cbdc0" title="Retrieves the steps taken by the robot during the cleaning process." alt="" coords="287,57,450,83"/>
+<area shape="rect" id="node6" href="$classHouse.html#a6933baa6d1980789a0d4caea151a1ed8" title="Gets the total dirt level of the house." alt="" coords="295,107,442,134"/>
+<area shape="rect" id="node7" href="$classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="279,158,459,185"/>
+<area shape="rect" id="node8" href="$classRobot.html#ab0c6c3a39c239ecbd1eb6a35fb9bce6b" title="Charges the robot&#39;s battery once." alt="" coords="555,158,667,185"/>
+<area shape="rect" id="node9" href="$classRobot.html#a3d7b4ac9e0c1a9970c3ad9ec43577d6e" title="Cleans the current location once." alt="" coords="559,209,662,235"/>
+<area shape="rect" id="node12" href="$classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3" title="Decides the next step for the robot." alt="" coords="507,107,715,134"/>
+<area shape="rect" id="node18" href="$classRobot.html#a98ccb558368067de12f113fce99bec33" title="Moves the robot to the specified location." alt="" coords="558,259,663,286"/>
+<area shape="rect" id="node10" href="$classHouse.html#af060f3a7a72dfd36a758959cbd5d2750" title="Cleans the tile at the given location once." alt="" coords="809,209,948,235"/>
+<area shape="rect" id="node11" href="$classRobot.html#a366f4df9efd795d339ef4ac14579d600" title="Decreases the battery level of the robot by one step." alt="" coords="791,259,966,286"/>
+<area shape="rect" id="node13" href="$classRobot.html#ab8c1af6c01e1faf8110ef989a05eff3a" title="Retrieves the amount of dirt at the robot&#39;s current location." alt="" coords="775,57,982,83"/>
+<area shape="rect" id="node15" href="$classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="1043,133,1245,159"/>
+<area shape="rect" id="node17" href="$classAlgorithm.html#aad869c5e3510ebc86d22884b2886cb33" title="Randomly moves the robot to a free (non&#45;wall) direction." alt="" coords="763,158,995,185"/>
+<area shape="rect" id="node14" href="$classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12" title="Gets the dirt level at the given location." alt="" coords="1069,57,1219,83"/>
+<area shape="rect" id="node16" href="$classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="1293,133,1404,159"/>
 </map>

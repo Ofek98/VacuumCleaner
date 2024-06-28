@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tile_118',['Tile',['../classHouse_1_1Tile.html#a8ada807dcd280b8332b2c379ac865abe',1,'House::Tile::Tile(int status)'],['../classHouse_1_1Tile.html#aa72bd233cee229afe8821aebe2d7071f',1,'House::Tile::Tile(char status_char)']]]
+  ['simulator_149',['Simulator',['../classSimulator.html#af1f509da6c8e621496ed9e74e5410dd4',1,'Simulator']]],
+  ['surroundwithwalls_150',['surroundWithWalls',['../classHouse_1_1Matrix.html#af9f19e4e616109888eed1fae1083c901',1,'House::Matrix']]]
 ];

@@ -63,6 +63,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classAlgorithm-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Algorithm Class Reference</div>  </div>
@@ -78,18 +80,41 @@ Collaboration diagram for Algorithm:</div>
 <div class="dyncontent">
 <div class="center"><img src="classAlgorithm__coll__graph.png" border="0" usemap="#aAlgorithm_coll__map" alt="Collaboration graph"/></div>
 <map name="aAlgorithm_coll__map" id="aAlgorithm_coll__map">
-<area shape="rect" title="The Algorithm class represents the algorithm used by the robot to make decisions." alt="" coords="5,5,200,97"/>
+<area shape="rect" title="The Algorithm class represents the algorithm used by the robot to make decisions." alt="" coords="5,409,217,575"/>
+<area shape="rect" href="classRobot.html" title="Represents a vacuum cleaning robot." alt="" coords="118,681,342,993"/>
+<area shape="rect" href="classCoords.html" title="The Coords class represents the coordinates of a tile in a matrix of tiles." alt="" coords="151,71,347,237"/>
+<area shape="rect" href="classHouse.html" title="The House class represents a house with tiles that can be cleaned by a vacuum cleaner." alt="" coords="351,365,557,619"/>
+<area shape="rect" href="classHouse_1_1Matrix.html" title="The Matrix class represents a matrix of tiles in the house." alt="" coords="371,5,566,303"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5ff12149d958cd46fa95faa41c9db9fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAlgorithm.html#a5ff12149d958cd46fa95faa41c9db9fc">Algorithm</a> (<a class="el" href="classRobot.html">Robot</a> *robot)</td></tr>
+<tr class="memitem:a5ff12149d958cd46fa95faa41c9db9fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAlgorithm.html#a5ff12149d958cd46fa95faa41c9db9fc">Algorithm</a> (<a class="el" href="classRobot.html">Robot</a> *<a class="el" href="classAlgorithm.html#af379e7579218ccb23a36fed018e49d0b">robot</a>)</td></tr>
 <tr class="memdesc:a5ff12149d958cd46fa95faa41c9db9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classAlgorithm.html" title="The Algorithm class represents the algorithm used by the robot to make decisions.">Algorithm</a> object.  <a href="classAlgorithm.html#a5ff12149d958cd46fa95faa41c9db9fc">More...</a><br /></td></tr>
 <tr class="separator:a5ff12149d958cd46fa95faa41c9db9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2f47d51e5ec6ac67ab0c52a3c13afa3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structStep.html">Step</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3">decide_next_step</a> ()</td></tr>
 <tr class="memdesc:aa2f47d51e5ec6ac67ab0c52a3c13afa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decides the next step for the robot.  <a href="classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3">More...</a><br /></td></tr>
 <tr class="separator:aa2f47d51e5ec6ac67ab0c52a3c13afa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aad869c5e3510ebc86d22884b2886cb33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structStep.html">Step</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAlgorithm.html#aad869c5e3510ebc86d22884b2886cb33">moveToFreeDirection</a> ()</td></tr>
+<tr class="memdesc:aad869c5e3510ebc86d22884b2886cb33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomly moves the robot to a free (non-wall) direction.  <a href="classAlgorithm.html#aad869c5e3510ebc86d22884b2886cb33">More...</a><br /></td></tr>
+<tr class="separator:aad869c5e3510ebc86d22884b2886cb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:af379e7579218ccb23a36fed018e49d0b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRobot.html">Robot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAlgorithm.html#af379e7579218ccb23a36fed018e49d0b">robot</a></td></tr>
+<tr class="separator:af379e7579218ccb23a36fed018e49d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16772d296cb43ee3cd5ce5fc55e3cef2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAlgorithm.html#a16772d296cb43ee3cd5ce5fc55e3cef2">is_charging</a></td></tr>
+<tr class="separator:a16772d296cb43ee3cd5ce5fc55e3cef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767b155410123e4ca06fc486916cb4cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCoords.html">Coords</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAlgorithm.html#a767b155410123e4ca06fc486916cb4cf">last_direction</a></td></tr>
+<tr class="separator:a767b155410123e4ca06fc486916cb4cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9df65cdd228672014a21b5f4646e3b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAlgorithm.html#aa9df65cdd228672014a21b5f4646e3b9">battery_capacity</a></td></tr>
+<tr class="separator:aa9df65cdd228672014a21b5f4646e3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75506ed675be1b7323f06270dd27f5e4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classCoords.html">Coords</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAlgorithm.html#a75506ed675be1b7323f06270dd27f5e4">path_from_docking_station</a></td></tr>
+<tr class="separator:a75506ed675be1b7323f06270dd27f5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classAlgorithm.html" title="The Algorithm class represents the algorithm used by the robot to make decisions.">Algorithm</a> class represents the algorithm used by the robot to make decisions. </p>
@@ -143,12 +168,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classAlgorithm_aa2f47d51e5ec6ac67ab0c52a3c13afa3_cgraph.png" border="0" usemap="#aclassAlgorithm_aa2f47d51e5ec6ac67ab0c52a3c13afa3_cgraph" alt=""/></div>
 <map name="aclassAlgorithm_aa2f47d51e5ec6ac67ab0c52a3c13afa3_cgraph" id="aclassAlgorithm_aa2f47d51e5ec6ac67ab0c52a3c13afa3_cgraph">
-<area shape="rect" title="Decides the next step for the robot." alt="" coords="5,56,213,83"/>
-<area shape="rect" href="classRobot.html#a3903147a2aa0eb3151e2d192404f90cb" title="Retrieves the remaining battery level of the robot." alt="" coords="284,5,445,32"/>
-<area shape="rect" href="classRobot.html#ab8c1af6c01e1faf8110ef989a05eff3a" title="Retrieves the amount of dirt at the robot&#39;s current location." alt="" coords="261,56,468,83"/>
-<area shape="rect" href="classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="263,107,466,133"/>
-<area shape="rect" href="classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12" title="Gets the dirt level at the given location." alt="" coords="516,56,667,83"/>
-<area shape="rect" href="classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="536,107,647,133"/>
+<area shape="rect" title="Decides the next step for the robot." alt="" coords="5,81,213,108"/>
+<area shape="rect" href="classRobot.html#a3903147a2aa0eb3151e2d192404f90cb" title="Retrieves the remaining battery level of the robot." alt="" coords="297,5,458,32"/>
+<area shape="rect" href="classRobot.html#ab8c1af6c01e1faf8110ef989a05eff3a" title="Retrieves the amount of dirt at the robot&#39;s current location." alt="" coords="274,56,481,83"/>
+<area shape="rect" href="classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="541,132,744,159"/>
+<area shape="rect" href="classAlgorithm.html#aad869c5e3510ebc86d22884b2886cb33" title="Randomly moves the robot to a free (non&#45;wall) direction." alt="" coords="261,157,493,184"/>
+<area shape="rect" href="classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12" title="Gets the dirt level at the given location." alt="" coords="567,56,718,83"/>
+<area shape="rect" href="classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="792,132,903,159"/>
 </map>
 </div>
 <div class="dynheader">
@@ -162,6 +188,172 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The main function of the program." alt="" coords="5,5,60,32"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="aad869c5e3510ebc86d22884b2886cb33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad869c5e3510ebc86d22884b2886cb33">&#9670;&nbsp;</a></span>moveToFreeDirection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structStep.html">Step</a> Algorithm::moveToFreeDirection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Randomly moves the robot to a free (non-wall) direction. </p>
+<dl class="section return"><dt>Returns</dt><dd>The step to take to move to a free direction. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAlgorithm_aad869c5e3510ebc86d22884b2886cb33_cgraph.png" border="0" usemap="#aclassAlgorithm_aad869c5e3510ebc86d22884b2886cb33_cgraph" alt=""/></div>
+<map name="aclassAlgorithm_aad869c5e3510ebc86d22884b2886cb33_cgraph" id="aclassAlgorithm_aad869c5e3510ebc86d22884b2886cb33_cgraph">
+<area shape="rect" title="Randomly moves the robot to a free (non&#45;wall) direction." alt="" coords="5,5,237,32"/>
+<area shape="rect" href="classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="285,5,488,32"/>
+<area shape="rect" href="classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="536,5,647,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAlgorithm_aad869c5e3510ebc86d22884b2886cb33_icgraph.png" border="0" usemap="#aclassAlgorithm_aad869c5e3510ebc86d22884b2886cb33_icgraph" alt=""/></div>
+<map name="aclassAlgorithm_aad869c5e3510ebc86d22884b2886cb33_icgraph" id="aclassAlgorithm_aad869c5e3510ebc86d22884b2886cb33_icgraph">
+<area shape="rect" title="Randomly moves the robot to a free (non&#45;wall) direction." alt="" coords="755,5,987,32"/>
+<area shape="rect" href="classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3" title="Decides the next step for the robot." alt="" coords="499,5,707,32"/>
+<area shape="rect" href="classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="271,5,451,32"/>
+<area shape="rect" href="classSimulator.html#a16dd2bc125e46164ebe249704278dac7" title="Runs the simulation for the specified number of steps." alt="" coords="108,5,223,32"/>
+<area shape="rect" href="myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The main function of the program." alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aa9df65cdd228672014a21b5f4646e3b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9df65cdd228672014a21b5f4646e3b9">&#9670;&nbsp;</a></span>battery_capacity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Algorithm::battery_capacity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The battery capacity of the robot. </p>
+
+</div>
+</div>
+<a id="a16772d296cb43ee3cd5ce5fc55e3cef2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16772d296cb43ee3cd5ce5fc55e3cef2">&#9670;&nbsp;</a></span>is_charging</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Algorithm::is_charging</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A flag indicating if the robot is currently charging. </p>
+
+</div>
+</div>
+<a id="a767b155410123e4ca06fc486916cb4cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a767b155410123e4ca06fc486916cb4cf">&#9670;&nbsp;</a></span>last_direction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCoords.html">Coords</a> Algorithm::last_direction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The last direction the robot moved in. </p>
+
+</div>
+</div>
+<a id="a75506ed675be1b7323f06270dd27f5e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75506ed675be1b7323f06270dd27f5e4">&#9670;&nbsp;</a></span>path_from_docking_station</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classCoords.html">Coords</a>&gt; Algorithm::path_from_docking_station</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The path from the docking station to the current location. </p>
+
+</div>
+</div>
+<a id="af379e7579218ccb23a36fed018e49d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af379e7579218ccb23a36fed018e49d0b">&#9670;&nbsp;</a></span>robot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classRobot.html">Robot</a>* Algorithm::robot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A pointer to the <a class="el" href="classRobot.html" title="Represents a vacuum cleaning robot.">Robot</a> object. </p>
 
 </div>
 </div>

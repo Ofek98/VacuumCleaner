@@ -1,3 +1,7 @@
 <map id="Algorithm" name="Algorithm">
-<area shape="rect" id="node1" title="The Algorithm class represents the algorithm used by the robot to make decisions." alt="" coords="5,5,200,97"/>
+<area shape="rect" id="node1" title="The Algorithm class represents the algorithm used by the robot to make decisions." alt="" coords="5,409,217,575"/>
+<area shape="rect" id="node2" href="$classRobot.html" title="Represents a vacuum cleaning robot." alt="" coords="118,681,342,993"/>
+<area shape="rect" id="node3" href="$classCoords.html" title="The Coords class represents the coordinates of a tile in a matrix of tiles." alt="" coords="151,71,347,237"/>
+<area shape="rect" id="node4" href="$classHouse.html" title="The House class represents a house with tiles that can be cleaned by a vacuum cleaner." alt="" coords="351,365,557,619"/>
+<area shape="rect" id="node5" href="$classHouse_1_1Matrix.html" title="The Matrix class represents a matrix of tiles in the house." alt="" coords="371,5,566,303"/>
 </map>

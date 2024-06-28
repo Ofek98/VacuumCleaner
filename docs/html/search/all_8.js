@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['no_5fdirection_41',['NO_DIRECTION',['../common_8h.html#afdfc0257053ff7e2b248e78e71241087',1,'common.h']]]
+  ['last_5fdirection_44',['last_direction',['../classAlgorithm.html#a767b155410123e4ca06fc486916cb4cf',1,'Algorithm']]],
+  ['location_45',['location',['../classRobot.html#a29c434f6e803051844f30b0440753108',1,'Robot']]]
 ];

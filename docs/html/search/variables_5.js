@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['steps_5ftaken_128',['steps_taken',['../structRunResults.html#a94c0015484c02e0a8da6f5d41a1df35e',1,'RunResults']]],
-  ['success_129',['success',['../structInputValues.html#a346e79758e42030f03f3c258c281532f',1,'InputValues']]]
+  ['is_5fcharging_164',['is_charging',['../classAlgorithm.html#a16772d296cb43ee3cd5ce5fc55e3cef2',1,'Algorithm']]],
+  ['is_5fdocking_165',['is_docking',['../structRunResults.html#a063a20c0db6d49189be0d611dcc5229c',1,'RunResults']]]
 ];

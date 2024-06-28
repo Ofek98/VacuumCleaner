@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_136',['y',['../classCoords.html#a7ed64d02fb7550f1506a93fcfab7f16f',1,'Coords']]]
+  ['robot_171',['robot',['../classAlgorithm.html#af379e7579218ccb23a36fed018e49d0b',1,'Algorithm::robot()'],['../classSimulator.html#ad017b2771f9f76ae9ff4f8244d525140',1,'Simulator::robot()']]]
 ];

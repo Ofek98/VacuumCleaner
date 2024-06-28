@@ -1,0 +1,8 @@
+<map id="Robot::decreaseBattery" name="Robot::decreaseBattery">
+<area shape="rect" id="node1" title="Decreases the battery level of the robot by one step." alt="" coords="652,31,827,57"/>
+<area shape="rect" id="node2" href="$classRobot.html#a3d7b4ac9e0c1a9970c3ad9ec43577d6e" title="Cleans the current location once." alt="" coords="500,5,603,32"/>
+<area shape="rect" id="node6" href="$classRobot.html#a98ccb558368067de12f113fce99bec33" title="Moves the robot to the specified location." alt="" coords="499,56,604,83"/>
+<area shape="rect" id="node3" href="$classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="271,31,451,57"/>
+<area shape="rect" id="node4" href="$classSimulator.html#a16dd2bc125e46164ebe249704278dac7" title="Runs the simulation for the specified number of steps." alt="" coords="108,31,223,57"/>
+<area shape="rect" id="node5" href="$myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The main function of the program." alt="" coords="5,31,60,57"/>
+</map>

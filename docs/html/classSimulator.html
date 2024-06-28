@@ -63,6 +63,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSimulator-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Simulator Class Reference</div>  </div>
@@ -78,7 +79,12 @@ Collaboration diagram for Simulator:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSimulator__coll__graph.png" border="0" usemap="#aSimulator_coll__map" alt="Collaboration graph"/></div>
 <map name="aSimulator_coll__map" id="aSimulator_coll__map">
-<area shape="rect" title="The Simulator class represents a vacuum cleaner simulator." alt="" coords="5,5,181,171"/>
+<area shape="rect" title="The Simulator class represents a vacuum cleaner simulator." alt="" coords="40,1056,216,1221"/>
+<area shape="rect" href="classRobot.html" title="Represents a vacuum cleaning robot." alt="" coords="180,681,404,993"/>
+<area shape="rect" href="classAlgorithm.html" title="The Algorithm class represents the algorithm used by the robot to make decisions." alt="" coords="261,1056,473,1221"/>
+<area shape="rect" href="classCoords.html" title="The Coords class represents the coordinates of a tile in a matrix of tiles." alt="" coords="225,71,421,237"/>
+<area shape="rect" href="classHouse.html" title="The House class represents a house with tiles that can be cleaned by a vacuum cleaner." alt="" coords="46,365,253,619"/>
+<area shape="rect" href="classHouse_1_1Matrix.html" title="The Matrix class represents a matrix of tiles in the house." alt="" coords="5,5,200,303"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -90,6 +96,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a16dd2bc125e46164ebe249704278dac7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRunResults.html">RunResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a16dd2bc125e46164ebe249704278dac7">run</a> (size_t total_steps)</td></tr>
 <tr class="memdesc:a16dd2bc125e46164ebe249704278dac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the simulation for the specified number of steps.  <a href="classSimulator.html#a16dd2bc125e46164ebe249704278dac7">More...</a><br /></td></tr>
 <tr class="separator:a16dd2bc125e46164ebe249704278dac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ae3969a41fae359ebff08c2161aeee2f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHouse.html">House</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#ae3969a41fae359ebff08c2161aeee2f0">house</a></td></tr>
+<tr class="separator:ae3969a41fae359ebff08c2161aeee2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad017b2771f9f76ae9ff4f8244d525140"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRobot.html">Robot</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#ad017b2771f9f76ae9ff4f8244d525140">robot</a></td></tr>
+<tr class="separator:ad017b2771f9f76ae9ff4f8244d525140"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classSimulator.html" title="The Simulator class represents a vacuum cleaner simulator.">Simulator</a> class represents a vacuum cleaner simulator. </p>
@@ -175,16 +188,22 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSimulator_a16dd2bc125e46164ebe249704278dac7_cgraph.png" border="0" usemap="#aclassSimulator_a16dd2bc125e46164ebe249704278dac7_cgraph" alt=""/></div>
 <map name="aclassSimulator_a16dd2bc125e46164ebe249704278dac7_cgraph" id="aclassSimulator_a16dd2bc125e46164ebe249704278dac7_cgraph">
-<area shape="rect" title="Runs the simulation for the specified number of steps." alt="" coords="5,72,120,98"/>
-<area shape="rect" href="classRobot.html#a3903147a2aa0eb3151e2d192404f90cb" title="Retrieves the remaining battery level of the robot." alt="" coords="675,14,836,41"/>
-<area shape="rect" href="classRobot.html#adb90a14c0aa539757df01e9bff6cbdc0" title="Retrieves the steps taken by the robot during the cleaning process." alt="" coords="177,46,339,73"/>
-<area shape="rect" href="classHouse.html#a6933baa6d1980789a0d4caea151a1ed8" title="Gets the total dirt level of the house." alt="" coords="185,97,331,124"/>
-<area shape="rect" href="classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="168,148,348,174"/>
-<area shape="rect" href="classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3" title="Decides the next step for the robot." alt="" coords="396,128,604,154"/>
-<area shape="rect" href="classRobot.html#ab8c1af6c01e1faf8110ef989a05eff3a" title="Retrieves the amount of dirt at the robot&#39;s current location." alt="" coords="652,102,859,129"/>
-<area shape="rect" href="classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="654,153,857,180"/>
-<area shape="rect" href="classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12" title="Gets the dirt level at the given location." alt="" coords="907,102,1057,129"/>
-<area shape="rect" href="classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="927,153,1037,180"/>
+<area shape="rect" title="Runs the simulation for the specified number of steps." alt="" coords="5,81,120,108"/>
+<area shape="rect" href="classRobot.html#a3903147a2aa0eb3151e2d192404f90cb" title="Retrieves the remaining battery level of the robot." alt="" coords="687,5,849,32"/>
+<area shape="rect" href="classRobot.html#adb90a14c0aa539757df01e9bff6cbdc0" title="Retrieves the steps taken by the robot during the cleaning process." alt="" coords="177,56,339,83"/>
+<area shape="rect" href="classHouse.html#a6933baa6d1980789a0d4caea151a1ed8" title="Gets the total dirt level of the house." alt="" coords="185,107,331,133"/>
+<area shape="rect" href="classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="168,157,348,184"/>
+<area shape="rect" href="classRobot.html#ab0c6c3a39c239ecbd1eb6a35fb9bce6b" title="Charges the robot&#39;s battery once." alt="" coords="444,157,556,184"/>
+<area shape="rect" href="classRobot.html#a3d7b4ac9e0c1a9970c3ad9ec43577d6e" title="Cleans the current location once." alt="" coords="449,208,551,235"/>
+<area shape="rect" href="classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3" title="Decides the next step for the robot." alt="" coords="396,107,604,133"/>
+<area shape="rect" href="classRobot.html#a98ccb558368067de12f113fce99bec33" title="Moves the robot to the specified location." alt="" coords="447,259,553,285"/>
+<area shape="rect" href="classHouse.html#af060f3a7a72dfd36a758959cbd5d2750" title="Cleans the tile at the given location once." alt="" coords="699,208,837,235"/>
+<area shape="rect" href="classRobot.html#a366f4df9efd795d339ef4ac14579d600" title="Decreases the battery level of the robot by one step." alt="" coords="681,259,855,285"/>
+<area shape="rect" href="classRobot.html#ab8c1af6c01e1faf8110ef989a05eff3a" title="Retrieves the amount of dirt at the robot&#39;s current location." alt="" coords="665,56,871,83"/>
+<area shape="rect" href="classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="932,132,1135,159"/>
+<area shape="rect" href="classAlgorithm.html#aad869c5e3510ebc86d22884b2886cb33" title="Randomly moves the robot to a free (non&#45;wall) direction." alt="" coords="652,157,884,184"/>
+<area shape="rect" href="classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12" title="Gets the dirt level at the given location." alt="" coords="958,56,1109,83"/>
+<area shape="rect" href="classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="1183,132,1293,159"/>
 </map>
 </div>
 <div class="dynheader">
@@ -196,6 +215,53 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The main function of the program." alt="" coords="5,5,60,32"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae3969a41fae359ebff08c2161aeee2f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3969a41fae359ebff08c2161aeee2f0">&#9670;&nbsp;</a></span>house</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classHouse.html">House</a> Simulator::house</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The house object representing the house to be cleaned in the simulation. </p>
+
+</div>
+</div>
+<a id="ad017b2771f9f76ae9ff4f8244d525140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad017b2771f9f76ae9ff4f8244d525140">&#9670;&nbsp;</a></span>robot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classRobot.html">Robot</a> Simulator::robot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The robot object representing the vacuum cleaner. </p>
 
 </div>
 </div>

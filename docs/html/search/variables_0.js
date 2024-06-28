@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['battery_5fleft_120',['battery_left',['../structRunResults.html#a07bcb037b1b19eb73aa3723dc31f5b7b',1,'RunResults']]]
+  ['algo_153',['algo',['../classRobot.html#a1b41558688e1474547c8fd812daffdfd',1,'Robot']]]
 ];

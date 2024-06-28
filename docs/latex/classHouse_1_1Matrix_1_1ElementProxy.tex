@@ -1,0 +1,185 @@
+\hypertarget{classHouse_1_1Matrix_1_1ElementProxy}{}\doxysection{House\+::Matrix\+::Element\+Proxy Class Reference}
+\label{classHouse_1_1Matrix_1_1ElementProxy}\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+
+
+The \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} class represents a proxy object for accessing elements in the matrix.  
+
+
+
+
+Collaboration diagram for House\+::Matrix\+::Element\+Proxy\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classHouse_1_1Matrix_1_1ElementProxy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_ad32c8a3dacf0873398d56ca7b4cad684}{Element\+Proxy}} (\mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} \&\mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_a0a63029b777187708f70d6120990b118}{mat}}, size\+\_\+t \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_a5ea84abb22ed5b1c107b58ea3eb13d37}{x}}, size\+\_\+t \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_af53850cfcaefc8741e4fbe561745f65e}{y}})
+\begin{DoxyCompactList}\small\item\em Constructs an \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} object with the given matrix and coordinates. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHouse_1_1Tile}{Tile}} \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_aa53f94f98705283fc00b3d2282cda762}{operator=}} (\mbox{\hyperlink{classHouse_1_1Tile}{Tile}} value)
+\begin{DoxyCompactList}\small\item\em Assigns a value to the element. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHouse_1_1Tile}{Tile}} \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_a42b15fb23b7a98ddef97165ff0e55358}{operator=}} (const \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} \&e)
+\begin{DoxyCompactList}\small\item\em Assigns the value of another \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} object to the element. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_a228e7e816991663252f071b1b87ca8a9}{operator Tile}} () const
+\begin{DoxyCompactList}\small\item\em Converts the \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} object to a \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_a1ef43f56c2fc8f491d6f4faed01b6b84}{get\+Status}} () const
+\begin{DoxyCompactList}\small\item\em Gets the status of the element. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_a3e56131a20917e5af54120337d8fefc5}{clean\+Once}} ()
+\begin{DoxyCompactList}\small\item\em Cleans the element once. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_aaa72051de9010127a35cdb2ad23c0456}{is\+Wall}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the element is a wall. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} \& \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_a0a63029b777187708f70d6120990b118}{mat}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_a5ea84abb22ed5b1c107b58ea3eb13d37}{x}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy_af53850cfcaefc8741e4fbe561745f65e}{y}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} class represents a proxy object for accessing elements in the matrix. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHouse_1_1Matrix_1_1ElementProxy_ad32c8a3dacf0873398d56ca7b4cad684}\label{classHouse_1_1Matrix_1_1ElementProxy_ad32c8a3dacf0873398d56ca7b4cad684}} 
+\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}!ElementProxy@{ElementProxy}}
+\index{ElementProxy@{ElementProxy}!House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+\doxysubsubsection{\texorpdfstring{ElementProxy()}{ElementProxy()}}
+{\footnotesize\ttfamily House\+::\+Matrix\+::\+Element\+Proxy\+::\+Element\+Proxy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}} \&}]{mat,  }\item[{size\+\_\+t}]{x,  }\item[{size\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Constructs an \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} object with the given matrix and coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & The matrix. \\
+\hline
+{\em x} & The x-\/coordinate. \\
+\hline
+{\em y} & The y-\/coordinate. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHouse_1_1Matrix_1_1ElementProxy_a3e56131a20917e5af54120337d8fefc5}\label{classHouse_1_1Matrix_1_1ElementProxy_a3e56131a20917e5af54120337d8fefc5}} 
+\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}!cleanOnce@{cleanOnce}}
+\index{cleanOnce@{cleanOnce}!House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+\doxysubsubsection{\texorpdfstring{cleanOnce()}{cleanOnce()}}
+{\footnotesize\ttfamily bool House\+::\+Matrix\+::\+Element\+Proxy\+::clean\+Once (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cleans the element once. 
+
+\begin{DoxyReturn}{Returns}
+True if the element was successfully cleaned, false otherwise (if it was clean already). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Matrix_1_1ElementProxy_a1ef43f56c2fc8f491d6f4faed01b6b84}\label{classHouse_1_1Matrix_1_1ElementProxy_a1ef43f56c2fc8f491d6f4faed01b6b84}} 
+\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}!getStatus@{getStatus}}
+\index{getStatus@{getStatus}!House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+\doxysubsubsection{\texorpdfstring{getStatus()}{getStatus()}}
+{\footnotesize\ttfamily int House\+::\+Matrix\+::\+Element\+Proxy\+::get\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the status of the element. 
+
+\begin{DoxyReturn}{Returns}
+The status of the element. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Matrix_1_1ElementProxy_aaa72051de9010127a35cdb2ad23c0456}\label{classHouse_1_1Matrix_1_1ElementProxy_aaa72051de9010127a35cdb2ad23c0456}} 
+\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}!isWall@{isWall}}
+\index{isWall@{isWall}!House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+\doxysubsubsection{\texorpdfstring{isWall()}{isWall()}}
+{\footnotesize\ttfamily bool House\+::\+Matrix\+::\+Element\+Proxy\+::is\+Wall (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the element is a wall. 
+
+\begin{DoxyReturn}{Returns}
+True if the element is a wall, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Matrix_1_1ElementProxy_a228e7e816991663252f071b1b87ca8a9}\label{classHouse_1_1Matrix_1_1ElementProxy_a228e7e816991663252f071b1b87ca8a9}} 
+\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}!operator Tile@{operator Tile}}
+\index{operator Tile@{operator Tile}!House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+\doxysubsubsection{\texorpdfstring{operator Tile()}{operator Tile()}}
+{\footnotesize\ttfamily House\+::\+Matrix\+::\+Element\+Proxy\+::operator \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Converts the \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} object to a \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} object. 
+
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{classHouse_1_1Tile}{Tile}} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Matrix_1_1ElementProxy_a42b15fb23b7a98ddef97165ff0e55358}\label{classHouse_1_1Matrix_1_1ElementProxy_a42b15fb23b7a98ddef97165ff0e55358}} 
+\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}!operator=@{operator=}}
+\index{operator=@{operator=}!House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHouse_1_1Tile}{House\+::\+Tile}} House\+::\+Matrix\+::\+Element\+Proxy\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} \&}]{e }\end{DoxyParamCaption})}
+
+
+
+Assigns the value of another \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} object to the element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \mbox{\hyperlink{classHouse_1_1Matrix_1_1ElementProxy}{Element\+Proxy}} object to assign. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The assigned value. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHouse_1_1Matrix_1_1ElementProxy_aa53f94f98705283fc00b3d2282cda762}\label{classHouse_1_1Matrix_1_1ElementProxy_aa53f94f98705283fc00b3d2282cda762}} 
+\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}!operator=@{operator=}}
+\index{operator=@{operator=}!House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHouse_1_1Tile}{House\+::\+Tile}} House\+::\+Matrix\+::\+Element\+Proxy\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classHouse_1_1Tile}{Tile}}}]{value }\end{DoxyParamCaption})}
+
+
+
+Assigns a value to the element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to assign. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The assigned value. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classHouse_1_1Matrix_1_1ElementProxy_a0a63029b777187708f70d6120990b118}\label{classHouse_1_1Matrix_1_1ElementProxy_a0a63029b777187708f70d6120990b118}} 
+\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}!mat@{mat}}
+\index{mat@{mat}!House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+\doxysubsubsection{\texorpdfstring{mat}{mat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHouse_1_1Matrix}{Matrix}}\& House\+::\+Matrix\+::\+Element\+Proxy\+::mat\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHouse_1_1Matrix_1_1ElementProxy_a5ea84abb22ed5b1c107b58ea3eb13d37}\label{classHouse_1_1Matrix_1_1ElementProxy_a5ea84abb22ed5b1c107b58ea3eb13d37}} 
+\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}!x@{x}}
+\index{x@{x}!House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily size\+\_\+t House\+::\+Matrix\+::\+Element\+Proxy\+::x\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHouse_1_1Matrix_1_1ElementProxy_af53850cfcaefc8741e4fbe561745f65e}\label{classHouse_1_1Matrix_1_1ElementProxy_af53850cfcaefc8741e4fbe561745f65e}} 
+\index{House::Matrix::ElementProxy@{House::Matrix::ElementProxy}!y@{y}}
+\index{y@{y}!House::Matrix::ElementProxy@{House::Matrix::ElementProxy}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily size\+\_\+t House\+::\+Matrix\+::\+Element\+Proxy\+::y\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{House_8h}{House.\+h}}\item 
+src/\mbox{\hyperlink{House_8cpp}{House.\+cpp}}\end{DoxyCompactItemize}

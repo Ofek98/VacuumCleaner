@@ -1,3 +1,8 @@
 <map id="Simulator" name="Simulator">
-<area shape="rect" id="node1" title="The Simulator class represents a vacuum cleaner simulator." alt="" coords="5,5,181,171"/>
+<area shape="rect" id="node1" title="The Simulator class represents a vacuum cleaner simulator." alt="" coords="40,1056,216,1221"/>
+<area shape="rect" id="node2" href="$classRobot.html" title="Represents a vacuum cleaning robot." alt="" coords="180,681,404,993"/>
+<area shape="rect" id="node6" href="$classAlgorithm.html" title="The Algorithm class represents the algorithm used by the robot to make decisions." alt="" coords="261,1056,473,1221"/>
+<area shape="rect" id="node3" href="$classCoords.html" title="The Coords class represents the coordinates of a tile in a matrix of tiles." alt="" coords="225,71,421,237"/>
+<area shape="rect" id="node4" href="$classHouse.html" title="The House class represents a house with tiles that can be cleaned by a vacuum cleaner." alt="" coords="46,365,253,619"/>
+<area shape="rect" id="node5" href="$classHouse_1_1Matrix.html" title="The Matrix class represents a matrix of tiles in the house." alt="" coords="5,5,200,303"/>
 </map>

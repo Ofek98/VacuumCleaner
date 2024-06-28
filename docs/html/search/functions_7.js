@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['operator_28_29_109',['operator()',['../classHouse_1_1Matrix.html#ab0b4ae02a07e2707389154fb13c21485',1,'House::Matrix::operator()(size_t x, size_t y)'],['../classHouse_1_1Matrix.html#a940e2e41bce8627c6879913087899e76',1,'House::Matrix::operator()(Coords location)'],['../classHouse_1_1Matrix.html#a74217b7a353cca630f09a46a841b0f4c',1,'House::Matrix::operator()(size_t x, size_t y) const'],['../classHouse_1_1Matrix.html#aa4a8a74fc68f5d8618e539cb7191f718',1,'House::Matrix::operator()(Coords location) const']]],
-  ['operator_2b_110',['operator+',['../classCoords.html#af77d62a549f28bebcd89bfa331935fe7',1,'Coords']]],
-  ['operator_3d_3d_111',['operator==',['../classCoords.html#aced8091d0235466b471f0cd84966663f',1,'Coords']]]
+  ['main_135',['main',['../myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'myrobot.cpp']]],
+  ['matrix_136',['Matrix',['../classHouse_1_1Matrix.html#a0e20f5715ad8f85307ba4237c249e974',1,'House::Matrix::Matrix()'],['../classHouse_1_1Matrix.html#ac77879ffb89ba273769e278dff7747fe',1,'House::Matrix::Matrix(size_t dim_x, size_t dim_y)']]],
+  ['move_137',['move',['../classRobot.html#a98ccb558368067de12f113fce99bec33',1,'Robot']]],
+  ['movetofreedirection_138',['moveToFreeDirection',['../classAlgorithm.html#aad869c5e3510ebc86d22884b2886cb33',1,'Algorithm']]]
 ];

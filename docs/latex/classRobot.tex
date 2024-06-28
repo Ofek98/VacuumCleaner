@@ -15,13 +15,13 @@ Collaboration diagram for Robot\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=248pt]{classRobot__coll__graph}
+\includegraphics[height=550pt]{classRobot__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classRobot_a362015afd9a5714b709028b5a4760c7e}{Robot}} (\mbox{\hyperlink{classHouse}{House}} \&house, size\+\_\+t battery\+\_\+capacity)
+\mbox{\hyperlink{classRobot_a362015afd9a5714b709028b5a4760c7e}{Robot}} (\mbox{\hyperlink{classHouse}{House}} \&\mbox{\hyperlink{classRobot_a72df43872e337a71b38fd9b662495c3d}{house}}, size\+\_\+t \mbox{\hyperlink{classRobot_afdb0a4c781c8432aacebb5f8421dfeb9}{battery\+\_\+capacity}})
 \begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classRobot}{Robot}} object. \end{DoxyCompactList}\item 
 bool $\ast$ \mbox{\hyperlink{classRobot_a9ae7f7a156af33e11a252331b6f71a84}{get\+Surrounding\+Walls}} ()
 \begin{DoxyCompactList}\small\item\em Retrieves the surrounding walls of the robot\textquotesingle{}s current location. \end{DoxyCompactList}\item 
@@ -33,6 +33,32 @@ float \mbox{\hyperlink{classRobot_a3903147a2aa0eb3151e2d192404f90cb}{get\+Batter
 \begin{DoxyCompactList}\small\item\em Retrieves the remaining battery level of the robot. \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{structStep}{Step}} $>$ \mbox{\hyperlink{classRobot_adb90a14c0aa539757df01e9bff6cbdc0}{get\+Steps\+Taken}} ()
 \begin{DoxyCompactList}\small\item\em Retrieves the steps taken by the robot during the cleaning process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classRobot_a3d7b4ac9e0c1a9970c3ad9ec43577d6e}{clean}} ()
+\begin{DoxyCompactList}\small\item\em Cleans the current location once. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRobot_ab0c6c3a39c239ecbd1eb6a35fb9bce6b}{charge}} ()
+\begin{DoxyCompactList}\small\item\em Charges the robot\textquotesingle{}s battery once. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRobot_a98ccb558368067de12f113fce99bec33}{move}} (\mbox{\hyperlink{classCoords}{Coords}} next\+\_\+loc)
+\begin{DoxyCompactList}\small\item\em Moves the robot to the specified location. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classRobot_a366f4df9efd795d339ef4ac14579d600}{decrease\+Battery}} ()
+\begin{DoxyCompactList}\small\item\em Decreases the battery level of the robot by one step. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHouse}{House}} \& \mbox{\hyperlink{classRobot_a72df43872e337a71b38fd9b662495c3d}{house}}
+\item 
+\mbox{\hyperlink{classCoords}{Coords}} \mbox{\hyperlink{classRobot_a29c434f6e803051844f30b0440753108}{location}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classRobot_afdb0a4c781c8432aacebb5f8421dfeb9}{battery\+\_\+capacity}}
+\item 
+float \mbox{\hyperlink{classRobot_acd45163165713279e4dceecd6ae3211f}{battery\+\_\+left}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structStep}{Step}} $>$ \mbox{\hyperlink{classRobot_a763f12d57e3269a8c455ef15f3421c7e}{steps\+\_\+taken}}
+\item 
+\mbox{\hyperlink{classAlgorithm}{Algorithm}} \mbox{\hyperlink{classRobot_a1b41558688e1474547c8fd812daffdfd}{algo}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -59,6 +85,67 @@ Constructs a \mbox{\hyperlink{classRobot}{Robot}} object.
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRobot_ab0c6c3a39c239ecbd1eb6a35fb9bce6b}\label{classRobot_ab0c6c3a39c239ecbd1eb6a35fb9bce6b}} 
+\index{Robot@{Robot}!charge@{charge}}
+\index{charge@{charge}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{charge()}{charge()}}
+{\footnotesize\ttfamily void Robot\+::charge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Charges the robot\textquotesingle{}s battery once. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_ab0c6c3a39c239ecbd1eb6a35fb9bce6b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classRobot_a3d7b4ac9e0c1a9970c3ad9ec43577d6e}\label{classRobot_a3d7b4ac9e0c1a9970c3ad9ec43577d6e}} 
+\index{Robot@{Robot}!clean@{clean}}
+\index{clean@{clean}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{clean()}{clean()}}
+{\footnotesize\ttfamily void Robot\+::clean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cleans the current location once. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classRobot_a3d7b4ac9e0c1a9970c3ad9ec43577d6e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_a3d7b4ac9e0c1a9970c3ad9ec43577d6e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classRobot_a366f4df9efd795d339ef4ac14579d600}\label{classRobot_a366f4df9efd795d339ef4ac14579d600}} 
+\index{Robot@{Robot}!decreaseBattery@{decreaseBattery}}
+\index{decreaseBattery@{decreaseBattery}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{decreaseBattery()}{decreaseBattery()}}
+{\footnotesize\ttfamily float Robot\+::decrease\+Battery (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Decreases the battery level of the robot by one step. 
+
+\begin{DoxyReturn}{Returns}
+The updated battery level as a float value. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_a366f4df9efd795d339ef4ac14579d600_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classRobot_a3903147a2aa0eb3151e2d192404f90cb}\label{classRobot_a3903147a2aa0eb3151e2d192404f90cb}} 
 \index{Robot@{Robot}!getBatteryLeft@{getBatteryLeft}}
 \index{getBatteryLeft@{getBatteryLeft}!Robot@{Robot}}
@@ -153,6 +240,35 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{classRobot_a9ae7f7a156af33e11a252331b6f71a84_icgraph}
 \end{center}
 \end{figure}
+\mbox{\Hypertarget{classRobot_a98ccb558368067de12f113fce99bec33}\label{classRobot_a98ccb558368067de12f113fce99bec33}} 
+\index{Robot@{Robot}!move@{move}}
+\index{move@{move}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void Robot\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCoords}{Coords}}}]{next\+\_\+loc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Moves the robot to the specified location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em next\+\_\+loc} & The coordinates of the next location to move to. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{classRobot_a98ccb558368067de12f113fce99bec33_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobot_a98ccb558368067de12f113fce99bec33_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classRobot_ae1d2d755c0240a6dab680bcfef652dad}\label{classRobot_ae1d2d755c0240a6dab680bcfef652dad}} 
 \index{Robot@{Robot}!performNextStep@{performNextStep}}
 \index{performNextStep@{performNextStep}!Robot@{Robot}}
@@ -181,6 +297,45 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRobot_a1b41558688e1474547c8fd812daffdfd}\label{classRobot_a1b41558688e1474547c8fd812daffdfd}} 
+\index{Robot@{Robot}!algo@{algo}}
+\index{algo@{algo}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{algo}{algo}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAlgorithm}{Algorithm}} Robot\+::algo\hspace{0.3cm}{\ttfamily [private]}}
+
+The cleaning algorithm used by the robot. \mbox{\Hypertarget{classRobot_afdb0a4c781c8432aacebb5f8421dfeb9}\label{classRobot_afdb0a4c781c8432aacebb5f8421dfeb9}} 
+\index{Robot@{Robot}!battery\_capacity@{battery\_capacity}}
+\index{battery\_capacity@{battery\_capacity}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{battery\_capacity}{battery\_capacity}}
+{\footnotesize\ttfamily size\+\_\+t Robot\+::battery\+\_\+capacity\hspace{0.3cm}{\ttfamily [private]}}
+
+The battery capacity of the robot. \mbox{\Hypertarget{classRobot_acd45163165713279e4dceecd6ae3211f}\label{classRobot_acd45163165713279e4dceecd6ae3211f}} 
+\index{Robot@{Robot}!battery\_left@{battery\_left}}
+\index{battery\_left@{battery\_left}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{battery\_left}{battery\_left}}
+{\footnotesize\ttfamily float Robot\+::battery\+\_\+left\hspace{0.3cm}{\ttfamily [private]}}
+
+The remaining battery level of the robot. \mbox{\Hypertarget{classRobot_a72df43872e337a71b38fd9b662495c3d}\label{classRobot_a72df43872e337a71b38fd9b662495c3d}} 
+\index{Robot@{Robot}!house@{house}}
+\index{house@{house}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{house}{house}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHouse}{House}}\& Robot\+::house\hspace{0.3cm}{\ttfamily [private]}}
+
+The house to clean. \mbox{\Hypertarget{classRobot_a29c434f6e803051844f30b0440753108}\label{classRobot_a29c434f6e803051844f30b0440753108}} 
+\index{Robot@{Robot}!location@{location}}
+\index{location@{location}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{location}{location}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCoords}{Coords}} Robot\+::location\hspace{0.3cm}{\ttfamily [private]}}
+
+The current location of the robot. \mbox{\Hypertarget{classRobot_a763f12d57e3269a8c455ef15f3421c7e}\label{classRobot_a763f12d57e3269a8c455ef15f3421c7e}} 
+\index{Robot@{Robot}!steps\_taken@{steps\_taken}}
+\index{steps\_taken@{steps\_taken}!Robot@{Robot}}
+\doxysubsubsection{\texorpdfstring{steps\_taken}{steps\_taken}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structStep}{Step}}$>$ Robot\+::steps\+\_\+taken\hspace{0.3cm}{\ttfamily [private]}}
+
+The steps taken by the robot. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
