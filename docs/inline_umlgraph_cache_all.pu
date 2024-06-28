@@ -1,8 +1,192 @@
 @startuml inline_umlgraph_1.png
-   Sender->Receiver  : Command()
-   Sender<--Receiver : Ack()
+actor User
+
+participant myrobot
+
+participant Simulator
+
+participant House
+participant Robot
+
+participant Algorithm
+User->myrobot:input.txt
+activate myrobot
+alt readInputFile() ends successfully
+myrobot->Simulator:tiles, max_battery_steps, docking_station, total_dirt
+activate Simulator
+else file does not exist / not in format
+User<-myrobot:error bad input file
+end
+Simulator->House:tiles, docking_station, total_dirt
+activate House
+Simulator<--House:house
+deactivate House
+Simulator->Robot:house, max_battery_steps
+activate Robot
+Robot->Algorithm:Robot* : this
+activate Algorithm
+Robot<--Algorithm:algo
+deactivate Algorithm
+Simulator<--Robot:robot
+deactivate Robot
+myrobot<--Simulator:simulator
+deactivate Simulator
+
+myrobot->Simulator:run(total_steps)
+activate Simulator
+
+loop total_steps
+Simulator->Robot:perform_next_step()
+activate Robot
+
+Robot->Algorithm:decide_next_step()
+activate Algorithm
+Robot<-Algorithm:getBatteryLeft()
+Robot->Algorithm:battery_left
+alt enough battery for action
+Robot<-Algorithm:getCurrentCoordsDirt()
+House<-Robot:getDirtLevel(location)
+activate House
+House-->Robot:dirt
+deactivate House
+Robot-->Algorithm:dirt
+
+alt dirt > 0
+Robot<--Algorithm:CLEAN
+House<-Robot:cleanOnce(location)
+else dirt == 0
+Robot<-Algorithm:getSurroundingWalls()
+House<-Robot:isWall() (x4 times)
+activate House
+House-->Robot:is wall (bool)
+deactivate House
+Robot-->Algorithm:surrounding walls as bool[]
+Robot<--Algorithm:MOVE
+
+end
+else needs to charge
+
+alt in docking station
+Robot<--Algorithm:CHARGE
+else move to docking station
+
+
+Robot<--Algorithm:MOVE
+deactivate Algorithm
+end
+end
+deactivate Robot
+end
+
+Simulator->Robot:getStepsTaken()
+activate Robot
+Simulator<--Robot:steps_taken
+Simulator->Robot:getBatteryLeft()
+Simulator<--Robot:battery_left
+deactivate Robot
+Simulator->House:getTotalDirt()
+activate House
+Simulator<--House:total_dirt
+deactivate House
+myrobot<--Simulator:Run Results
+deactivate Simulator
+
+User<--myrobot:output.txt
+deactivate myrobot
 @enduml
 @startuml inline_umlgraph_2.eps
-   Sender->Receiver  : Command()
-   Sender<--Receiver : Ack()
+actor User
+
+participant myrobot
+
+participant Simulator
+
+participant House
+participant Robot
+
+participant Algorithm
+User->myrobot:input.txt
+activate myrobot
+alt readInputFile() ends successfully
+myrobot->Simulator:tiles, max_battery_steps, docking_station, total_dirt
+activate Simulator
+else file does not exist / not in format
+User<-myrobot:error bad input file
+end
+Simulator->House:tiles, docking_station, total_dirt
+activate House
+Simulator<--House:house
+deactivate House
+Simulator->Robot:house, max_battery_steps
+activate Robot
+Robot->Algorithm:Robot* : this
+activate Algorithm
+Robot<--Algorithm:algo
+deactivate Algorithm
+Simulator<--Robot:robot
+deactivate Robot
+myrobot<--Simulator:simulator
+deactivate Simulator
+
+myrobot->Simulator:run(total_steps)
+activate Simulator
+
+loop total_steps
+Simulator->Robot:perform_next_step()
+activate Robot
+
+Robot->Algorithm:decide_next_step()
+activate Algorithm
+Robot<-Algorithm:getBatteryLeft()
+Robot->Algorithm:battery_left
+alt enough battery for action
+Robot<-Algorithm:getCurrentCoordsDirt()
+House<-Robot:getDirtLevel(location)
+activate House
+House-->Robot:dirt
+deactivate House
+Robot-->Algorithm:dirt
+
+alt dirt > 0
+Robot<--Algorithm:CLEAN
+House<-Robot:cleanOnce(location)
+else dirt == 0
+Robot<-Algorithm:getSurroundingWalls()
+House<-Robot:isWall() (x4 times)
+activate House
+House-->Robot:is wall (bool)
+deactivate House
+Robot-->Algorithm:surrounding walls as bool[]
+Robot<--Algorithm:MOVE
+
+end
+else needs to charge
+
+alt in docking station
+Robot<--Algorithm:CHARGE
+else move to docking station
+
+
+Robot<--Algorithm:MOVE
+deactivate Algorithm
+end
+end
+deactivate Robot
+end
+
+Simulator->Robot:getStepsTaken()
+activate Robot
+Simulator<--Robot:steps_taken
+Simulator->Robot:getBatteryLeft()
+Simulator<--Robot:battery_left
+deactivate Robot
+Simulator->House:getTotalDirt()
+activate House
+Simulator<--House:total_dirt
+deactivate House
+myrobot<--Simulator:Run Results
+deactivate Simulator
+
+User<--myrobot:output.txt
+deactivate myrobot
 @enduml
