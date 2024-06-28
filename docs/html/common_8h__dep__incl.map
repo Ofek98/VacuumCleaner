@@ -1,12 +1,13 @@
 <map id="src/common.h" name="src/common.h">
-<area shape="rect" id="node1" title="This file contains the declaration of the Coords class, StepType enum, Step struct,..." alt="" coords="216,5,331,32"/>
+<area shape="rect" id="node1" title="This file contains the declaration of the Coords class, StepType enum, Step struct,..." alt="" coords="241,5,356,32"/>
 <area shape="rect" id="node2" href="$Algorithm_8h.html" title="This file contains the declaration of the Algorithm class." alt="" coords="89,80,210,107"/>
 <area shape="rect" id="node4" href="$Robot_8h.html" title="This file contains the declaration of the Robot class." alt="" coords="166,155,261,181"/>
 <area shape="rect" id="node6" href="$Simulator_8h.html" title="This file contains the declaration of the Simulator class and the RunResults struct." alt="" coords="242,229,361,256"/>
-<area shape="rect" id="node9" href="$House_8h.html" title="This file contains the declaration of the House class." alt="" coords="336,80,435,107"/>
+<area shape="rect" id="node9" href="$common_8cpp.html" title=" " alt="" coords="459,80,589,107"/>
+<area shape="rect" id="node10" href="$House_8h.html" title="This file contains the declaration of the House class." alt="" coords="336,80,435,107"/>
 <area shape="rect" id="node3" href="$Algorithm_8cpp.html" title="Implementation file for the Algorithm class." alt="" coords="5,155,141,181"/>
 <area shape="rect" id="node5" href="$Robot_8cpp.html" title="This file contains the implementation of the Robot class." alt="" coords="107,229,218,256"/>
 <area shape="rect" id="node7" href="$myrobot_8cpp.html" title="This file contains the implementation of a vacuum cleaner simulation program." alt="" coords="337,304,463,331"/>
 <area shape="rect" id="node8" href="$Simulator_8cpp.html" title="This file contains the implementation of the Simulator class." alt="" coords="178,304,313,331"/>
-<area shape="rect" id="node10" href="$House_8cpp.html" title="Implementation file for the House class." alt="" coords="438,155,551,181"/>
+<area shape="rect" id="node11" href="$House_8cpp.html" title="Implementation file for the House class." alt="" coords="438,155,551,181"/>
 </map>

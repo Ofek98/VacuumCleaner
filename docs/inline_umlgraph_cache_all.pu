@@ -1,0 +1,8 @@
+@startuml inline_umlgraph_1.png
+   Sender->Receiver  : Command()
+   Sender<--Receiver : Ack()
+@enduml
+@startuml inline_umlgraph_2.eps
+   Sender->Receiver  : Command()
+   Sender<--Receiver : Ack()
+@enduml
