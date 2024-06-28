@@ -32,6 +32,7 @@ Step Algorithm::moveToFreeDirection(){
 
 Step Algorithm::decide_next_step(){
     printf("in 30: %f\n", robot->getBatteryLeft());
+    // relevant for first step only
     if (last_direction == NO_DIRECTION) {
         battery_capacity = robot->getBatteryLeft();
         if (battery_capacity < 2){
@@ -41,44 +42,46 @@ Step Algorithm::decide_next_step(){
         path_from_docking_station.push_back(next_step.coords);
         return next_step;
     }
-    else {
-        if (is_charging && robot->getBatteryLeft() < battery_capacity){
-            printf("in 42: %f\n", robot->getBatteryLeft());
-            return {CHARGE, DIFFLOCATION};
-        }
-        if (!is_charging && path_from_docking_station.size() == 0 && robot->getBatteryLeft() < battery_capacity){
-            printf("in 46: %f\n", robot->getBatteryLeft());
-            is_charging = true;
-            return {CHARGE, DIFFLOCATION};
-        }
-        if (robot->getBatteryLeft()-2 < path_from_docking_station.size()) {
-            
-            Step res = {MOVE, path_from_docking_station.back().reverse()};
-            path_from_docking_station.pop_back();
-            return res;
-        }
-        if (robot->getCurrentCoordsDirt() > 0){
-            return {CLEAN, DIFFLOCATION};
-        }
 
-        is_charging = false;
-        bool* surrounding_walls = robot->getSurroundingWalls(); 
-        for (int i = 0; i < 4; ++i) {
-            if (DIRECTIONS[i] == last_direction) {
-                if (!surrounding_walls[i]){
-                    path_from_docking_station.push_back(last_direction);
-                    delete surrounding_walls;
-                    return {MOVE,last_direction};
-                }
-                else{
-                    Step next_step = moveToFreeDirection();
-                    path_from_docking_station.push_back(next_step.coords);
-                    delete surrounding_walls;
-                    return next_step;
-                }
-            }
-        }     
-        // We would never reach here
-        return {CHARGE,DIFFLOCATION};   
+    // regular cases:
+    
+    if (is_charging && robot->getBatteryLeft() < battery_capacity){
+        printf("in 42: %f\n", robot->getBatteryLeft());
+        return {CHARGE, DIFFLOCATION};
     }
+    if (!is_charging && path_from_docking_station.size() == 0 && robot->getBatteryLeft() < battery_capacity){
+        printf("in 46: %f\n", robot->getBatteryLeft());
+        is_charging = true;
+        return {CHARGE, DIFFLOCATION};
+    }
+    if (robot->getBatteryLeft()-2 < path_from_docking_station.size()) {
+        
+        Step res = {MOVE, path_from_docking_station.back().reverse()};
+        path_from_docking_station.pop_back();
+        return res;
+    }
+    if (robot->getCurrentCoordsDirt() > 0){
+        return {CLEAN, DIFFLOCATION};
+    }
+
+    is_charging = false;
+    bool* surrounding_walls = robot->getSurroundingWalls(); 
+    for (int i = 0; i < 4; ++i) {
+        if (DIRECTIONS[i] == last_direction) {
+            if (!surrounding_walls[i]){
+                path_from_docking_station.push_back(last_direction);
+                delete surrounding_walls;
+                return {MOVE,last_direction};
+            }
+            else{
+                Step next_step = moveToFreeDirection();
+                path_from_docking_station.push_back(next_step.coords);
+                delete surrounding_walls;
+                return next_step;
+            }
+        }
+    }     
+    // We would never reach here
+    return {CHARGE,DIFFLOCATION};   
+    
 }

@@ -1,0 +1,78 @@
+
+
+actor User
+
+participant myrobot
+
+participant Simulator
+
+
+
+
+
+
+participant House
+participant Robot
+
+participant Algorithm
+User->myrobot:input.txt
+alt readInputFile() ends successfully
+myrobot->Simulator:tiles, max_battery_steps, docking_station, total_dirt
+else file does not exist / not in format
+Userx#red-myrobot:error bad input file
+end
+Simulator->House:tiles, docking_station, total_dirt
+Simulator<--House:house
+
+space 
+Simulator->Robot:house, max_battery_steps
+Robot->Algorithm:Robot* : this
+Robot<--Algorithm:algo
+Simulator<--Robot:robot
+myrobot<-Simulator:simulator
+myrobot->Simulator:run(total_steps)
+loop total_steps
+Simulator->Robot:perform_next_step()
+
+
+
+Robot-#green>Algorithm:decide_next_step()
+Robot<#purple-Algorithm:getBatteryLeft()
+Robot--#purple>Algorithm:battery_left
+alt enough battery for action
+Robot<#purple-Algorithm:getCurrentCoordsDirt()
+House<#purple-Robot:getDirtLevel(location)
+House--#purple>Robot:dirt
+Robot--#purple>Algorithm:dirt
+
+alt dirt > 0
+Robot<#green--Algorithm:CLEAN
+House<#green-Robot:cleanOnce(location)
+else dirt == 0
+Robot<#purple-Algorithm:getSurroundingWalls()
+House<#purple-Robot:isWall() (x4 times)
+House--#purple>Robot:is wall (bool)
+Robot--#purple>Algorithm:surrounding walls as bool[]
+Robot<#green--Algorithm:MOVE
+
+end
+else needs to charge
+
+alt in docking station
+Robot<#green--Algorithm:CHARGE
+else move to docking station
+
+
+Robot<#green--Algorithm:MOVE
+end
+end
+end
+
+Simulator->Robot:getStepsTaken()
+Simulator<--Robot:steps_taken
+Simulator->Robot:getBatteryLeft()
+Simulator<--Robot:battery_left
+Simulator->House:getTotalDirt()
+Simulator<--House:total_dirt
+myrobot<--Simulator:Run Results
+User<--myrobot:output.txt
