@@ -11,6 +11,7 @@ RunResults Simulator::run(size_t total_steps) {
     RunResults res;
     res.steps_taken = robot.getStepsTaken();
     res.battery_left = robot.getBatteryLeft();
+    
     res.dirt_left = house.getTotalDirt();
     res.is_docking = res.steps_taken.back().type == CHARGE;
     return res;

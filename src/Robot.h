@@ -15,7 +15,7 @@ public:
     std::vector<Step> getStepsTaken();
 
 private: 
-    House house;
+    House& house;
     Coords location;
     size_t battery_capacity;
     float battery_left;

@@ -101,6 +101,6 @@ Steps performed by the vaccum cleaner:
 (12, 4): 2
 Total number of steps performed: 100
 Vaccum cleaner still has 1 battery
-Mission failed
-Amount of dirt left in the house: 5
+Mission succeeded
+Amount of dirt left in the house: 0
 Vaccum cleaner is at the docking station
