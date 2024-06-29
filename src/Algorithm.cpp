@@ -31,7 +31,6 @@ Step Algorithm::moveToFreeDirection(){
 }
 
 Step Algorithm::decide_next_step(){
-    printf("in 30: %f\n", robot->getBatteryLeft());
     // relevant for first step only
     if (last_direction == NO_DIRECTION) {
         battery_capacity = robot->getBatteryLeft();
@@ -46,12 +45,11 @@ Step Algorithm::decide_next_step(){
     // regular cases:
     
     if (is_charging && robot->getBatteryLeft() < battery_capacity){
-        printf("in 42: %f\n", robot->getBatteryLeft());
         return {CHARGE, DIFFLOCATION};
     }
     if (!is_charging && path_from_docking_station.size() == 0 && robot->getBatteryLeft() < battery_capacity){
-        printf("in 46: %f\n", robot->getBatteryLeft());
         is_charging = true;
+        moveToFreeDirection(); //We won't use this step so it will only just pick new direction to move on after the charging
         return {CHARGE, DIFFLOCATION};
     }
     if (robot->getBatteryLeft()-2 < path_from_docking_station.size()) {
