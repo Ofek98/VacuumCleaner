@@ -228,4 +228,5 @@ private:
     
 };
 
-#endif HOUSE_H
+#endif //HOUSE_H 
+

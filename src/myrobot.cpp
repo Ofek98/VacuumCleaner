@@ -23,6 +23,18 @@ struct InputValues
 };
 
 /**
+ * @brief Determines if a string is a positive integer
+ * @param string
+ * @return true iff the string is a number
+*/
+bool is_number(const std::string& s) //Taken from https://stackoverflow.com/questions/4654636/how-to-determine-if-a-string-is-a-number-with-c
+{
+    std::string::const_iterator it = s.begin();
+    while (it != s.end() && std::isdigit(*it)) ++it;
+    return !s.empty() && it == s.end();
+}
+
+/**
  * @brief Reads the input file and extracts the input values.
  * 
  * @param file The input file stream.
@@ -39,14 +51,29 @@ InputValues readInputFile(std::ifstream& file)
     {
         // TODO: not number error handling / less then one line / max_battery_steps not specified
         if(line_count == 0) {
+            if(!is_number(line)) {
+                std::cerr << "Error: max_battery_steps is not a non negative integer" << std::endl;
+                input_values.success = false;
+                return input_values;
+            }
             input_values.max_battery_steps = std::stoi(line);
         }  
         else if(line_count == 1) {
+            if(!is_number(line)) {
+                std::cerr << "Error: total_steps is not a non negative integer" << std::endl;
+                input_values.success = false;
+                return input_values;
+            }
             input_values.total_steps = std::stoi(line);
         }
-        if(max_line_length < line.size()) 
+        else if(max_line_length < line.size()) 
             max_line_length = line.size();
         line_count++;
+    }
+    if(line_count<3){
+        std::cerr << "Error: input file should have at least 3 lines" << std::endl;
+        input_values.success = false;
+        return input_values;
     }
 
     input_values.tiles = House::Matrix(max_line_length, line_count-2); 
@@ -58,26 +85,43 @@ InputValues readInputFile(std::ifstream& file)
     // skip the first 2 lines
     std::getline(file, line);
     std::getline(file, line);
+    bool is_there_docking_station;
 
+    try{
     // fill wall-surrounded matrix with tiles by input file
-    while(std::getline(file, line))
-    {
-        for (size_t x = 0; x < max_line_length; x++)
+        while(std::getline(file, line))
         {
-            // +1 takes the added surrounding walls into account
-            input_values.tiles(x+1, y+1) = x < line.length() ? House::Tile(line[x]) : House::Tile(0);
-            int tile_status = input_values.tiles(x+1, y+1).getStatus();
-            if(tile_status == DOCKING_STATION) {
-                // TODO: check if theres more than one docking stations.
-                input_values.docking_station = Coords(x+1,y+1);
+            for (size_t x = 0; x < max_line_length; x++)
+            {
+                // +1 takes the added surrounding walls into account
+                input_values.tiles(x+1, y+1) = x < line.length() ? House::Tile(line[x]) : House::Tile(0);
+                int tile_status = input_values.tiles(x+1, y+1).getStatus();
+                if(tile_status == DOCKING_STATION) {
+                    if (is_there_docking_station) {
+                        std::cerr << "Error: There can be only one docking station" << std::endl;
+                        input_values.success = false;
+                        return input_values;
+                }
+                    input_values.docking_station = Coords(x+1,y+1);
+                    is_there_docking_station = true;
+                }
+                else if(tile_status > 0) {
+                    input_values.total_dirt += tile_status;
+                }
             }
-            else if(tile_status > 0) {
-                input_values.total_dirt += tile_status;
+            y++;
             }
-        }
-        y++;
     }
-
+    catch(const std::runtime_error& e) {
+        std::cerr << "Error in input file reading: " << e.what() << std::endl;
+        input_values.success = false;
+        return input_values;
+    }
+    if(!is_there_docking_station) {
+        std::cerr << "Error: No docking station found in the input file" << std::endl;
+        input_values.success = false;
+        return input_values;
+    }
     input_values.success = true;
     return input_values;
 }
@@ -117,6 +161,7 @@ bool writeOutputFile(RunResults res)
     return 0;
 }
 
+
 /**
  * @brief The main function of the program.
  * 
@@ -141,7 +186,8 @@ int main(int argc, char* argv[]) {
 
     InputValues input_values;
     input_values = readInputFile(file);
-    
+    file.close();
+    std::cout << "exit value is" << input_values.success << std::endl;
     if(!input_values.success) {
         return EXIT_FAILURE;
     }

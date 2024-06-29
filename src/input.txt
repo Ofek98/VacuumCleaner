@@ -1,7 +1,3 @@
 10
-100
-        WWWWW       
-        W 2  WWWWW
-        W  3      W
-        W  D WWWWW
-        WWWWW
+20
+D

@@ -34,7 +34,7 @@ House::Tile::Tile(char status_char)
         }
         else
         {
-            throw std::runtime_error("Cannot initialize tile from char " + status_char);
+            throw std::runtime_error("Cannot initialize tile from char " + std::string(1, status_char));
         }
         break;
     }
