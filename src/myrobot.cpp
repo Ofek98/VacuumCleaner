@@ -44,7 +44,7 @@ InputValues readInputFile(std::ifstream& file)
         else if(line_count == 1) {
             input_values.total_steps = std::stoi(line);
         }
-        if(max_line_length < line.size()) 
+        else if(max_line_length < line.size()) 
             max_line_length = line.size();
         line_count++;
     }
