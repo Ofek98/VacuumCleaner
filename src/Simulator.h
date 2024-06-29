@@ -21,7 +21,7 @@ struct RunResults
 {
     std::vector<Step> steps_taken; /**< The steps taken by the robot during the simulation. */
     size_t dirt_left; /**< The amount of dirt left in the house after the simulation. */
-    size_t battery_left; /**< The remaining battery level of the robot after the simulation. */
+    float battery_left; /**< The remaining battery level of the robot after the simulation. */
     bool is_docking; /**< Indicates whether the robot is at the docking station at the end of the simulation. */
 };
 

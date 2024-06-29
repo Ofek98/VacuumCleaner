@@ -29,7 +29,6 @@ Step Robot::performNextStep(){
     }
     step.coords = next_loc;
     steps_taken.push_back(step);
-    std::cout << step.coords.x << "," << step.coords.y << " : " << step.type << std::endl;
     return step;
 }
 

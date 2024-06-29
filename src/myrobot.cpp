@@ -187,7 +187,6 @@ int main(int argc, char* argv[]) {
     InputValues input_values;
     input_values = readInputFile(file);
     file.close();
-    std::cout << "exit value is" << input_values.success << std::endl;
     if(!input_values.success) {
         return EXIT_FAILURE;
     }
