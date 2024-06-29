@@ -108,12 +108,15 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a53d02df1713071578c4b6a030269739b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="myrobot_8cpp.html#a53d02df1713071578c4b6a030269739b">is_number</a> (const std::string &amp;s)</td></tr>
+<tr class="memdesc:a53d02df1713071578c4b6a030269739b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if a string is a positive integer.  <a href="myrobot_8cpp.html#a53d02df1713071578c4b6a030269739b">More...</a><br /></td></tr>
+<tr class="separator:a53d02df1713071578c4b6a030269739b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c48a72fb91e60f8c93bceaa0a9599d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structInputValues.html">InputValues</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="myrobot_8cpp.html#a1c48a72fb91e60f8c93bceaa0a9599d6">readInputFile</a> (std::ifstream &amp;file)</td></tr>
 <tr class="memdesc:a1c48a72fb91e60f8c93bceaa0a9599d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the input file and extracts the input values.  <a href="myrobot_8cpp.html#a1c48a72fb91e60f8c93bceaa0a9599d6">More...</a><br /></td></tr>
 <tr class="separator:a1c48a72fb91e60f8c93bceaa0a9599d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a407afdbc0e803d02b9ca9c8ef24a8853"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="myrobot_8cpp.html#a407afdbc0e803d02b9ca9c8ef24a8853">writeOutputFile</a> (<a class="el" href="structRunResults.html">RunResults</a> res)</td></tr>
-<tr class="memdesc:a407afdbc0e803d02b9ca9c8ef24a8853"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the output file with the simulation results.  <a href="myrobot_8cpp.html#a407afdbc0e803d02b9ca9c8ef24a8853">More...</a><br /></td></tr>
-<tr class="separator:a407afdbc0e803d02b9ca9c8ef24a8853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeabfb6fef4e4be60ec659a08b7121678"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="myrobot_8cpp.html#aeabfb6fef4e4be60ec659a08b7121678">writeOutputFile</a> (<a class="el" href="structRunResults.html">RunResults</a> res, std::string input_file_name)</td></tr>
+<tr class="memdesc:aeabfb6fef4e4be60ec659a08b7121678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the output file with the simulation results.  <a href="myrobot_8cpp.html#aeabfb6fef4e4be60ec659a08b7121678">More...</a><br /></td></tr>
+<tr class="separator:aeabfb6fef4e4be60ec659a08b7121678"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main function of the program.  <a href="myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,6 +124,43 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains the implementation of a vacuum cleaner simulation program. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a53d02df1713071578c4b6a030269739b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53d02df1713071578c4b6a030269739b">&#9670;&nbsp;</a></span>is_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool is_number </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determines if a string is a positive integer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the string to be checked if it is a number </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true iff the string is a number </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="myrobot_8cpp_a53d02df1713071578c4b6a030269739b_icgraph.png" border="0" usemap="#amyrobot_8cpp_a53d02df1713071578c4b6a030269739b_icgraph" alt=""/></div>
+<map name="amyrobot_8cpp_a53d02df1713071578c4b6a030269739b_icgraph" id="amyrobot_8cpp_a53d02df1713071578c4b6a030269739b_icgraph">
+<area shape="rect" title="Determines if a string is a positive integer." alt="" coords="263,5,353,32"/>
+<area shape="rect" href="myrobot_8cpp.html#a1c48a72fb91e60f8c93bceaa0a9599d6" title="Reads the input file and extracts the input values." alt="" coords="108,5,215,32"/>
+<area shape="rect" href="myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The main function of the program." alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&nbsp;</a></span>main()</h2>
 
@@ -161,25 +201,27 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="myrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png" border="0" usemap="#amyrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph" alt=""/></div>
 <map name="amyrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph" id="amyrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph">
-<area shape="rect" title="The main function of the program." alt="" coords="5,82,60,109"/>
-<area shape="rect" href="myrobot_8cpp.html#a1c48a72fb91e60f8c93bceaa0a9599d6" title="Reads the input file and extracts the input values." alt="" coords="116,31,223,58"/>
-<area shape="rect" href="classSimulator.html#a16dd2bc125e46164ebe249704278dac7" title="Runs the simulation for the specified number of steps." alt="" coords="112,82,227,109"/>
-<area shape="rect" href="myrobot_8cpp.html#a407afdbc0e803d02b9ca9c8ef24a8853" title="Writes the output file with the simulation results." alt="" coords="108,133,231,159"/>
-<area shape="rect" href="classRobot.html#a3903147a2aa0eb3151e2d192404f90cb" title="Retrieves the remaining battery level of the robot." alt="" coords="798,6,959,33"/>
-<area shape="rect" href="classRobot.html#adb90a14c0aa539757df01e9bff6cbdc0" title="Retrieves the steps taken by the robot during the cleaning process." alt="" coords="287,57,450,83"/>
-<area shape="rect" href="classHouse.html#a6933baa6d1980789a0d4caea151a1ed8" title="Gets the total dirt level of the house." alt="" coords="295,107,442,134"/>
-<area shape="rect" href="classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="279,158,459,185"/>
-<area shape="rect" href="classRobot.html#ab0c6c3a39c239ecbd1eb6a35fb9bce6b" title="Charges the robot&#39;s battery once." alt="" coords="555,158,667,185"/>
-<area shape="rect" href="classRobot.html#a3d7b4ac9e0c1a9970c3ad9ec43577d6e" title="Cleans the current location once." alt="" coords="559,209,662,235"/>
-<area shape="rect" href="classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3" title="Decides the next step for the robot." alt="" coords="507,107,715,134"/>
-<area shape="rect" href="classRobot.html#a98ccb558368067de12f113fce99bec33" title="Moves the robot to the specified location." alt="" coords="558,259,663,286"/>
-<area shape="rect" href="classHouse.html#af060f3a7a72dfd36a758959cbd5d2750" title="Cleans the tile at the given location once." alt="" coords="809,209,948,235"/>
-<area shape="rect" href="classRobot.html#a366f4df9efd795d339ef4ac14579d600" title="Decreases the battery level of the robot by one step." alt="" coords="791,259,966,286"/>
-<area shape="rect" href="classRobot.html#ab8c1af6c01e1faf8110ef989a05eff3a" title="Retrieves the amount of dirt at the robot&#39;s current location." alt="" coords="775,57,982,83"/>
-<area shape="rect" href="classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="1043,133,1245,159"/>
-<area shape="rect" href="classAlgorithm.html#aad869c5e3510ebc86d22884b2886cb33" title="Randomly moves the robot to a free (non&#45;wall) direction." alt="" coords="763,158,995,185"/>
-<area shape="rect" href="classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12" title="Gets the dirt level at the given location." alt="" coords="1069,57,1219,83"/>
-<area shape="rect" href="classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="1293,133,1404,159"/>
+<area shape="rect" title="The main function of the program." alt="" coords="5,157,60,184"/>
+<area shape="rect" href="myrobot_8cpp.html#a1c48a72fb91e60f8c93bceaa0a9599d6" title="Reads the input file and extracts the input values." alt="" coords="116,56,223,83"/>
+<area shape="rect" href="classSimulator.html#a16dd2bc125e46164ebe249704278dac7" title="Runs the simulation for the specified number of steps." alt="" coords="112,157,227,184"/>
+<area shape="rect" href="myrobot_8cpp.html#aeabfb6fef4e4be60ec659a08b7121678" title="Writes the output file with the simulation results." alt="" coords="108,233,231,260"/>
+<area shape="rect" href="myrobot_8cpp.html#a53d02df1713071578c4b6a030269739b" title="Determines if a string is a positive integer." alt="" coords="323,5,414,32"/>
+<area shape="rect" href="classRobot.html#a3903147a2aa0eb3151e2d192404f90cb" title="Retrieves the remaining battery level of the robot." alt="" coords="798,5,959,32"/>
+<area shape="rect" href="classRobot.html#adb90a14c0aa539757df01e9bff6cbdc0" title="Retrieves the steps taken by the robot during the cleaning process." alt="" coords="287,183,450,209"/>
+<area shape="rect" href="classHouse.html#a6933baa6d1980789a0d4caea151a1ed8" title="Gets the total dirt level of the house." alt="" coords="295,233,442,260"/>
+<area shape="rect" href="classRobot.html#ae1d2d755c0240a6dab680bcfef652dad" title="Performs the next step of the cleaning algorithm." alt="" coords="279,132,459,159"/>
+<area shape="rect" href="classRobot.html#ab0c6c3a39c239ecbd1eb6a35fb9bce6b" title="Charges the robot&#39;s battery once." alt="" coords="555,157,667,184"/>
+<area shape="rect" href="classRobot.html#a3d7b4ac9e0c1a9970c3ad9ec43577d6e" title="Cleans the current location once." alt="" coords="559,208,662,235"/>
+<area shape="rect" href="classAlgorithm.html#aa2f47d51e5ec6ac67ab0c52a3c13afa3" title="Decides the next step for the robot." alt="" coords="507,107,715,133"/>
+<area shape="rect" href="classRobot.html#a98ccb558368067de12f113fce99bec33" title="Moves the robot to the specified location." alt="" coords="558,259,663,285"/>
+<area shape="rect" href="classHouse.html#af060f3a7a72dfd36a758959cbd5d2750" title="Cleans the tile at the given location once." alt="" coords="809,208,948,235"/>
+<area shape="rect" href="classRobot.html#a366f4df9efd795d339ef4ac14579d600" title="Decreases the battery level of the robot by one step." alt="" coords="791,259,966,285"/>
+<area shape="rect" href="classRobot.html#ab8c1af6c01e1faf8110ef989a05eff3a" title="Retrieves the amount of dirt at the robot&#39;s current location." alt="" coords="775,56,982,83"/>
+<area shape="rect" href="classRobot.html#a9ae7f7a156af33e11a252331b6f71a84" title="Retrieves the surrounding walls of the robot&#39;s current location." alt="" coords="1043,132,1245,159"/>
+<area shape="rect" href="classAlgorithm.html#aad869c5e3510ebc86d22884b2886cb33" title="Randomly moves the robot to a free (non&#45;wall) direction." alt="" coords="763,157,995,184"/>
+<area shape="rect" href="classHouse.html#adbb5a6d3f124bd1c56a93f220a956b12" title="Gets the dirt level at the given location." alt="" coords="1069,56,1219,83"/>
+<area shape="rect" href="classHouse.html#a54575b69be7a183b12fca956bdc01cbc" title="Checks if the tile at the given location is a wall." alt="" coords="1293,132,1404,159"/>
+<area shape="rect" href="common_8cpp.html#acf666dba0234e8f5ccd96f7ee230de13" title="Converts a StepType enum value to its corresponding string representation." alt="" coords="303,284,435,311"/>
 </map>
 </div>
 
@@ -210,6 +252,15 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structInputValues.html" title="Structure to store input values read from the input file.">InputValues</a> The extracted input values. </dd></dl>
 <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="myrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6_cgraph.png" border="0" usemap="#amyrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6_cgraph" alt=""/></div>
+<map name="amyrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6_cgraph" id="amyrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6_cgraph">
+<area shape="rect" title="Reads the input file and extracts the input values." alt="" coords="5,5,112,32"/>
+<area shape="rect" href="myrobot_8cpp.html#a53d02df1713071578c4b6a030269739b" title="Determines if a string is a positive integer." alt="" coords="160,5,251,32"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="myrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6_icgraph.png" border="0" usemap="#amyrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6_icgraph" alt=""/></div>
@@ -221,8 +272,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a407afdbc0e803d02b9ca9c8ef24a8853"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a407afdbc0e803d02b9ca9c8ef24a8853">&#9670;&nbsp;</a></span>writeOutputFile()</h2>
+<a id="aeabfb6fef4e4be60ec659a08b7121678"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeabfb6fef4e4be60ec659a08b7121678">&#9670;&nbsp;</a></span>writeOutputFile()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -231,8 +282,18 @@ Here is the caller graph for this function:</div>
           <td class="memname">bool writeOutputFile </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structRunResults.html">RunResults</a>&#160;</td>
-          <td class="paramname"><em>res</em></td><td>)</td>
+          <td class="paramname"><em>res</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>input_file_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -241,15 +302,25 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">res</td><td>The simulation results. </td></tr>
+    <tr><td class="paramname">input_file_name</td><td>The input file name, for making the output file name. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool True if the output file was written successfully, false otherwise. </dd></dl>
 <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="myrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678_cgraph.png" border="0" usemap="#amyrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678_cgraph" alt=""/></div>
+<map name="amyrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678_cgraph" id="amyrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678_cgraph">
+<area shape="rect" title="Writes the output file with the simulation results." alt="" coords="5,5,128,32"/>
+<area shape="rect" href="common_8cpp.html#acf666dba0234e8f5ccd96f7ee230de13" title="Converts a StepType enum value to its corresponding string representation." alt="" coords="176,5,308,32"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="myrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853_icgraph.png" border="0" usemap="#amyrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853_icgraph" alt=""/></div>
-<map name="amyrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853_icgraph" id="amyrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853_icgraph">
+<div class="center"><img src="myrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678_icgraph.png" border="0" usemap="#amyrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678_icgraph" alt=""/></div>
+<map name="amyrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678_icgraph" id="amyrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678_icgraph">
 <area shape="rect" title="Writes the output file with the simulation results." alt="" coords="108,5,231,32"/>
 <area shape="rect" href="myrobot_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The main function of the program." alt="" coords="5,5,60,32"/>
 </map>

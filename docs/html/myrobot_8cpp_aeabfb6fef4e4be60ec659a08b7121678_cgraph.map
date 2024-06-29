@@ -1,0 +1,4 @@
+<map id="writeOutputFile" name="writeOutputFile">
+<area shape="rect" id="node1" title="Writes the output file with the simulation results." alt="" coords="5,5,128,32"/>
+<area shape="rect" id="node2" href="$common_8cpp.html#acf666dba0234e8f5ccd96f7ee230de13" title="Converts a StepType enum value to its corresponding string representation." alt="" coords="176,5,308,32"/>
+</map>

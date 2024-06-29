@@ -1,17 +1,12 @@
 CXX = g++
 CXXFLAGS = -std=c++20 -Wall -Wextra -Werror -pedantic -g
 TARGET = myrobot
-SRCDIR = src
-OUTDIR = bin
 
 # Add all cpp files from SRCDIR to a variable
-SOURCES = $(wildcard $(SRCDIR)/*.cpp)
+SOURCES = $(wildcard *.cpp)
 
-$(OUTDIR)/$(TARGET): $(SOURCES) | $(OUTDIR)
+$(TARGET): $(SOURCES)
 	$(CXX) $(CXXFLAGS) $^ -o $@
-
-$(OUTDIR):
-	mkdir -p $(OUTDIR)
 
 clean:
 	rm -rf $(OUTDIR)/$(TARGET)

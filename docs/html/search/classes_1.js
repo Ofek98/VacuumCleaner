@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['coords_93',['Coords',['../classCoords.html',1,'']]]
+  ['coords_95',['Coords',['../classCoords.html',1,'']]]
 ];

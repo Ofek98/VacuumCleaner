@@ -24,7 +24,8 @@ struct InputValues
 
 /**
  * @brief Determines if a string is a positive integer
- * @param string
+ * 
+ * @param s the string to be checked if it is a number
  * @return true iff the string is a number
 */
 bool is_number(const std::string& s) //Taken from https://stackoverflow.com/questions/4654636/how-to-determine-if-a-string-is-a-number-with-c
@@ -130,11 +131,12 @@ InputValues readInputFile(std::ifstream& file)
  * @brief Writes the output file with the simulation results.
  * 
  * @param res The simulation results.
+ * @param input_file_name The input file name, for making the output file name.
  * @return bool True if the output file was written successfully, false otherwise.
  */
-bool writeOutputFile(RunResults res)
+bool writeOutputFile(RunResults res, std::string input_file_name)
 {
-    std::ofstream file("output.txt"); // Open output file
+    std::ofstream file("output_" + input_file_name); // Open output file
 
     if (!file) {
         std::cerr << "Failed to open the file" << std::endl;
@@ -144,7 +146,8 @@ bool writeOutputFile(RunResults res)
     file << "Steps performed by the vacuum cleaner:" << std::endl;
 
     for(Step step: res.steps_taken) {
-        file << "(" << step.coords.x << ", " << step.coords.y << "): " << step.type << std::endl;
+
+        file << "(" << step.coords.x << ", " << step.coords.y << "): " << stepTypeToString(step.type) << std::endl;
     }
 
     file << "Total number of steps performed: " << res.steps_taken.size() << std::endl;
@@ -193,7 +196,7 @@ int main(int argc, char* argv[]) {
 
     Simulator simulator = Simulator(input_values.max_battery_steps, input_values.tiles, input_values.docking_station, input_values.total_dirt);
 
-    writeOutputFile(simulator.run(input_values.total_steps));
+    writeOutputFile(simulator.run(input_values.total_steps), argv[1]);
 
     return EXIT_SUCCESS;
     try {

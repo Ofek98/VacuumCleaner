@@ -25,9 +25,11 @@ struct \mbox{\hyperlink{structInputValues}{Input\+Values}}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+bool \mbox{\hyperlink{myrobot_8cpp_a53d02df1713071578c4b6a030269739b}{is\+\_\+number}} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Determines if a string is a positive integer. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structInputValues}{Input\+Values}} \mbox{\hyperlink{myrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6}{read\+Input\+File}} (std\+::ifstream \&file)
 \begin{DoxyCompactList}\small\item\em Reads the input file and extracts the input values. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{myrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853}{write\+Output\+File}} (\mbox{\hyperlink{structRunResults}{Run\+Results}} res)
+bool \mbox{\hyperlink{myrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678}{write\+Output\+File}} (\mbox{\hyperlink{structRunResults}{Run\+Results}} res, std\+::string input\+\_\+file\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Writes the output file with the simulation results. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{myrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em The main function of the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -39,6 +41,31 @@ This file contains the implementation of a vacuum cleaner simulation program.
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{myrobot_8cpp_a53d02df1713071578c4b6a030269739b}\label{myrobot_8cpp_a53d02df1713071578c4b6a030269739b}} 
+\index{myrobot.cpp@{myrobot.cpp}!is\_number@{is\_number}}
+\index{is\_number@{is\_number}!myrobot.cpp@{myrobot.cpp}}
+\doxysubsubsection{\texorpdfstring{is\_number()}{is\_number()}}
+{\footnotesize\ttfamily bool is\+\_\+number (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s }\end{DoxyParamCaption})}
+
+
+
+Determines if a string is a positive integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & the string to be checked if it is a number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true iff the string is a number 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{myrobot_8cpp_a53d02df1713071578c4b6a030269739b_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{myrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{myrobot_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
 \index{myrobot.cpp@{myrobot.cpp}!main@{main}}
 \index{main@{main}!myrobot.cpp@{myrobot.cpp}}
@@ -84,6 +111,13 @@ Reads the input file and extracts the input values.
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{structInputValues}{Input\+Values}} The extracted input values. 
 \end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{myrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -91,11 +125,11 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=237pt]{myrobot_8cpp_a1c48a72fb91e60f8c93bceaa0a9599d6_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{myrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853}\label{myrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853}} 
+\mbox{\Hypertarget{myrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678}\label{myrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678}} 
 \index{myrobot.cpp@{myrobot.cpp}!writeOutputFile@{writeOutputFile}}
 \index{writeOutputFile@{writeOutputFile}!myrobot.cpp@{myrobot.cpp}}
 \doxysubsubsection{\texorpdfstring{writeOutputFile()}{writeOutputFile()}}
-{\footnotesize\ttfamily bool write\+Output\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRunResults}{Run\+Results}}}]{res }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool write\+Output\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRunResults}{Run\+Results}}}]{res,  }\item[{std\+::string}]{input\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
 
 
 
@@ -105,14 +139,23 @@ Writes the output file with the simulation results.
 \begin{DoxyParams}{Parameters}
 {\em res} & The simulation results. \\
 \hline
+{\em input\+\_\+file\+\_\+name} & The input file name, for making the output file name. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 bool True if the output file was written successfully, false otherwise. 
 \end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{myrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=249pt]{myrobot_8cpp_a407afdbc0e803d02b9ca9c8ef24a8853_icgraph}
+\includegraphics[width=249pt]{myrobot_8cpp_aeabfb6fef4e4be60ec659a08b7121678_icgraph}
 \end{center}
 \end{figure}
