@@ -68,5 +68,5 @@ float Robot::getBatteryLeft() const {
 }
 
 std::vector<Step> Robot::getStepsTaken() {
-    return steps_taken;
+    return std::move(steps_taken);
 }
