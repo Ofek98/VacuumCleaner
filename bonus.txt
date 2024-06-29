@@ -1,0 +1,6 @@
+Hi,
+
+We think we deserve a small bonus due to the thorough and comprehensive documentation we did. We documented every single object in the entire project,
+and also made an HTML website for the project, it's in docs/html/index.html, please open it with your web-browser. We used a tool called Doxygen.
+
+Thank you.

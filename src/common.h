@@ -58,6 +58,14 @@ enum StepType {
     CHARGE, /**< Represents a charging step. */
 };
 
+
+/**
+ * @brief Converts a StepType enum value to its corresponding string representation.
+ * @param step_type The StepType enum value to convert.
+ * @return The string representation of the StepType enum value.
+ */
+std::string stepTypeToString(StepType step_type);
+
 /**
  * @brief The Step struct represents a step in a cleaning process.
  */

@@ -17,3 +17,12 @@ bool Coords::operator==(const Coords& other) const {
 Coords Coords::operator+(const Coords& other) const {
     return Coords(x + other.x, y + other.y);
 }
+
+std::string stepTypeToString(StepType step_type) {
+    switch (step_type) {
+        case StepType::CLEAN: return "CLEAN";
+        case StepType::MOVE: return "MOVE";
+        case StepType::CHARGE: return "CHARGE";
+        default: return "Unknown";
+    }
+}

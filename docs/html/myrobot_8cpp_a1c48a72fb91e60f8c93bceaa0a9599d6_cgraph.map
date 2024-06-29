@@ -1,0 +1,4 @@
+<map id="readInputFile" name="readInputFile">
+<area shape="rect" id="node1" title="Reads the input file and extracts the input values." alt="" coords="5,5,112,32"/>
+<area shape="rect" id="node2" href="$myrobot_8cpp.html#a53d02df1713071578c4b6a030269739b" title="Determines if a string is a positive integer." alt="" coords="160,5,251,32"/>
+</map>
