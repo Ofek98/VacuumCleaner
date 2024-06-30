@@ -9,5 +9,5 @@ $(TARGET): $(SOURCES)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean:
-	rm -rf $(OUTDIR)/$(TARGET)
+	rm -rf $(TARGET)
 
