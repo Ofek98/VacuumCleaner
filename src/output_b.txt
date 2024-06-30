@@ -1,0 +1,36 @@
+Steps performed by the vacuum cleaner:
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+(1, 2): CHARGE
+Total number of steps performed: 30
+Vacuum cleaner still has 1 battery
+Mission failed
+Amount of dirt left in the house: 20
+Vacuum cleaner is at the docking station
