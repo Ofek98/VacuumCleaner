@@ -7,6 +7,7 @@
  */
 
 #include "common.h"
+#include "abstract_algorithm.h"
 
 class Robot;
 
@@ -14,22 +15,11 @@ class Robot;
  * @class Algorithm
  * @brief The Algorithm class represents the algorithm used by the robot to make decisions.
  */
-class Algorithm {
-public:
-    /**
-     * @brief Constructs an Algorithm object.
-     * @param robot A pointer to the Robot object.
-     */
-    Algorithm(Robot* robot);
-
-    /**
-     * @brief Decides the next step for the robot.
-     * @return The next step to take.
-     */
-    Step decide_next_step();
-
-private:
-    Robot* robot; /**< A pointer to the Robot object. */
+class Algorithm : public AbstractAlgorithm {
+    BatteryMeter* battery_meter;
+    DirtSensor* dirt_sensor;
+    WallsSensor* wall_sensor;
+    std::size_t max_steps;
     bool is_charging; /**< A flag indicating if the robot is currently charging. */
     Coords last_direction; /**< The last direction the robot moved in. */
     int battery_capacity; /**< The battery capacity of the robot. */
@@ -40,6 +30,13 @@ private:
      * @return The step to take to move to a free direction.
      */
     Step moveToFreeDirection();
+
+public:
+	void setMaxSteps(std::size_t maxSteps) override;
+	void setWallsSensor(const WallsSensor& wallSensor) override;
+	void setDirtSensor(const DirtSensor& dirtSensor) override;
+	void setBatteryMeter(const BatteryMeter& batteryMeter) override;
+    Step Algorithm::nextStep() override;
 };
 
 

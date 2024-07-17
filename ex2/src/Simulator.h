@@ -29,24 +29,54 @@ struct RunResults
  * @brief The Simulator class represents a vacuum cleaner simulator.
  */
 class Simulator {
+    
+    class HouseSensor {
+    protected:
+        House* house;
+        Simulator& parent;
+    public: 
+        HouseSensor(Simulator& parent);
+        virtual void setHouse(House* house);
+    };
+
+    class HouseWallsSensor : public WallsSensor, public HouseSensor {
+        using HouseSensor::HouseSensor;
+    public:
+	    bool isWall(Direction d) const override;
+    };
+
+    class HouseBatteryMeter : public BatteryMeter, public HouseSensor {
+        using HouseSensor::HouseSensor;
+    public:
+	    std::size_t getBatteryState() const override;
+    };
+
+    class HouseDirtSensor : public DirtSensor, public HouseSensor {
+        using HouseSensor::HouseSensor;
+    public:
+	    int dirtLevel() const override;
+    };
+
     House house; /**< The house object representing the house to be cleaned in the simulation. */
-    Robot robot; /**< The robot object representing the vacuum cleaner. */
+    HouseWallsSensor wallsSensor = HouseWallsSensor(*this);
+    HouseBatteryMeter batteryMeter = HouseBatteryMeter(*this);
+    HouseDirtSensor dirtSensor = HouseDirtSensor(*this);
+    std::size_t maxSteps;
+    Coords location; /**< The current location of the robot. */
+    std::size_t battery_capacity; /**< The battery capacity of the robot. */
+    float battery_left; /**< The remaining battery level of the robot. */
+    Algorithm algo;
+
 public:
     /**
-     * @brief Constructs a Simulator object with the specified parameters.
-     * @param max_battery_steps The maximum number of steps the robot's battery can last.
-     * @param tiles The matrix representing the layout of the house.
-     * @param docking_station The coordinates of the docking station.
-     * @param total_dirt The total amount of dirt in the house.
-     */
-    Simulator(size_t max_battery_steps, House::Matrix tiles, Coords docking_station, size_t total_dirt);
-
-    /**
-     * @brief Runs the simulation for the specified number of steps.
-     * @param total_steps The total number of steps to run the simulation for.
+     * @brief Runs the simulation.
      * @return The results of the simulation run.
      */
-    RunResults run(size_t total_steps);
+    RunResults run();
+
+    void readHouseFile(std::ifstream& file);
+
+    void setAlgorithm(Algorithm algo);
 };
 
 #endif // SIMULATOR_H

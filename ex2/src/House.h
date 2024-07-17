@@ -181,6 +181,8 @@ public:
     };
 
 
+    House() {};
+
     /**
      * @brief Constructs a House object with the given matrix of tiles, docking station coordinates, and total dirt level.
      * @param tiles The matrix of tiles representing the house.

@@ -35,97 +35,7 @@ bool is_number(const std::string& s) //Taken from https://stackoverflow.com/ques
     return !s.empty() && it == s.end();
 }
 
-/**
- * @brief Reads the input file and extracts the input values.
- * 
- * @param file The input file stream.
- * @return InputValues The extracted input values.
- */
-InputValues readInputFile(std::ifstream& file)
-{
-    InputValues input_values;
 
-    std::string line;
-    int line_count = 0;
-    size_t max_line_length = 0;
-    while(std::getline(file, line))
-    {
-        // TODO: not number error handling / less then one line / max_battery_steps not specified
-        if(line_count == 0) {
-            if(!is_number(line)) {
-                std::cerr << "Error: max_battery_steps is not a non negative integer" << std::endl;
-                input_values.success = false;
-                return input_values;
-            }
-            input_values.max_battery_steps = std::stoi(line);
-        }  
-        else if(line_count == 1) {
-            if(!is_number(line)) {
-                std::cerr << "Error: total_steps is not a non negative integer" << std::endl;
-                input_values.success = false;
-                return input_values;
-            }
-            input_values.total_steps = std::stoi(line);
-        }
-        else if(max_line_length < line.size()) 
-            max_line_length = line.size();
-        line_count++;
-    }
-    if(line_count<3){
-        std::cerr << "Error: input file should have at least 3 lines" << std::endl;
-        input_values.success = false;
-        return input_values;
-    }
-
-    input_values.tiles = House::Matrix(max_line_length, line_count-2); 
-
-    int y = 0;
-    file.clear();                 // Clear EOF flag
-    file.seekg(0, std::ios::beg); // Move to the beginning of the file
-    
-    // skip the first 2 lines
-    std::getline(file, line);
-    std::getline(file, line);
-    bool is_there_docking_station;
-
-    try{
-    // fill wall-surrounded matrix with tiles by input file
-        while(std::getline(file, line))
-        {
-            for (size_t x = 0; x < max_line_length; x++)
-            {
-                // +1 takes the added surrounding walls into account
-                input_values.tiles(x+1, y+1) = x < line.length() ? House::Tile(line[x]) : House::Tile(0);
-                int tile_status = input_values.tiles(x+1, y+1).getStatus();
-                if(tile_status == DOCKING_STATION) {
-                    if (is_there_docking_station) {
-                        std::cerr << "Error: There can be only one docking station" << std::endl;
-                        input_values.success = false;
-                        return input_values;
-                }
-                    input_values.docking_station = Coords(x+1,y+1);
-                    is_there_docking_station = true;
-                }
-                else if(tile_status > 0) {
-                    input_values.total_dirt += tile_status;
-                }
-            }
-            y++;
-            }
-    }
-    catch(const std::runtime_error& e) {
-        std::cerr << "Error in input file reading: " << e.what() << std::endl;
-        input_values.success = false;
-        return input_values;
-    }
-    if(!is_there_docking_station) {
-        std::cerr << "Error: No docking station found in the input file" << std::endl;
-        input_values.success = false;
-        return input_values;
-    }
-    input_values.success = true;
-    return input_values;
-}
 
 /**
  * @brief Writes the output file with the simulation results.
@@ -164,7 +74,6 @@ bool writeOutputFile(RunResults res, std::string input_file_name)
     return 0;
 }
 
-
 /**
  * @brief The main function of the program.
  * 
@@ -172,13 +81,17 @@ bool writeOutputFile(RunResults res, std::string input_file_name)
  * @param argv The array of command-line arguments.
  * @return int The exit status of the program.
  */
-int main(int argc, char* argv[]) {
+int main(int argc, char** argv) {
+	Simulator simulator;
+
     // Check the number of arguments
     if (argc < 2) {
         std::cerr << "Usage: " << argv[0] << " <house_input_file>" << std::endl;
         return EXIT_FAILURE;
     }
-
+    else {
+        
+    }
     //  open input file
     std::ifstream file(argv[1]);
     if(!file)
@@ -186,6 +99,19 @@ int main(int argc, char* argv[]) {
         std::cerr << "Input file \"" << argv[1] << "\" does not exist" << std::endl;
         return EXIT_FAILURE;
     }
+
+    simulator.readHouseFile(file);
+    file.close();
+	Algorithm algo;
+    simulator.setAlgorithm(algo);
+	simulator.run();
+}
+
+
+
+
+int main(int argc, char* argv[]) {
+
 
     InputValues input_values;
     input_values = readInputFile(file);

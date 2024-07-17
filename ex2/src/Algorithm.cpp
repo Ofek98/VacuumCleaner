@@ -30,10 +30,10 @@ Step Algorithm::moveToFreeDirection(){
     return {MOVE, next_direction};
 }
 
-Step Algorithm::decide_next_step(){
+Step Algorithm::nextStep() {
     // relevant for first step only
     if (last_direction == NO_DIRECTION) {
-        battery_capacity = robot->getBatteryLeft();
+        battery_capacity = battery_meter.getBatteryState();
         if (battery_capacity < 2){
             return {CHARGE, DIFFLOCATION};
         }
@@ -44,21 +44,21 @@ Step Algorithm::decide_next_step(){
 
     // regular cases:
     
-    if (is_charging && robot->getBatteryLeft() < battery_capacity){
+    if (is_charging && battery_meter.getBatteryState() < battery_capacity){
         return {CHARGE, DIFFLOCATION};
     }
-    if (!is_charging && path_from_docking_station.size() == 0 && robot->getBatteryLeft() < battery_capacity){
+    if (!is_charging && path_from_docking_station.size() == 0 && battery_meter.getBatteryState() < battery_capacity){
         is_charging = true;
         moveToFreeDirection(); //We won't use this step so it will only just pick new direction to move on after the charging
         return {CHARGE, DIFFLOCATION};
     }
-    if (robot->getBatteryLeft()-2 < path_from_docking_station.size()) {
+    if (battery_meter.getBatteryState()-2 < path_from_docking_station.size()) {
         
         Step res = {MOVE, path_from_docking_station.back().reverse()};
         path_from_docking_station.pop_back();
         return res;
     }
-    if (robot->getCurrentCoordsDirt() > 0){
+    if (dirt_sensor.dirtLevel() > 0){
         return {CLEAN, DIFFLOCATION};
     }
 
@@ -81,5 +81,17 @@ Step Algorithm::decide_next_step(){
     }     
     // We would never reach here
     return {CHARGE,DIFFLOCATION};   
-    
+}
+
+void Algorithm::setMaxSteps(std::size_t maxSteps) {
+    max_steps = maxSteps;
+}
+void Algorithm::setWallsSensor(const WallsSensor& wallSensor) {
+    wall_sensor = wallSensor;
+}
+void Algorithm::setDirtSensor(const DirtSensor& dirtSensor) {
+    dirt_sensor = dirtSensor;
+}
+void Algorithm::setBatteryMeter(const BatteryMeter& batteryMeter) {
+    battery_meter = batteryMeter;
 }
