@@ -1,29 +1,12 @@
 #ifndef SIMULATOR_H
 #define SIMULATOR_H
 
-/**
- * @file Simulator.h
- * @brief This file contains the declaration of the Simulator class and the RunResults struct.
- */
-
-
 #include "common.h"
 #include "House.h"
-#include "Robot.h"
+#include "Algorithm.h"
 #include <stdexcept>
 #include <fstream>
 #include <string>
-
-/**
- * @brief The RunResults struct represents the results of a simulation run.
- */
-struct RunResults
-{
-    std::vector<Step> steps_taken; /**< The steps taken by the robot during the simulation. */
-    size_t dirt_left; /**< The amount of dirt left in the house after the simulation. */
-    size_t battery_left; /**< The remaining battery level of the robot after the simulation. */
-    bool is_docking; /**< Indicates whether the robot is at the docking station at the end of the simulation. */
-};
 
 /**
  * @brief The Simulator class represents a vacuum cleaner simulator.
@@ -66,15 +49,15 @@ class Simulator {
     std::size_t battery_capacity; /**< The battery capacity of the robot. */
     float battery_left; /**< The remaining battery level of the robot. */
     Algorithm algo;
+    std::string input_file_name;
+
+    float decreaseBattery();
+    void charge();
 
 public:
-    /**
-     * @brief Runs the simulation.
-     * @return The results of the simulation run.
-     */
-    RunResults run();
+    bool run();
 
-    void readHouseFile(std::ifstream& file);
+    bool readHouseFile(std::string file_path);
 
     void setAlgorithm(Algorithm algo);
 };

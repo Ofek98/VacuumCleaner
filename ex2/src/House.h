@@ -223,6 +223,12 @@ public:
      */
     Coords getDockingStationCoords() const;
 
+    void setTiles(Matrix&& tiles);
+
+    void setDockingStation(Coords docking_station);
+
+    void setTotalDirt(size_t total_dirt);
+
 private:
     size_t total_dirt;
     Matrix tiles;

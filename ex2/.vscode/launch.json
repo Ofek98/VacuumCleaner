@@ -5,7 +5,7 @@
             "name": "Launch myrobot",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/myrobot",
+            "program": "${workspaceFolder}/src/myrobot",
             "args": ["src/input.txt"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

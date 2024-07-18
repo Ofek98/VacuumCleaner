@@ -59,7 +59,7 @@ bool House::Tile::isWall() const
     return status == WALL;
 }
 
-void House::Matrix::surroundWithWalls() {
+/* void House::Matrix::surroundWithWalls() {
     for (size_t x = 0; x < dim_x; x++)
     {
         (*this)(x, 0) = (*this)(x, dim_y-1) = Tile(WALL);
@@ -68,11 +68,11 @@ void House::Matrix::surroundWithWalls() {
     {
         (*this)(0, y) = (*this)(dim_x-1, y) = Tile(WALL);
     }
-}
+} */
 
 House::Matrix::Matrix(size_t dim_x, size_t dim_y) : dim_x(dim_x+2), dim_y(dim_y+2) {
     vec.resize(this->dim_x * this->dim_y, Tile(0));
-    surroundWithWalls();
+    //surroundWithWalls();
 }
 
 House::Matrix::ElementProxy::ElementProxy(Matrix& mat, size_t x, size_t y): mat(mat), x(x), y(y) {}
@@ -135,7 +135,7 @@ void House::cleanOnce(Coords location) {
     }
 }
 bool House::isWall(Coords location) const {
-    return tiles(location).isWall();
+    return location.x < 0 || location.y < 0 || tiles(location).isWall();
 }
 
 size_t House::Matrix::getDimX() const {
@@ -152,4 +152,16 @@ Coords House::getDockingStationCoords() const {
 
 size_t House::getTotalDirt() const {
     return total_dirt;
+}
+
+void House::setTiles(Matrix&& tiles) {
+    this->tiles = tiles;
+}
+
+void House::setDockingStation(Coords docking_station) {
+    this->docking_station = docking_station;
+}
+
+void House::setTotalDirt(size_t total_dirt) {
+    this->total_dirt = total_dirt;
 }

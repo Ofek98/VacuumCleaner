@@ -18,11 +18,37 @@ Coords Coords::operator+(const Coords& other) const {
     return Coords(x + other.x, y + other.y);
 }
 
-std::string stepTypeToString(StepType step_type) {
-    switch (step_type) {
-        case StepType::CLEAN: return "CLEAN";
-        case StepType::MOVE: return "MOVE";
-        case StepType::CHARGE: return "CHARGE";
-        default: return "Unknown";
+Coords Coords::operator+(Direction d) const {
+    switch (d)
+    {
+    case Direction::North:
+        return Coords(x, y + 1);
+    
+    case Direction::South:
+        return Coords(x, y - 1);
+    
+    case Direction::East:
+        return Coords(x + 1, y);
+
+    case Direction::West:
+        return Coords(x - 1, y);
+
+    default:
+        // we would never reach this line
+        return Coords(-1, -1);
     }
+}
+
+Coords Coords::operator+=(const Coords& other) {
+    Coords sum = *this + other;
+    x = sum.x;
+    y = sum.y;
+    return *this;
+}
+
+Coords Coords::operator+=(Direction d) {
+    Coords sum = *this + d;
+    x = sum.x;
+    y = sum.y;
+    return *this;
 }
