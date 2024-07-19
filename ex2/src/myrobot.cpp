@@ -28,7 +28,11 @@ int main(int argc, char** argv) {
     }
 
     houseFilePath = argv[1];
-    simulator.readHouseFile(houseFilePath);
+    if(!simulator.readHouseFile(houseFilePath)) {
+        std::cerr << "Error in input file: ^^^" << std::endl;
+        return EXIT_FAILURE;
+    }
+    
 	Algorithm algo;
     simulator.setAlgorithm(algo);
 	simulator.run();

@@ -131,6 +131,10 @@ bool Simulator::readHouseFile(std::string house_file_path)
                 std::cerr << "Error: Number out of range" << std::endl;
             }
         }
+        else {
+            std::cerr << "Error: invalid run parameter" << std::endl;
+            return false;
+        }
     }
 
     Coords docking_station;
