@@ -10,6 +10,7 @@
 #include <stddef.h>
 #include <vector>
 #include <iostream>
+#include <functional>
 
 /**
  * @brief The Coords class represents the coordinates of a tile in a matrix of tiles.
@@ -51,10 +52,20 @@ public:
     Coords operator+=(const Coords& other);
 
     Coords operator+=(Direction d);
+
+    operator Step() const;
 };
+
+namespace std {
+    template <>
+    struct hash<Coords> {
+        std::size_t operator()(const Coords& c) const noexcept;
+    };
+}
 
 
 constexpr int WALL = -1; /**< A constant representing a wall. */
 constexpr int DOCKING_STATION = -2; /**< A constant representing a docking station. */
+const float UNEXPLORED = 0.5; /**< A constant representing a location that wasn't explored yet by the algorithm. */
 
 #endif // COMMON_H

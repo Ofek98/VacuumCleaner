@@ -22,16 +22,16 @@ Coords Coords::operator+(Direction d) const {
     switch (d)
     {
     case Direction::North:
-        return Coords(x, y + 1);
+        return Coords(x-1, y);
     
     case Direction::South:
-        return Coords(x, y - 1);
+        return Coords(x+1, y);
     
     case Direction::East:
-        return Coords(x + 1, y);
+        return Coords(x, y+1);
 
     case Direction::West:
-        return Coords(x - 1, y);
+        return Coords(x, y-1);
 
     default:
         // we would never reach this line
@@ -51,4 +51,22 @@ Coords Coords::operator+=(Direction d) {
     x = sum.x;
     y = sum.y;
     return *this;
+}
+
+Coords::operator Step() const {
+    if (x == -1 && y == 0) return Step::North;
+    else if (x == 1 && y == 0) return Step::South;
+    else if (x == 0 && y == 1) return Step::East;
+    else if (x == 0 && y == -1) return Step::West;
+    else return Step::Stay; // Default case
+}
+
+Coords Coords::operator-(const Coords& other) const {
+    return Coords(x - other.x, y - other.y);
+}
+
+namespace std {
+    std::size_t hash<Coords>::operator()(const Coords& c) const noexcept {
+        return std::hash<int>()(c.x) ^ std::hash<int>()(c.y);
+    }
 }
