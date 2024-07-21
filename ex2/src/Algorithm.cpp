@@ -10,7 +10,7 @@
 Algorithm::Algorithm(){
     curr_loc = Coords(0, 0);
     is_returning = false;
-    has_first_step_taken = false;
+    first_iteration = true;
 }
 /*
 Updating curr_loc maping in coords_info to its real level,
@@ -71,7 +71,7 @@ std::vector<Coords> createPathByParents(Coords start,Coords target,std::unordere
         next_path.push_back(current);
     }
     std::reverse(next_path.begin(), next_path.end());
-    return std::move(next_path);
+    return next_path; //There is a copy elision compiler optimization so we didn't use std::move here 
 }
 
 /*
@@ -94,13 +94,13 @@ std::vector<Coords> Algorithm::bfs(){
     if (is_returning){
         target = Coords(0,0);
     }
-    for (int i = 1; i < limiting_factor; i++){
+    for (size_t i = 1; i < max_iterations; i++){
         size_t len = queue.size();
         if (len == 0){
             //No unknown or dirty cells are reachable
             return {};
         }
-        for (int j = 0; j < len; j++){ //Poping out all the coords from the current level and entering their relevant neighbors
+        for (size_t j = 0; j < len; j++){ //Poping out all the coords from the current level and entering their relevant neighbors
             Coords current = queue.front();
             queue.pop_front();
             can_finish = appendNeighbors(current, queue, parents); 
@@ -120,8 +120,7 @@ std::vector<Coords> Algorithm::bfs(){
                 target = candidate;
             }
 
-            std::vector<Coords> next_path = createPathByParents(curr_loc,target,parents);
-            return std::move(next_path);
+            return createPathByParents(curr_loc,target,parents);;
         }
     }
     //No dirty or unknown cell was reachable within limiting_factor steps
@@ -150,8 +149,8 @@ Step Algorithm::nextStep() {
     For curr_loc we can know its dirt level, and for the neighbors we can know if they're walls
     */
 
-    if (!has_first_step_taken){
-        has_first_step_taken = true;
+    if (first_iteration){
+        first_iteration = false;
         coords_info[curr_loc] = DOCKING_STATION;
         updateDetailsAboutCurrLocAndItsNeighbors();
     }
@@ -183,7 +182,7 @@ Step Algorithm::nextStep() {
                 res = Step::Finish;
             }
             else{
-                marchTheNextStepOfThePath();
+                res = marchTheNextStepOfThePath();
             }
         }
     }
@@ -203,7 +202,7 @@ Step Algorithm::nextStep() {
     and clean it within the limiting_factor X steps bound
     */
     else if (dist_from_docking + 2 > limiting_factor && is_returning == false){
-        is_returning == true;
+        is_returning = true;
         path = bfs();
         dist_from_docking = path.size();
         /*If we'll discover that the real distance to the docking is shorter than what we thought it was, according to the bfs result,
@@ -240,7 +239,7 @@ Step Algorithm::nextStep() {
             is_returning = true;
             path = bfs();
         }
-        Step res = marchTheNextStepOfThePath();
+        res = marchTheNextStepOfThePath();
     }
     /**The robot is in the middle of its traversal, its path is not empty, 
     the tile it's on is clean and he have enough battery to explore more tiles;*/

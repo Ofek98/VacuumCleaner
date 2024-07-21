@@ -49,9 +49,13 @@ public:
 
     Coords operator+(Direction d) const;
 
+    Coords operator-(const Coords& other) const;
+
     Coords operator+=(const Coords& other);
 
     Coords operator+=(Direction d);
+
+    
 
     operator Step() const;
 };
