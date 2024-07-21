@@ -8,6 +8,8 @@
 
 #include "common.h"
 #include "abstract_algorithm.h"
+#include <unordered_map>
+#include <deque>
 
 
 /**
@@ -15,21 +17,35 @@
  * @brief The Algorithm class represents the algorithm used by the robot to make decisions.
  */
 class Algorithm : public AbstractAlgorithm {
-    const BatteryMeter* battery_meter;
-    const DirtSensor* dirt_sensor;
-    const WallsSensor* wall_sensor;
-    std::size_t max_steps;
-    bool is_charging; /**< A flag indicating if the robot is currently charging. */
-    Coords last_direction; /**< The last direction the robot moved in. */
-    int battery_capacity; /**< The battery capacity of the robot. */
-    std::vector<Coords> path_from_docking_station; /**< The path from the docking station to the current location. */
 
-public:
-	void setMaxSteps(std::size_t maxSteps) override;
-	void setWallsSensor(const WallsSensor& wallSensor) override;
-	void setDirtSensor(const DirtSensor& dirtSensor) override;
-	void setBatteryMeter(const BatteryMeter& batteryMeter) override;
-    Step nextStep() override;
+    public:
+        const BatteryMeter* battery_meter;
+        const DirtSensor* dirt_sensor;
+        const WallsSensor* wall_sensor;
+        std::size_t max_steps;
+
+        Algorithm();
+        void setMaxSteps(std::size_t maxSteps) override;
+        void setWallsSensor(const WallsSensor& wallSensor) override;
+        void setDirtSensor(const DirtSensor& dirtSensor) override;
+        void setBatteryMeter(const BatteryMeter& batteryMeter) override;
+        Step nextStep() override;
+
+    private:
+        void updateDetailsAboutCurrLocAndItsNeighbors();
+        bool appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> parents);
+        std::vector<Coords> Algorithm::bfs();
+        Step marchTheNextStepOfThePath();
+        std::vector<Coords> path;
+        std::unordered_map<Coords,float> coords_info;
+        Coords curr_loc;
+        bool first_step_has_taken;
+        size_t max_battery;
+        size_t dist_from_docking;
+        bool is_returning;
+        size_t remaining_steps;
+        bool has_first_step_taken;
+        size_t limiting_factor;
 };
 
 
