@@ -185,11 +185,12 @@ bool Simulator::readHouseFile(std::string house_file_path)
     return true;
 }
 
-void Simulator::setAlgorithm(Algorithm algo) {
-	algo.setMaxSteps(maxSteps);
-	algo.setWallsSensor(wallsSensor);
-	algo.setDirtSensor(dirtSensor);
-	algo.setBatteryMeter(batteryMeter);
+void Simulator::setAlgorithm(Algorithm&& algo) {
+    this->algo = algo;
+	this->algo.setMaxSteps(maxSteps);
+	this->algo.setWallsSensor(wallsSensor);
+	this->algo.setDirtSensor(dirtSensor);
+	this->algo.setBatteryMeter(batteryMeter);
 }
 
 Simulator::HouseSensor::HouseSensor(Simulator& parent) : parent(parent) {}

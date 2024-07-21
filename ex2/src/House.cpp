@@ -59,20 +59,9 @@ bool House::Tile::isWall() const
     return status == WALL;
 }
 
-/* void House::Matrix::surroundWithWalls() {
-    for (size_t x = 0; x < dim_x; x++)
-    {
-        (*this)(x, 0) = (*this)(x, dim_y-1) = Tile(WALL);
-    }
-    for (size_t y = 0; y < dim_y; y++)
-    {
-        (*this)(0, y) = (*this)(dim_x-1, y) = Tile(WALL);
-    }
-} */
 
-House::Matrix::Matrix(size_t dim_x, size_t dim_y) : dim_x(dim_x+2), dim_y(dim_y+2) {
+House::Matrix::Matrix(size_t dim_x, size_t dim_y) : dim_x(dim_x), dim_y(dim_y) {
     vec.resize(this->dim_x * this->dim_y, Tile(0));
-    //surroundWithWalls();
 }
 
 House::Matrix::ElementProxy::ElementProxy(Matrix& mat, size_t x, size_t y): mat(mat), x(x), y(y) {}
@@ -104,7 +93,8 @@ bool House::Matrix::ElementProxy::isWall() const {
 
 House::Matrix::ElementProxy House::Matrix::operator()(size_t x, size_t y) {
     if (x >= dim_x || y >= dim_y)
-        throw std::out_of_range("matrix indices out of range");
+        //TODO: DO
+        return Tile();
     return {*this, x, y}; 
 }
 

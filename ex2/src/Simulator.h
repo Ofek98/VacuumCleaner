@@ -59,7 +59,7 @@ public:
 
     bool readHouseFile(std::string file_path);
 
-    void setAlgorithm(Algorithm algo);
+    void setAlgorithm(Algorithm&& algo);
 };
 
 #endif // SIMULATOR_H

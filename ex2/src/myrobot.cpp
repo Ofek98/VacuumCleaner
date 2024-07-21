@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
     }
     
 	Algorithm algo;
-    simulator.setAlgorithm(algo);
+    simulator.setAlgorithm(std::move(algo));
 	simulator.run();
 }
 
