@@ -34,17 +34,16 @@ class Algorithm : public AbstractAlgorithm {
     private:
         void updateDetailsAboutCurrLocAndItsNeighbors();
         bool appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> parents);
-        std::vector<Coords> Algorithm::bfs();
+        std::vector<Coords> bfs();
         Step marchTheNextStepOfThePath();
         std::vector<Coords> path;
         std::unordered_map<Coords,float> coords_info;
         Coords curr_loc;
-        bool first_step_has_taken;
         size_t max_battery;
         size_t dist_from_docking;
         bool is_returning;
         size_t remaining_steps;
-        bool has_first_step_taken;
+        bool first_iteration;
         size_t limiting_factor;
 };
 
