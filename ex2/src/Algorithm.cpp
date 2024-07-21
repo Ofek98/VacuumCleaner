@@ -17,7 +17,7 @@ Updating curr_loc maping in coords_info to its real level,
 and adding its neighbors if needed (we can only know if they're walls or explorable) 
 */
 void Algorithm::updateDetailsAboutCurrLocAndItsNeighbors(){
-        coords_info[curr_loc] = dirt_sensor->dirtLevel();
+        coords_info[curr_loc] = curr_loc == Coords(0, 0)? DOCKING_STATION : dirt_sensor->dirtLevel();
         for(int i = 0; i < 4; i++){
             Direction dir = static_cast<Direction>(i);
             Coords loc = curr_loc + dir;
