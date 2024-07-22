@@ -77,7 +77,7 @@ CoordsVector createPathByParents(Coords start,Coords target,std::unordered_map<C
         current = parents[current];
         next_path.push_back(current);
     }
-    std::reverse(next_path.begin(), next_path.end());
+    
     return next_path; //There is a copy elision compiler optimization so we didn't use std::move here 
 }
 
@@ -231,21 +231,22 @@ Step Algorithm::nextStep() {
         }
     }
     remaining_steps -=1;
+
     return res;
 }
 
 void Algorithm::setMaxSteps(std::size_t maxSteps) {
-    max_steps = maxSteps;
+    this->max_steps = maxSteps;
     remaining_steps = maxSteps;
 }
 void Algorithm::setWallsSensor(const WallsSensor& wallSensor) {
-    wall_sensor = &wallSensor;
+    this->wall_sensor = &wallSensor;
 }
 void Algorithm::setDirtSensor(const DirtSensor& dirtSensor) {
-    dirt_sensor = &dirtSensor;
+    this->dirt_sensor = &dirtSensor;
 }
 void Algorithm::setBatteryMeter(const BatteryMeter& batteryMeter) {
-    battery_meter = &batteryMeter;
+    this->battery_meter = &batteryMeter;
     max_battery = battery_meter->getBatteryState();
 }
 //TODO: change to const whatever possible

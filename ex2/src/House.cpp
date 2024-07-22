@@ -34,7 +34,7 @@ House::Tile::Tile(char status_char)
         }
         else
         {
-            throw std::runtime_error("Cannot initialize tile from char " + std::string(1, status_char));
+            status = '0';
         }
         break;
     }
@@ -67,7 +67,8 @@ House::Matrix::Matrix(size_t dim_x, size_t dim_y) : dim_x(dim_x), dim_y(dim_y) {
 House::Matrix::ElementProxy::ElementProxy(Matrix& mat, size_t x, size_t y): mat(mat), x(x), y(y) {}
 
 House::Tile House::Matrix::ElementProxy::operator=(Tile value){
-    mat.vec[mat.getDimX()*y + x] = value;
+    if (x < mat.getDimX() && y < mat.getDimY())
+        mat.vec[mat.getDimX()*y + x] = value;
     return value;
 }
 
@@ -76,7 +77,9 @@ House::Tile House::Matrix::ElementProxy::operator=(const ElementProxy& e){
 }
 
 House::Matrix::ElementProxy::operator Tile() const {
-    return mat.vec[mat.getDimX()*y + x];
+    if (x < mat.getDimX() && y < mat.getDimY())
+        return mat.vec[mat.getDimX()*y + x];
+    return Tile('W');
 }
 
 int House::Matrix::ElementProxy::getStatus() const {
@@ -92,9 +95,6 @@ bool House::Matrix::ElementProxy::isWall() const {
 }
 
 House::Matrix::ElementProxy House::Matrix::operator()(size_t x, size_t y) {
-    if (x >= dim_x || y >= dim_y)
-        //TODO: DO
-        return Tile();
     return {*this, x, y}; 
 }
 
@@ -103,10 +103,9 @@ House::Matrix::ElementProxy House::Matrix::operator()(Coords location) {
 }
 
 House::Tile House::Matrix::operator()(size_t x, size_t y) const {
-    if (x >= dim_x || y >= dim_y) {
-        throw std::out_of_range("matrix indices out of range: " + std::to_string(x) + ", " + std::to_string(y));
-    }
-    return vec[getDimX()*y + x]; 
+    if (x < dim_x && y < dim_y)
+        return vec[getDimX()*y + x]; 
+    return Tile('W');
 }
 
 House::Tile House::Matrix::operator()(Coords location) const {
@@ -145,7 +144,7 @@ size_t House::getTotalDirt() const {
 }
 
 void House::setTiles(Matrix&& tiles) {
-    this->tiles = tiles;
+    this->tiles = std::move(tiles);
 }
 
 void House::setDockingStation(Coords docking_station) {

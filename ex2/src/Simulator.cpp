@@ -16,6 +16,9 @@ bool Simulator::run() {
     for (size_t i = 0; i < maxSteps && !finished; i++)
     {
         //TODO: validate the move request (check if wall or not)
+        if(battery_left == 0 && location != house.getDockingStationCoords()) {
+            break;
+        }
 
         switch (algo.nextStep())
         {
@@ -181,6 +184,9 @@ bool Simulator::readHouseFile(std::string house_file_path)
     house.setDockingStation(docking_station);
     house.setTotalDirt(total_dirt);
 
+    battery_left = battery_capacity;
+    location = house.getDockingStationCoords();
+
     file.close();
     return true;
 }
@@ -193,14 +199,10 @@ void Simulator::setAlgorithm(Algorithm&& algo) {
 	this->algo.setBatteryMeter(batteryMeter);
 }
 
-Simulator::HouseSensor::HouseSensor(Simulator& parent) : parent(parent) {}
-
-void Simulator::HouseSensor::setHouse(House* house) {
-    this->house = house;
-}
+Simulator::SimulatorSensor::SimulatorSensor(Simulator& parent) : parent(parent) {}
 
 bool Simulator::HouseWallsSensor::isWall(Direction d) const {
-    return house->isWall(parent.location + d);
+    return parent.house.isWall(parent.location + d);
 }
 
 std::size_t Simulator::HouseBatteryMeter::getBatteryState() const {
@@ -208,7 +210,7 @@ std::size_t Simulator::HouseBatteryMeter::getBatteryState() const {
 }
 
 int Simulator::HouseDirtSensor::dirtLevel() const {
-    return house->getDirtLevel(parent.location);
+    return parent.house.getDirtLevel(parent.location);
 }
 
 void Simulator::charge() {
@@ -216,5 +218,9 @@ void Simulator::charge() {
 }
 
 float Simulator::decreaseBattery() {
-    return battery_left >= 1 ? battery_left-- : -1; 
+    if(battery_left == 0) {
+        // We shouldn't reach here
+        throw std::runtime_error("Battery is dead and cannot perform the requested move!");
+    }
+    return battery_left--;
 }

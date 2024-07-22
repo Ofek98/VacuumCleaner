@@ -13,29 +13,27 @@
  */
 class Simulator {
     
-    class HouseSensor {
+    class SimulatorSensor {
     protected:
-        House* house;
         Simulator& parent;
     public: 
-        HouseSensor(Simulator& parent);
-        virtual void setHouse(House* house);
+        SimulatorSensor(Simulator& parent);
     };
 
-    class HouseWallsSensor : public WallsSensor, public HouseSensor {
-        using HouseSensor::HouseSensor;
+    class HouseWallsSensor : public WallsSensor, public SimulatorSensor {
+        using SimulatorSensor::SimulatorSensor;
     public:
 	    bool isWall(Direction d) const override;
     };
 
-    class HouseBatteryMeter : public BatteryMeter, public HouseSensor {
-        using HouseSensor::HouseSensor;
+    class HouseBatteryMeter : public BatteryMeter, public SimulatorSensor {
+        using SimulatorSensor::SimulatorSensor;
     public:
 	    std::size_t getBatteryState() const override;
     };
 
-    class HouseDirtSensor : public DirtSensor, public HouseSensor {
-        using HouseSensor::HouseSensor;
+    class HouseDirtSensor : public DirtSensor, public SimulatorSensor {
+        using SimulatorSensor::SimulatorSensor;
     public:
 	    int dirtLevel() const override;
     };
@@ -52,6 +50,7 @@ class Simulator {
     std::string input_file_name;
 
     float decreaseBattery();
+    
     void charge();
 
 public:
