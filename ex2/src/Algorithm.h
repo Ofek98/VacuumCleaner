@@ -33,18 +33,18 @@ class Algorithm : public AbstractAlgorithm {
 
     private:
         void updateDetailsAboutCurrLocAndItsNeighbors();
-        bool appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> parents);
-        std::vector<Coords> bfs();
+        void updateDistFromDocking(int dist);
+        bool appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool to_docking);
+        CoordsVector bfs(bool to_docking, size_t limiting_factor);
+        CoordsVector constructNextPath(size_t limiting_factor);
         Step marchTheNextStepOfThePath();
-        std::vector<Coords> path;
+        CoordsVector path;
         std::unordered_map<Coords,float> coords_info;
         Coords curr_loc;
         size_t max_battery;
-        size_t dist_from_docking;
-        bool is_returning;
         size_t remaining_steps;
-        bool first_iteration;
-        size_t limiting_factor;
+        size_t dist_from_docking;
+        bool is_dist_from_docking_updated;
 };
 
 

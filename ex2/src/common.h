@@ -67,7 +67,7 @@ namespace std {
     };
 }
 
-
+using CoordsVector = std::vector<Coords>;
 constexpr int WALL = -1; /**< A constant representing a wall. */
 constexpr int DOCKING_STATION = -2; /**< A constant representing a docking station. */
 const float UNEXPLORED = 0.5; /**< A constant representing a location that wasn't explored yet by the algorithm. */
