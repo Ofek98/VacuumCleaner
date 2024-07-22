@@ -1,5 +1,5 @@
-NumSteps = 52
-DirtLeft = 21
-Status = DEAD
+NumSteps = 41
+DirtLeft = 0
+Status = FINISHED
 Steps:
-EENEEEEESWWWWWWWssssssssssssssssSsEssEsssEssssEsssss
+NEsssEESSWNssWssWsssssssssssssssssSsNsssF
