@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <string>
+#include <filesystem>
 
 /**
  * @brief The Simulator class represents a vacuum cleaner simulator.
@@ -47,7 +48,7 @@ class Simulator {
     std::size_t battery_capacity; /**< The battery capacity of the robot. */
     float battery_left; /**< The remaining battery level of the robot. */
     Algorithm algo;
-    std::string input_file_name;
+    std::filesystem::path input_file_path;
 
     float decreaseBattery();
     
