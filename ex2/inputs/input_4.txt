@@ -1,0 +1,13 @@
+Large House
+MaxSteps = 200
+MaxBattery = 40
+Rows = 8
+Cols = 12
+W          W
+W   D      W
+W 1234  567W
+W     W    W
+W 8        W
+W 9        W
+W     WW   W
+WWWWWWWWWWWW

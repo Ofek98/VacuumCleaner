@@ -1,0 +1,11 @@
+Medium House
+MaxSteps = 150
+MaxBattery = 30
+Rows = 6
+Cols = 10
+WWWWWWWWWW
+W   D    W
+W 12345 WW
+W   W    W
+W       8W
+WWWWWWWWWW

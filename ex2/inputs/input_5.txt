@@ -1,0 +1,15 @@
+Complex House
+MaxSteps = 250
+MaxBattery = 50
+Rows = 10
+Cols = 14
+WWWWWWWWWWWWWW
+W            W
+W   D        W
+W 1234   890 W
+W    W    1  W
+W    W    2  W
+W    W    3  W
+W           4W
+W 567    WW 5W
+WWWWWWWWWWWWWW
