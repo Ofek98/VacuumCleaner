@@ -12,7 +12,6 @@ Algorithm::Algorithm(){
     coords_info[Coords(0,0)] = UNEXPLORED;
     dist_from_docking = 0;
     is_dist_from_docking_updated = true;
-    in_the_way_to_docking = true; //We use this bool to perform some path calculation once every time we arrive at docking
 }
 /*
 Updating curr_loc maping in coords_info to its real level,
@@ -178,7 +177,7 @@ Based on the path updates curr_loc and the next step that will be taken,
 as well as dist_from_docking that's getting updated by whether the robot is returning or not
 */
 Step Algorithm::marchTheNextStepOfThePath(){
-    in_the_way_to_docking = (path.front() == Coords(0,0));
+    bool in_the_way_to_docking = (path.front() == Coords(0,0));
     Coords next_loc = path.back();
     path.pop_back();
     Step res = Step(next_loc-curr_loc);
@@ -198,7 +197,8 @@ Step Algorithm::nextStep() {
     std::cout << "Battery State: "<< battery_meter->getBatteryState() << std::endl;
     Step res;
     //Limiting_factor is the actual number of steps until robot must return to the docking_station
-    size_t limiting_factor = std::min(remaining_steps, battery_meter->getBatteryState());
+    //We consider limiting_factor-1 for the finishing step 
+    size_t limiting_factor = std::min(remaining_steps-1, battery_meter->getBatteryState());
     //std::cout << "Limiting factor: " << limiting_factor << std::endl;
 
     /*
@@ -246,46 +246,54 @@ Step Algorithm::nextStep() {
     */
     else{
         /*
-        Condition 3.1: The previous path lead us to the docking station and the battery is not full, 
-        so we will charge it
+        Condition 3.1: At the docking station
         */
-        if (curr_loc == Coords(0,0) && battery_meter->getBatteryState() < max_battery){
-            if (in_the_way_to_docking){
-                in_the_way_to_docking = false;
-                CoordsVector path_to_closest_cleanable_cell = bfs(false, std::min(max_battery,remaining_steps)); 
-                //Checks if its possible to reach some cleanable cell if assuming battery is full
-                //TODO: make this condition better
-                std::cout << "path_to_closest_cleanable_cell.size() = " << path_to_closest_cleanable_cell.size()<<std::endl;
-                if (path_to_closest_cleanable_cell.size() == 0){
-                    return Step::Finish;
+        if (curr_loc == Coords(0,0)){
+            if (is_charging_cap_updated){
+                if(battery_meter->getBatteryState() >= charging_cap){
+                    is_charging_cap_updated = false;
+                    path = bfs(false,limiting_factor);
+                    if (!path.empty()){
+                    res = marchTheNextStepOfThePath();
+                    }
+                    else{
+                        res = Step::Finish;
+                    }
+                }
+                else{
+                    res = Step::Stay;
                 }
             }
-            std::cout <<"Condition 3.1 - charging"<<std::endl;
-            res = Step::Stay;
+            //TODO:document all the new conditions
+            else{
+                CoordsVector optional_path = bfs(false, std::min(max_battery,remaining_steps-1)); //Checks the path that will be available after fully charging
+                if(optional_path.empty()){
+                    res = Step::Finish;
+                }
+                else if (remaining_steps-1 >= 2*optional_path.size()+1+20){//remaining_steps is sufficient to fully charge and clean path's target
+                    charging_cap = max_battery;
+                    res = Step::Stay;
+                } 
+                else{ //remaining_steps is insufficient to fully charge and clean path's target
+                    if (remaining_steps -1 >= 2 *(2*optional_path.size()+1)){ //We can partly charge and still be able to clean path's target
+                        charging_cap = (remaining_steps - 1)/2;
+                        res = Step::Stay;
+                    }
+                    else{ //Can't even partly charge and clean the path's target
+                        res = Step::Finish;
+                    }
+                }
+                is_charging_cap_updated = true;
+            }
         }
         /*
-        Condition 3.2: We have an empty path and we can't charge, 
-        so we will construct our next path to a cleanable/unexplored cell or to the docking station
+        Condition 3.2: We have an empty path and we're not at the docking station.
+        We will construct our next path to a cleanable/unexplored cell or to the docking station.
         */
         else{ 
-            std::cout <<"Condition 3.2 - empty path"<<std::endl;
             path = constructNextPath(limiting_factor);
             std::cout << "Path after construction: " << path << std::endl;
-            /*
-            Condition 3.2.1: The path is not empty, so we will march its first step;
-            */
-            if (!path.empty()){
-                res = marchTheNextStepOfThePath();
-            }
-            /*
-            Condition 3.2.2: The path that was constructed is empty, 
-            by the design of constructNextPath, it means that the robot is at the docking station, 
-            and all the accessible cells are clean. So we finish
-            */
-            
-            else{
-                res = Step::Finish;
-            }
+            res = marchTheNextStepOfThePath();
         }
     }
     remaining_steps -=1;
@@ -305,5 +313,7 @@ void Algorithm::setDirtSensor(const DirtSensor& dirtSensor) {
 void Algorithm::setBatteryMeter(const BatteryMeter& batteryMeter) {
     this->battery_meter = &batteryMeter;
     max_battery = battery_meter->getBatteryState();
+    is_charging_cap_updated = true;
+    charging_cap = max_battery;
 }
 //TODO: change to const whatever possible
