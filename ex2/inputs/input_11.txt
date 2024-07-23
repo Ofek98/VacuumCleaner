@@ -1,0 +1,25 @@
+Small Opening
+MaxSteps = 200
+MaxBattery = 50
+Rows = 20
+Cols = 20
+WWWWWWWWWWWWWWWWWWWW
+W                  W
+W                  W
+W                  W
+W       D          W
+W                  W
+W                  W
+W                  W
+W                  W
+W                  W
+W                  W
+W                  W
+W                  W
+W                  W
+W                  W
+W                  W
+W                  W
+W                  W
+W                  W
+WWWWWWWWWWWWWWWWWWWW

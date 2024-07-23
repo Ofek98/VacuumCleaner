@@ -1,0 +1,15 @@
+Sparse Obstacles
+MaxSteps = 50
+MaxBattery = 10
+Rows = 10
+Cols = 10
+W W W W W W W W W W
+W D W         W W W
+W   W W W W W W W
+W W W W W   W W W
+W W W W W W W   W
+W W W W W W W W W
+W W W W W W W W W
+W W W W W W W W W
+W W W W W W W W W
+W W W W W W W W W

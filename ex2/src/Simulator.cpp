@@ -30,7 +30,6 @@ bool Simulator::run() {
             break;
         }
 
-
         switch (next_step)
         {
         case Step::North:
@@ -68,6 +67,10 @@ bool Simulator::run() {
             break;
 
         default:
+            break;
+        }
+
+        if(house.isWall(location)) {
             break;
         }
     }
