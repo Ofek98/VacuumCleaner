@@ -65,6 +65,23 @@ Coords Coords::operator-(const Coords& other) const {
     return Coords(x - other.x, y - other.y);
 }
 
+std::ostream& operator<<(std::ostream& os, const Coords& coords) {
+    os << "(" << coords.x << ", " << coords.y << ")";
+    return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const std::vector<Coords>& vec) {
+    os << "[";
+    for (size_t i = 0; i < vec.size(); ++i) {
+        os << vec[i];
+        if (i < vec.size() - 1) {
+            os << ", ";
+        }
+    }
+    os << "]";
+    return os;
+}
+
 namespace std {
     std::size_t hash<Coords>::operator()(const Coords& c) const noexcept {
         return std::hash<int>()(c.x) ^ std::hash<int>()(c.y);

@@ -1,8 +1,8 @@
-some test 
-MaxSteps = 100
-MaxBattery=20
-Rows=3
-Cols=4
- 3 
-D22
-1W
+small house 
+MaxSteps = 144
+MaxBattery=30
+Rows= 4
+Cols=10
+WWWW
+W D
+W 123456789

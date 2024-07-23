@@ -55,10 +55,12 @@ public:
 
     Coords operator+=(Direction d);
 
-    
+    friend std::ostream& operator<<(std::ostream& os, const Coords& coords);
 
     operator Step() const;
 };
+
+std::ostream& operator<<(std::ostream& os, const std::vector<Coords>& vec);
 
 namespace std {
     template <>
