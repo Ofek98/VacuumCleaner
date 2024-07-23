@@ -15,7 +15,6 @@ bool Simulator::run() {
 
     for (size_t i = 0; i < maxSteps+1 && !finished; i++)
     {
-        //TODO: validate the move request (check if wall or not)
         if(battery_left == 0 && location != house.getDockingStationCoords()) {
             break;
         }
