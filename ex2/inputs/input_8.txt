@@ -1,6 +1,6 @@
 One Column House
-MaxSteps = 10
-MaxBattery = 5
+MaxSteps = 13
+MaxBattery = 50
 Rows = 8
 Cols = 1
 W

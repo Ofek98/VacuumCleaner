@@ -1,8 +1,13 @@
-small house 
-MaxSteps = 120
-MaxBattery=30
-Rows= 4
-Cols=10
-WWWW
-W D
-W 123456789
+One Column House
+MaxSteps = 30
+MaxBattery = 5
+Rows = 8
+Cols = 1
+W
+D
+1
+2
+3
+4
+5
+W

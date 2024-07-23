@@ -81,7 +81,7 @@ bool Simulator::run() {
         return false;
     }
 
-    file << "NumSteps = " << steps_taken.size() << std::endl;
+    file << "NumSteps = " << steps_taken.size() - finished << std::endl;
     file << "DirtLeft = " << house.getTotalDirt() << std::endl;
     file << "Status = " << (finished ? "FINISHED" : (battery_left > 0 ? "WORKING" : "DEAD")) << std::endl;
 

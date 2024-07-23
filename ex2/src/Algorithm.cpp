@@ -113,7 +113,8 @@ CoordsVector Algorithm::bfs(bool to_docking, size_t limiting_factor){
     std::cout << "In BFS"<< std::endl;
     Coords target = Coords(0,0);
     bool can_finish = false;
-    int max_iterations = to_docking? limiting_factor : ((limiting_factor-1)/ 2);
+    // TODO: think about the deleted minus -1 here
+    int max_iterations = to_docking? limiting_factor : limiting_factor / 2;
     std::cout<<"Max iterations: "<< max_iterations <<std::endl;
     /*
     If we just need to return to the docking, we could use all the steps.
@@ -276,7 +277,7 @@ Step Algorithm::nextStep() {
                 } 
                 else{ //remaining_steps is insufficient to fully charge and clean path's target
                     if (remaining_steps -1 >= 2 *(2*optional_path.size()+1)){ //We can partly charge and still be able to clean path's target
-                        charging_cap = (remaining_steps - 1)/2;
+                        charging_cap = std::min(max_battery, (remaining_steps - 1)/2);
                         res = Step::Stay;
                     }
                     else{ //Can't even partly charge and clean the path's target
@@ -302,7 +303,7 @@ Step Algorithm::nextStep() {
 
 void Algorithm::setMaxSteps(std::size_t maxSteps) {
     this->max_steps = maxSteps;
-    remaining_steps = maxSteps;
+    remaining_steps = maxSteps + 1; // +1 for Finish
 }
 void Algorithm::setWallsSensor(const WallsSensor& wallSensor) {
     this->wall_sensor = &wallSensor;
