@@ -13,14 +13,25 @@ bool Simulator::run() {
     steps_taken.reserve(maxSteps+1);
     bool finished = false;
 
-    for (size_t i = 0; i < maxSteps && !finished; i++)
+    for (size_t i = 0; i < maxSteps+1 && !finished; i++)
     {
         //TODO: validate the move request (check if wall or not)
         if(battery_left == 0 && location != house.getDockingStationCoords()) {
             break;
         }
 
-        switch (algo.nextStep())
+        Step next_step = algo.nextStep();
+        if(next_step == Step::Finish) {
+            finished = true;
+            steps_taken.push_back('F');
+            break;
+        }
+        else if(i == maxSteps) {
+            break;
+        }
+
+
+        switch (next_step)
         {
         case Step::North:
             location += Direction::North;
@@ -56,14 +67,14 @@ bool Simulator::run() {
             steps_taken.push_back('s');
             break;
 
-        case Step::Finish:
-            finished = true;
-            steps_taken.push_back('F');
+        default:
             break;
         }
     }
 
-    std::ofstream file("output_" + input_file_name); // Open output file
+
+
+    std::ofstream file(input_file_path.parent_path() /= std::filesystem::path("output_" + input_file_path.filename().string())); // Open output file
 
     if (!file) {
         std::cerr << "Failed to open the output file" << std::endl;
@@ -99,7 +110,7 @@ bool Simulator::readHouseFile(std::string house_file_path)
         return false;
     }
 
-    input_file_name = house_file_path;
+    input_file_path = house_file_path;
 
     std::string line;
     size_t rows_num, cols_num;

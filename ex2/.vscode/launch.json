@@ -6,13 +6,13 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/src/myrobot",
-            "args": ["src/input.txt"],
+            "args": ["inputs/input_1.txt"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb",
-            "miDebuggerPath": "/usr/bin/lldb",
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
             "preLaunchTask": "build"
         }
     ]

@@ -64,6 +64,8 @@
         "utility": "cpp",
         "numbers": "cpp",
         "map": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "chrono": "cpp",
+        "codecvt": "cpp"
     }
 }
