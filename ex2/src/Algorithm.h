@@ -38,6 +38,7 @@ class Algorithm : public AbstractAlgorithm {
         CoordsVector bfs(bool to_docking, size_t limiting_factor);
         CoordsVector constructNextPath(size_t limiting_factor);
         Step marchTheNextStepOfThePath();
+        size_t stepsNumberToCharge(size_t amount);
         CoordsVector path;
         std::unordered_map<Coords,float> coords_info;
         Coords curr_loc;

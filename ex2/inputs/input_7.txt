@@ -3,4 +3,4 @@ MaxSteps = 10
 MaxBattery = 5
 Rows = 1
 Cols = 8
-W D12345
+W1D12345
