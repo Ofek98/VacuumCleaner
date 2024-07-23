@@ -1,0 +1,8 @@
+No Docking Station
+MaxSteps = 10
+MaxBattery = 5
+Rows = 3
+Cols = 3
+WW
+W W
+WWW
