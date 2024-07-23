@@ -45,7 +45,8 @@ class Algorithm : public AbstractAlgorithm {
         size_t remaining_steps;
         size_t dist_from_docking;
         bool is_dist_from_docking_updated;
-        bool in_the_way_to_docking;
+        size_t charging_cap;
+        bool is_charging_cap_updated;
 };
 
 
