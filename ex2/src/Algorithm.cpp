@@ -39,7 +39,7 @@ void Algorithm::updateDistFromDocking(int dist){
 Adds the relevant neighbors of current to the queue and adds their mapping in parents map. 
 A neighbor is relevant if we know it can be accessed, and we didn't travel it yet during the bfs run.
 It returns if we can finish our bfs run, which means:
-If its_returning - we can generate a path to the docking station. 
+If to_docking - we can generate a path to the docking station. 
 If not - we can generate a path to an unexplored or a cleanable cell.
 */
 bool Algorithm::appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool to_docking){
@@ -56,9 +56,7 @@ bool Algorithm::appendNeighbors(const Coords& current, std::deque<Coords>& queue
 
             if (to_docking){
                 if (neighbor == Coords(0,0)){ //We found the docking so we can return immediately
-                    // 
                     can_finish = true;
-                    // 
                     return can_finish;
                 }
             }
@@ -74,7 +72,7 @@ bool Algorithm::appendNeighbors(const Coords& current, std::deque<Coords>& queue
 }
 
 /*
-Creates a path from start to target using the parents mapping;
+Creates a path from start to target using "parents" map
 */
 CoordsVector createPathByParents(Coords start,Coords target,std::unordered_map<Coords,Coords> parents){
     CoordsVector next_path;
@@ -89,20 +87,19 @@ CoordsVector createPathByParents(Coords start,Coords target,std::unordered_map<C
 }
 
 /*
-Generates a path to the closest reachable (within the steps limitations) cleanable sell, 
-or to the docking station if there isn't such a cell
+If to_docking - creates a shortest path from curr_loc to the docking station.
+Else, a shortest path to the closest or unexplored cell (If there are many at the same level - to the known most dirty).
+If there is no path that allows us to reach target and go back to the docking safely, returns an empty path.
 */
 CoordsVector Algorithm::bfs(bool to_docking, size_t limiting_factor){
      
     Coords target = Coords(0,0);
     bool can_finish = false;
-    // TODO: Document
     int max_iterations = to_docking? limiting_factor : ((limiting_factor-(curr_loc == Coords(0,0))) / 2);
-    // 
     /*
     If we just need to return to the docking, we could use all the steps.
-    If we want to clean something, we will need at least one step for the cleaning,
-    and another 2 X the length of the path to our current location steps 
+    If we want to explore something, We need half of the remaining steps to return.
+    If we're starting at the docking station, we want to be able to clean the explored cell, so we assign one step to this.  
     */
     std::deque<Coords> queue = {curr_loc}; 
     std::unordered_map<Coords,Coords> parents;//We will use it to map children to their parents and to remember where we already visited
@@ -117,15 +114,13 @@ CoordsVector Algorithm::bfs(bool to_docking, size_t limiting_factor){
             Coords current = queue.front();
             queue.pop_front();
             if(appendNeighbors(current, queue, parents, to_docking)){//Adds neighbors to queue and parents if they're not there yet
+                //If true - we can finish our run after this iteration
                 can_finish = true;
             } 
-            //and checks if we can finish the run (by to_docking)
         }
 
         if (can_finish){
-
-            if (!to_docking) { /*finds the dirtiest known cell from the reachable in the shortest distance,
-            in case of not returning to the docking station*/
+            if (!to_docking) {//Finds the dirtiest known cell in this level and sets it as the target
                 Coords candidate = queue.front();
                 float candidate_status = coords_info[candidate];
                 queue.pop_front();
@@ -138,13 +133,19 @@ CoordsVector Algorithm::bfs(bool to_docking, size_t limiting_factor){
                 }
                 target = candidate;
             }
-            return createPathByParents(curr_loc,target,parents);;
+            return createPathByParents(curr_loc,target,parents); 
         }
     }
     //No dirty or unknown cell was reachable within max_iterations allowed steps
     return {};
 }
 
+/*
+Constructs the robot's next path:
+If there's a path to a unexplored/cleanable cell within the limit of limiting_factor and the distance from the docking.
+it will construct a path to there. 
+Else, it will construct a path to the docking station.
+*/
 CoordsVector Algorithm::constructNextPath(size_t limiting_factor) {
     CoordsVector path_to_docking = bfs(true,limiting_factor);
     CoordsVector path_to_closet_cleanable_cell = bfs(false,limiting_factor-path_to_docking.size()); 
@@ -153,8 +154,7 @@ CoordsVector Algorithm::constructNextPath(size_t limiting_factor) {
 }
 
 /*
-Based on the path updates curr_loc and the next step that will be taken, 
-as well as dist_from_docking that's getting updated by whether the robot is returning or not
+Marches the next step of the path, including needed fields' updates
 */
 Step Algorithm::marchTheNextStepOfThePath(){
     bool in_the_way_to_docking = (path.front() == Coords(0,0));
@@ -171,6 +171,9 @@ Step Algorithm::marchTheNextStepOfThePath(){
     return res;
 }
 
+/*
+Calculates how many steps the robot will need to charge to make battery_state >= amount.
+*/
 size_t Algorithm::stepsNumberToCharge(size_t amount){
     size_t amount_left = amount - battery_meter->getBatteryState();
     float charging_size = float(max_battery)/20;
@@ -179,8 +182,8 @@ size_t Algorithm::stepsNumberToCharge(size_t amount){
 
 Step Algorithm::nextStep() {
     Step res;
-    //Limiting_factor is the actual number of steps until robot must return to the docking_station
-    //We consider limiting_factor-1 for the finishing step 
+    /* Limiting_factor is the actual number of steps until robot must return to the docking_station
+    We consider limiting_factor-1 for the finishing step */
     size_t limiting_factor = std::min(remaining_steps-1, battery_meter->getBatteryState());
     // 
 
@@ -199,7 +202,7 @@ Step Algorithm::nextStep() {
     */
     if (dirt_sensor->dirtLevel() >= 1){
          
-        if (!is_dist_from_docking_updated) { //Make sure dist_from_docking_is_updated. If we're on the way to the docking, it will be updated
+        if (!is_dist_from_docking_updated) { //Make sure dist_from_docking_is_updated
             CoordsVector path_to_docking = bfs(true,limiting_factor);
             updateDistFromDocking(path_to_docking.size()); //The length of the path to the docking received from bfs 
         }
@@ -213,8 +216,8 @@ Step Algorithm::nextStep() {
     /*
     Condition 2: Curr_loc is not cleanable, and there is already a path that the algo constructed,
     so the robot will march another step in this path towards its destination.
-    Note this is not else condition regarding to condition 1, because it is possible
-     to have a non empty path to the docking station which some of its nodes are cleanable
+    Note this is not an else condition regarding to condition 1, because it is possible
+    to have a non empty path to the docking station which some of its nodes are cleanable
     */
     if (!path.empty()){
          
@@ -228,16 +231,14 @@ Step Algorithm::nextStep() {
         /*
         Condition 3.1: At the docking station
         */
-         
         if (curr_loc == Coords(0,0)){
-             
-            if (is_charging_cap_updated){
+            
+            if (is_charging_cap_updated){ //If we know how much we need to charge
                  
-                 
-                if(battery_meter->getBatteryState() >= charging_cap){
+                if(battery_meter->getBatteryState() >= charging_cap){ //We charged enough 
                      
                     is_charging_cap_updated = false;
-                    path = bfs(false,limiting_factor);
+                    path = bfs(false,limiting_factor); //Calculate next path
                     if (!path.empty()){
                     res = marchTheNextStepOfThePath();
                     }
@@ -245,31 +246,26 @@ Step Algorithm::nextStep() {
                         res = Step::Finish;
                     }
                 }
-                else{
+                else{ //We still need to charge
                      
                     res = Step::Stay;
                 }
             }
-            //TODO:document all the new conditions
-            else{
+            else{ //Else, we need to calculate how much to charge 
                  
-                CoordsVector optional_path = bfs(false, std::min(max_battery,remaining_steps-1)); //Checks the path that will be available after fully charging
-                size_t cleaning_duty_min_steps = 2*optional_path.size()+1;
-                if(optional_path.empty()){
+                CoordsVector optional_path = bfs(false, std::min(max_battery,remaining_steps-1)); //Checks the shortest path available, assuming battery is not limiting us 
+                size_t cleaning_duty_min_steps = 2*optional_path.size()+1; //Steps that it will take to clean the path's target at least once 
+                if(optional_path.empty()){ //There is no reachable cleanable cells
                     res = Step::Finish;
                 }
                 else if (remaining_steps-1 >= cleaning_duty_min_steps+stepsNumberToCharge(max_battery)){//remaining_steps is sufficient to fully charge and clean path's target
-                     
                     charging_cap = max_battery;
                     res = Step::Stay;
                 } 
                 else{ //remaining_steps is insufficient to fully charge and clean path's target
                     
                     if (remaining_steps -1 >= cleaning_duty_min_steps + stepsNumberToCharge(cleaning_duty_min_steps)){ //We can partly charge and still be able to clean path's target
-                         
-                         
-                        charging_cap = std::min(max_battery, (remaining_steps - 1)/2);
-                         
+                        charging_cap = std::min(max_battery, (remaining_steps - 1)/2); 
                         res = Step::Stay;
                     }
                     else{ //Can't even partly charge and clean the path's target
@@ -281,12 +277,10 @@ Step Algorithm::nextStep() {
         }
         /*
         Condition 3.2: We have an empty path and we're not at the docking station.
-        We will construct our next path to a cleanable/unexplored cell or to the docking station.
+        We will construct our next path to a cleanable/unexplored cell, or to the docking station If there isn't any.
         */
         else{ 
-             
             path = constructNextPath(limiting_factor);
-             
             res = marchTheNextStepOfThePath();
         }
     }
@@ -310,4 +304,3 @@ void Algorithm::setBatteryMeter(const BatteryMeter& batteryMeter) {
     is_charging_cap_updated = true;
     charging_cap = max_battery;
 }
-//TODO: change to const whatever possible
