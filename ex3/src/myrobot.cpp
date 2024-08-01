@@ -12,7 +12,11 @@
 #include <dlfcn.h>
 #include <thread>
 #include "AlgorithmRegistrar.h"
+#include <atomic>
 
+std::atomic<int> counter(-1);
+std::vector<std::filesystem::path> house_file_paths;
+std::vector<AlgorithmRegistrar::AlgorithmFactoryPair> algorithms;
 
 std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::path dir_path, std::string extension) {
     std::vector<std::filesystem::path> paths;
@@ -34,6 +38,25 @@ std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::
         std::cerr << "Filesystem error: " << e.what() << std::endl;
     }
     return paths;
+}
+
+
+void run() {
+    size_t my_task;
+    while((my_task = counter++) < algorithms.size() * house_file_paths.size()) {
+        auto my_house_path = house_file_paths[my_task / house_file_paths.size()];
+        auto my_algo_factory = algorithms[my_task % house_file_paths.size()];
+        
+        Simulator simulator;
+        if(!simulator.readHouseFile(my_house_path)) {
+            std::cerr << "Error in input file: ^^^" << std::endl;
+            continue;
+        }
+        
+        simulator.setAlgorithmName(my_algo_factory.name());
+        simulator.setAlgorithm(std::move(my_algo_factory.create()));
+        simulator.run();
+    }
 }
 
 /**
@@ -91,7 +114,7 @@ int main(int argc, char** argv) {
         }
     }
 
-    std::vector<std::filesystem::path> hosue_file_paths = get_file_path_list_from_dir(house_path, ".house");
+    house_file_paths = get_file_path_list_from_dir(house_path, ".house");
     std::vector<std::filesystem::path> algo_file_paths = get_file_path_list_from_dir(algo_path, ".so");
     
     std::vector<void*> handles(algo_file_paths.size());
@@ -106,28 +129,18 @@ int main(int argc, char** argv) {
         // Clear any existing errors
         dlerror();
         handles.push_back(handle);
-            
-        for(const auto& algo: AlgorithmRegistrar::getAlgorithmRegistrar()) {
-            auto algorithm = algo.create();
-            std::cout << algo.name() << " instance has been created" << std::endl;
-        }
-        AlgorithmRegistrar::getAlgorithmRegistrar().clear();
     }
+
+    algorithms = AlgorithmRegistrar::getAlgorithmRegistrar().getAlgorithmFactories();
+
+    // just one thread for now;
+    std::thread t1(run);
+
+    t1.join();
 
     // dlclose
     for(auto handle : handles) {
         dlclose(handle);
     }
-
-
-    houseFilePath = argv[1];
-    if(!simulator.readHouseFile(houseFilePath)) {
-        std::cerr << "Error in input file: ^^^" << std::endl;
-        return EXIT_FAILURE;
-    }
-    
-	Algo_214166027 algo;
-    simulator.setAlgorithm(std::move(algo));
-	simulator.run();
 }
 

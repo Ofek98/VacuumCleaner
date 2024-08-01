@@ -7,6 +7,15 @@
 using AlgorithmFactory = std::function<std::unique_ptr<AbstractAlgorithm>()>;
 
 class AlgorithmRegistrar {
+    // only declaration
+    class AlgorithmFactoryPair;
+
+    std::vector<AlgorithmFactoryPair> algorithms;
+    static AlgorithmRegistrar registrar;
+public:
+    // NOTE: API is guaranteed, actual implementation may change
+
+    // made this class public
     class AlgorithmFactoryPair {
         std::string name_;
         AlgorithmFactory algorithmFactory_;
@@ -17,12 +26,8 @@ class AlgorithmRegistrar {
         const std::string& name() const { return name_; }
         std::unique_ptr<AbstractAlgorithm> create() const { return algorithmFactory_(); }
     };
-    std::vector<AlgorithmFactoryPair> algorithms;
-    static AlgorithmRegistrar registrar;
-public:
-    // NOTE: API is guaranteed, actual implementation may change
 
-    // I added a static registrar instead of adding AlgorithmRegistrar.cpp
+    // added a static registrar instead of adding AlgorithmRegistrar.cpp
     static AlgorithmRegistrar registrar;
 
     static AlgorithmRegistrar& getAlgorithmRegistrar() {
@@ -39,4 +44,7 @@ public:
     }
     std::size_t count() const { return algorithms.size(); }
     void clear() { algorithms.clear(); }
+
+    // Our addition
+    std::vector<AlgorithmFactoryPair> getAlgorithmFactories() { return algorithms; }
 };

@@ -75,18 +75,36 @@ bool Simulator::run() {
     }
 
 
-
-    std::ofstream file(input_file_path.parent_path() /= std::filesystem::path("output_" + input_file_path.filename().string())); // Open output file
+    std::string output_file_name = input_file_path.filename().replace_extension("").string() + "-" + algo_name + ".txt";
+    std::ofstream file(input_file_path.parent_path() /= std::filesystem::path(output_file_name)); // Open output file
 
     if (!file) {
         std::cerr << "Failed to open the output file" << std::endl;
         return false;
     }
 
-    file << "NumSteps = " << steps_taken.size() - finished << std::endl;
-    file << "DirtLeft = " << house.getTotalDirt() << std::endl;
-    file << "Status = " << (finished ? "FINISHED" : (battery_left > 0 ? "WORKING" : "DEAD")) << std::endl;
+    size_t dirt_left = house.getTotalDirt();
+    size_t num_steps = steps_taken.size();
+    Coords docking_station = house.getDockingStationCoords();
+    bool in_dock = location == docking_station;
+    size_t score;
+    // calculating score
+    if(!finished && battery_left <= 0 && !in_dock) { // DEAD
+        score = maxSteps + dirt_left * 300 + 2000;
+    }
+    else if(finished && !in_dock) {
+        score = maxSteps + dirt_left * 300 + 3000;
+    }
+    else {
+        score = num_steps + dirt_left * 300 + (in_dock ? 0 : 1000);
+    }
 
+    // writing to output file
+    file << "NumSteps = " << num_steps - finished << std::endl;
+    file << "DirtLeft = " << dirt_left << std::endl;
+    file << "Status = " << (finished ? "FINISHED" : (battery_left > 0 ? "WORKING" : "DEAD")) << std::endl;
+    file << "InDock = " << (in_dock ? "TRUE" : "FALSE") << std::endl;
+    file << "Score = " << score << std::endl;
     file << "Steps:" << std::endl;
     for (size_t i = 0; i < steps_taken.size(); i++)
     {
@@ -98,7 +116,6 @@ bool Simulator::run() {
 
     return true;
 }
-
 
 
 bool Simulator::readHouseFile(std::string house_file_path)
@@ -204,12 +221,16 @@ bool Simulator::readHouseFile(std::string house_file_path)
     return true;
 }
 
-void Simulator::setAlgorithm(Algo_214166027&& algo) {
-    this->algo = algo;
-	this->algo.setMaxSteps(maxSteps);
-	this->algo.setWallsSensor(wallsSensor);
-	this->algo.setDirtSensor(dirtSensor);
-	this->algo.setBatteryMeter(batteryMeter);
+void Simulator::setAlgorithm(std::unique_ptr<AbstractAlgorithm> algo) {
+    this->algo = std::move(algo);
+	this->algo->setMaxSteps(maxSteps);
+	this->algo->setWallsSensor(wallsSensor);
+	this->algo->setDirtSensor(dirtSensor);
+	this->algo->setBatteryMeter(batteryMeter);
+}
+
+void Simulator::setAlgorithmName(std::string algo_name) {
+    this->algo_name = algo_name;
 }
 
 Simulator::SimulatorSensor::SimulatorSensor(Simulator& parent) : parent(parent) {}

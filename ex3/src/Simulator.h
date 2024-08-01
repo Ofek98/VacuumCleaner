@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 #include <filesystem>
+#include <memory>
 
 /**
  * @brief The Simulator class represents a vacuum cleaner simulator.
@@ -47,7 +48,8 @@ class Simulator {
     Coords location; /**< The current location of the robot. */
     std::size_t battery_capacity; /**< The battery capacity of the robot. */
     float battery_left; /**< The remaining battery level of the robot. */
-    Algo_214166027 algo;
+    std::unique_ptr<AbstractAlgorithm> algo;
+    std::string algo_name;
     std::filesystem::path input_file_path;
 
     float decreaseBattery();
@@ -59,7 +61,9 @@ public:
 
     bool readHouseFile(std::string file_path);
 
-    void setAlgorithm(Algo_214166027&& algo);
+    void setAlgorithm(std::unique_ptr<AbstractAlgorithm> algo);
+
+    void setAlgorithmName(std::string algo_name);
 };
 
 #endif // SIMULATOR_H
