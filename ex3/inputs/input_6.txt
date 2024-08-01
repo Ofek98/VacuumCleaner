@@ -1,0 +1,7 @@
+Minimal House
+MaxSteps = 10
+MaxBattery = 15
+Rows = 2
+Cols = 2
+WD
+12

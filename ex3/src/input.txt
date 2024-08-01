@@ -1,0 +1,13 @@
+One Column House
+MaxSteps = 30
+MaxBattery = 5
+Rows = 8
+Cols = 1
+W
+D
+1
+2
+3
+4
+5
+W

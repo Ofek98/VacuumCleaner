@@ -1,0 +1,9 @@
+No Obstacles House
+MaxSteps = 100
+MaxBattery = 20
+Rows = 4
+Cols = 10
+W        W
+W D      W
+W 1234567W
+W        W

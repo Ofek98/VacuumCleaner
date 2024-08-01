@@ -1,0 +1,6 @@
+One Row House
+MaxSteps = 10
+MaxBattery = 5
+Rows = 1
+Cols = 8
+W1D12345

@@ -1,0 +1,8 @@
+No Movement Options
+MaxSteps = 10
+MaxBattery = 5
+Rows = 3
+Cols = 3
+WWD
+W W
+WWW

@@ -1,0 +1,5 @@
+NumSteps = 236
+DirtLeft = 0
+Status = FINISHED
+Steps:
+NEEEEEEEESSSSSSssssSsssssWNNNNNNWSsssssssssNWWWWWWssssssssssssssssssssSsssEssssEEEEssssssssSEsSssSsssSWNNWNWSSENNNNWWWWssssssssssssssssssssWNWSSsEssSESSSEENNNESSSESWWWWsssssssWssssssNNNNNNEssssssssssssssssssssWWWNSSSESSSSsssssWNNNNNNEEEF
