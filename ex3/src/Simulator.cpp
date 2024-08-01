@@ -204,7 +204,7 @@ bool Simulator::readHouseFile(std::string house_file_path)
     return true;
 }
 
-void Simulator::setAlgorithm(Algorithm&& algo) {
+void Simulator::setAlgorithm(Algo_214166027&& algo) {
     this->algo = algo;
 	this->algo.setMaxSteps(maxSteps);
 	this->algo.setWallsSensor(wallsSensor);

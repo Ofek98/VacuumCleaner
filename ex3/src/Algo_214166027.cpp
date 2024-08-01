@@ -1,14 +1,17 @@
 /**
- * @file Algorithm.cpp
- * @brief Implementation file for the Algorithm class.
+ * @file Algo_214166027.cpp
+ * @brief Implementation file for the Algo_214166027 class.
  */
-#include "Algorithm.h"
+#include "Algo_214166027.h"
 #include <cstdlib>
 #include <iostream>
 #include <cmath>
+#include "AlgorithmRegistration.h"
+
+REGISTER_ALGORITHM(Algo_214166027);
 
 
-Algorithm::Algorithm(){
+Algo_214166027::Algo_214166027(){
     curr_loc = Coords(0, 0);
     coords_info[Coords(0,0)] = UNEXPLORED;
     dist_from_docking = 0;
@@ -19,7 +22,7 @@ Algorithm::Algorithm(){
 Updating curr_loc maping in coords_info to its real level,
 and adding its neighbors if needed (we can only know if they're walls or explorable) 
 */
-void Algorithm::updateDetailsAboutCurrLocAndItsNeighbors(){
+void Algo_214166027::updateDetailsAboutCurrLocAndItsNeighbors(){
         coords_info[curr_loc] = curr_loc == Coords(0, 0)? DOCKING_STATION : dirt_sensor->dirtLevel();
         for(int i = 0; i < 4; i++){
             Direction dir = static_cast<Direction>(i);
@@ -30,7 +33,7 @@ void Algorithm::updateDetailsAboutCurrLocAndItsNeighbors(){
         }
 }
 
-void Algorithm::updateDistFromDocking(int dist){
+void Algo_214166027::updateDistFromDocking(int dist){
     dist_from_docking = dist;
     is_dist_from_docking_updated = true;
 }
@@ -42,7 +45,7 @@ It returns if we can finish our bfs run, which means:
 If to_docking - we can generate a path to the docking station. 
 If not - we can generate a path to an unexplored or a cleanable cell.
 */
-bool Algorithm::appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool to_docking){
+bool Algo_214166027::appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool to_docking){
     bool can_finish = false;
     for(int i = 0; i < 4; i++){
         Direction dir = static_cast<Direction>(i);
@@ -91,7 +94,7 @@ If to_docking - creates a shortest path from curr_loc to the docking station.
 Else, a shortest path to the closest or unexplored cell (If there are many at the same level - to the known most dirty).
 If there is no path that allows us to reach target and go back to the docking safely, returns an empty path.
 */
-CoordsVector Algorithm::bfs(bool to_docking, size_t limiting_factor){
+CoordsVector Algo_214166027::bfs(bool to_docking, size_t limiting_factor){
      
     Coords target = Coords(0,0);
     bool can_finish = false;
@@ -146,7 +149,7 @@ If there's a path to a unexplored/cleanable cell within the limit of limiting_fa
 it will construct a path to there. 
 Else, it will construct a path to the docking station.
 */
-CoordsVector Algorithm::constructNextPath(size_t limiting_factor) {
+CoordsVector Algo_214166027::constructNextPath(size_t limiting_factor) {
     CoordsVector path_to_docking = bfs(true,limiting_factor);
     CoordsVector path_to_closet_cleanable_cell = bfs(false,limiting_factor-path_to_docking.size()); 
     //limiting_factor-path_to_docking.size() as limiting_factor so the robot will be able to return to its original place with enough steps to return to the docking after it
@@ -156,7 +159,7 @@ CoordsVector Algorithm::constructNextPath(size_t limiting_factor) {
 /*
 Marches the next step of the path, including needed fields' updates
 */
-Step Algorithm::marchTheNextStepOfThePath(){
+Step Algo_214166027::marchTheNextStepOfThePath(){
     bool in_the_way_to_docking = (path.front() == Coords(0,0));
     Coords next_loc = path.back();
     path.pop_back();
@@ -174,13 +177,13 @@ Step Algorithm::marchTheNextStepOfThePath(){
 /*
 Calculates how many steps the robot will need to charge to make battery_state >= amount.
 */
-size_t Algorithm::stepsNumberToCharge(size_t amount){
+size_t Algo_214166027::stepsNumberToCharge(size_t amount){
     size_t amount_left = amount - battery_meter->getBatteryState();
     float charging_size = float(max_battery)/20;
     return std::ceil(float(amount_left)/charging_size);
 }
 
-Step Algorithm::nextStep() {
+Step Algo_214166027::nextStep() {
     Step res;
     /* Limiting_factor is the actual number of steps until robot must return to the docking_station
     We consider limiting_factor-1 for the finishing step */
@@ -288,17 +291,17 @@ Step Algorithm::nextStep() {
     return res;
 }
 
-void Algorithm::setMaxSteps(std::size_t maxSteps) {
+void Algo_214166027::setMaxSteps(std::size_t maxSteps) {
     this->max_steps = maxSteps + 1;
     remaining_steps = max_steps; // +1 for Finish
 }
-void Algorithm::setWallsSensor(const WallsSensor& wallSensor) {
+void Algo_214166027::setWallsSensor(const WallsSensor& wallSensor) {
     this->wall_sensor = &wallSensor;
 }
-void Algorithm::setDirtSensor(const DirtSensor& dirtSensor) {
+void Algo_214166027::setDirtSensor(const DirtSensor& dirtSensor) {
     this->dirt_sensor = &dirtSensor;
 }
-void Algorithm::setBatteryMeter(const BatteryMeter& batteryMeter) {
+void Algo_214166027::setBatteryMeter(const BatteryMeter& batteryMeter) {
     this->battery_meter = &batteryMeter;
     max_battery = battery_meter->getBatteryState();
     is_charging_cap_updated = true;

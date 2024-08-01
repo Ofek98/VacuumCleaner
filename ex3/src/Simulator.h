@@ -3,7 +3,7 @@
 
 #include "common.h"
 #include "House.h"
-#include "Algorithm.h"
+#include "Algo_214166027.h"
 #include <stdexcept>
 #include <fstream>
 #include <string>
@@ -47,7 +47,7 @@ class Simulator {
     Coords location; /**< The current location of the robot. */
     std::size_t battery_capacity; /**< The battery capacity of the robot. */
     float battery_left; /**< The remaining battery level of the robot. */
-    Algorithm algo;
+    Algo_214166027 algo;
     std::filesystem::path input_file_path;
 
     float decreaseBattery();
@@ -59,7 +59,7 @@ public:
 
     bool readHouseFile(std::string file_path);
 
-    void setAlgorithm(Algorithm&& algo);
+    void setAlgorithm(Algo_214166027&& algo);
 };
 
 #endif // SIMULATOR_H

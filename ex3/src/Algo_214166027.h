@@ -2,8 +2,8 @@
 #define ALGORITHM_H
 
 /**
- * @file Algorithm.h
- * @brief This file contains the declaration of the Algorithm class.
+ * @file Algo_214166027.h
+ * @brief This file contains the declaration of the Algo_214166027 class.
  */
 
 #include "common.h"
@@ -13,10 +13,10 @@
 
 
 /**
- * @class Algorithm
- * @brief The Algorithm class represents the algorithm used by the robot to make decisions.
+ * @class Algo_214166027
+ * @brief The Algo_214166027 class represents the Algo_214166027 used by the robot to make decisions.
  */
-class Algorithm : public AbstractAlgorithm {
+class Algo_214166027 : public AbstractAlgorithm {
 
     public:
         const BatteryMeter* battery_meter;
@@ -24,7 +24,7 @@ class Algorithm : public AbstractAlgorithm {
         const WallsSensor* wall_sensor;
         std::size_t max_steps;
 
-        Algorithm();
+        Algo_214166027();
         void setMaxSteps(std::size_t maxSteps) override;
         void setWallsSensor(const WallsSensor& wallSensor) override;
         void setDirtSensor(const DirtSensor& dirtSensor) override;
