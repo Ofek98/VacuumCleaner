@@ -19,7 +19,7 @@ bool Simulator::run() {
             break;
         }
 
-        Step next_step = algo.nextStep();
+        Step next_step = algo->nextStep();
         if(next_step == Step::Finish) {
             finished = true;
             steps_taken.push_back('F');

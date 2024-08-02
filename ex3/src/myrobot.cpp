@@ -31,7 +31,8 @@ std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::
                     }
                 }
             }
-        } else {
+        }
+        else {
             std::cerr << "Path does not exist or is not a directory." << std::endl;
         }
     } catch (const std::filesystem::filesystem_error& e) {
@@ -72,10 +73,12 @@ int main(int argc, char** argv) {
     std::regex house_path_pattern(R"(^-house_path=([^ ]+))");
     std::regex algo_path_pattern(R"(^-algo_path=([^ ]+))");
     std::regex summary_only_pattern(R"(^-summary_only)");
-    std::regex arg_patterns[3] = {house_path_pattern, algo_path_pattern, summary_only_pattern};
+    std::regex num_threads_pattern(R"(^-num_threads=(\d+))");
+    std::regex arg_patterns[4] = {house_path_pattern, algo_path_pattern, summary_only_pattern, num_threads_pattern};
     std::filesystem::path algo_path = std::filesystem::current_path();
     std::filesystem::path house_path = std::filesystem::current_path();
     bool summary_only = false;
+    size_t num_threads = 10;
     std::filesystem::path* vals[2] = {&house_path, &algo_path};
     std::string args;
     
@@ -85,12 +88,12 @@ int main(int argc, char** argv) {
         return EXIT_FAILURE;
     }
 
-    for (size_t i = 1; i < argc; i++) {
+    for (int i = 1; i < argc; i++) {
         args += argv[i];
     }
 
     // extract arguments
-    for (size_t p = 0; p < sizeof(arg_patterns); p++)
+    for (size_t p = 0; p < sizeof(arg_patterns)/sizeof(arg_patterns[0]); p++)
     {
         std::smatch matches;
         if(std::regex_match(args, matches, arg_patterns[p])) {
@@ -101,6 +104,15 @@ int main(int argc, char** argv) {
 
             if(p==2) {
                 summary_only = true;
+            }
+            else if(p==3) {
+                try {
+                    num_threads = std::stoi(matches[1]);
+                } catch (std::invalid_argument& e) {
+                    std::cerr << "Error: Invalid number format" << std::endl;
+                } catch (std::out_of_range& e) {
+                    std::cerr << "Error: Number out of range" << std::endl;
+                }
             }
             else {
                 try {
@@ -132,6 +144,12 @@ int main(int argc, char** argv) {
     }
 
     algorithms = AlgorithmRegistrar::getAlgorithmRegistrar().getAlgorithmFactories();
+
+    // only for error ignoring:
+    num_threads = num_threads;
+    summary_only = summary_only;
+
+    // TODO: Additional Requirements 2,3 in the pdf
 
     // just one thread for now;
     std::thread t1(run);

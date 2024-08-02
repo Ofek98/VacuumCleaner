@@ -1,5 +1,5 @@
-#ifndef ALGORITHM_H
-#define ALGORITHM_H
+#ifndef ALGO_214166027_H
+#define ALGO_214166027_H
 
 /**
  * @file Algo_214166027.h
@@ -10,7 +10,10 @@
 #include "abstract_algorithm.h"
 #include <unordered_map>
 #include <deque>
-
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include "AlgorithmRegistration.h"
 
 /**
  * @class Algo_214166027

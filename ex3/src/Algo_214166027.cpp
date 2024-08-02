@@ -3,10 +3,6 @@
  * @brief Implementation file for the Algo_214166027 class.
  */
 #include "Algo_214166027.h"
-#include <cstdlib>
-#include <iostream>
-#include <cmath>
-#include "AlgorithmRegistration.h"
 
 REGISTER_ALGORITHM(Algo_214166027);
 

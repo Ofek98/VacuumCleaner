@@ -1,3 +1,6 @@
+#ifndef ALGORITHM_REGISTRAR_H
+#define ALGORITHM_REGISTRAR_H
+
 #include <string>
 #include <vector>
 #include <functional>
@@ -7,11 +10,6 @@
 using AlgorithmFactory = std::function<std::unique_ptr<AbstractAlgorithm>()>;
 
 class AlgorithmRegistrar {
-    // only declaration
-    class AlgorithmFactoryPair;
-
-    std::vector<AlgorithmFactoryPair> algorithms;
-    static AlgorithmRegistrar registrar;
 public:
     // NOTE: API is guaranteed, actual implementation may change
 
@@ -27,12 +25,7 @@ public:
         std::unique_ptr<AbstractAlgorithm> create() const { return algorithmFactory_(); }
     };
 
-    // added a static registrar instead of adding AlgorithmRegistrar.cpp
-    static AlgorithmRegistrar registrar;
-
-    static AlgorithmRegistrar& getAlgorithmRegistrar() {
-        return registrar;
-    }
+    static AlgorithmRegistrar& getAlgorithmRegistrar();
     void registerAlgorithm(const std::string& name, AlgorithmFactory algorithmFactory) {
         algorithms.emplace_back(name, std::move(algorithmFactory));
     }
@@ -47,4 +40,10 @@ public:
 
     // Our addition
     std::vector<AlgorithmFactoryPair> getAlgorithmFactories() { return algorithms; }
+
+private:
+    std::vector<AlgorithmFactoryPair> algorithms;
+    static AlgorithmRegistrar registrar;
 };
+
+#endif
