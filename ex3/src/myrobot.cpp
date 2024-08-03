@@ -44,7 +44,7 @@ std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::
 
 void run() {
     size_t my_task;
-    while((my_task = counter++) < algorithms.size() * house_file_paths.size()) {
+    while((my_task = ++counter) < algorithms.size() * house_file_paths.size()) {
         auto my_house_path = house_file_paths[my_task / house_file_paths.size()];
         auto my_algo_factory = algorithms[my_task % house_file_paths.size()];
         
@@ -129,11 +129,12 @@ int main(int argc, char** argv) {
     house_file_paths = get_file_path_list_from_dir(house_path, ".house");
     std::vector<std::filesystem::path> algo_file_paths = get_file_path_list_from_dir(algo_path, ".so");
     
-    std::vector<void*> handles(algo_file_paths.size());
+    std::vector<void*> handles;
+    handles.reserve(algo_file_paths.size());
     // dlopen
     for (auto path : algo_file_paths)
     {
-        void* handle = dlopen(path.c_str(), RTLD_LAZY);
+        void* handle = dlopen(path.c_str(), RTLD_NOW | RTLD_GLOBAL);
         if(!handle) {
             std::cerr << "Failed to open library: " << dlerror() << std::endl;
             return EXIT_FAILURE;

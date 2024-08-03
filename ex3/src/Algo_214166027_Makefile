@@ -2,7 +2,7 @@
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -fPIC -Wall -Wextra
+CXXFLAGS = -std=c++20 -fPIC -Wall -Wextra -Werror -pedantic -g
 
 # Shared library flags
 LDFLAGS = -shared
