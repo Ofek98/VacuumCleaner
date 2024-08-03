@@ -17,6 +17,7 @@
 std::atomic<int> counter(-1);
 std::vector<std::filesystem::path> house_file_paths;
 std::vector<AlgorithmRegistrar::AlgorithmFactoryPair> algorithms;
+std::vector<size_t> results;
 
 std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::path dir_path, std::string extension) {
     std::vector<std::filesystem::path> paths;
@@ -42,11 +43,12 @@ std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::
 }
 
 
-void run() {
+void run_simulations(bool summary_only) {
     size_t my_task;
     while((my_task = ++counter) < algorithms.size() * house_file_paths.size()) {
-        auto my_house_path = house_file_paths[my_task / house_file_paths.size()];
-        auto my_algo_factory = algorithms[my_task % house_file_paths.size()];
+        auto my_house_path = house_file_paths[my_task / algorithms.size()];
+        auto my_algo_factory = algorithms[my_task % algorithms.size()];
+        std::cout << std::this_thread::get_id() << std::endl;
         
         Simulator simulator;
         if(!simulator.readHouseFile(my_house_path)) {
@@ -56,8 +58,38 @@ void run() {
         
         simulator.setAlgorithmName(my_algo_factory.name());
         simulator.setAlgorithm(std::move(my_algo_factory.create()));
-        simulator.run();
+        results[my_task] = simulator.run(!summary_only);
     }
+}
+
+bool write_results_csv_file() {
+    std::ofstream file("summary.csv");
+
+    if (file.is_open()) {
+        // Write the header row (starting with an empty cell for the algorithm names)
+        file << ",";
+        for (size_t i = 0; i < house_file_paths.size(); i++) {
+            file << house_file_paths[i].filename().replace_extension("") << (i+1 < house_file_paths.size() ? "," : "");
+        }
+        file << "\n";
+
+        // write a row for each algorithm
+        for (size_t i = 0; i < algorithms.size(); i++)
+        {
+            file << algorithms[i].name() << ",";
+            for (size_t j = 0; j < house_file_paths.size(); j++)
+            {
+                file << results[i*algorithms.size() + j] << (j+1 < house_file_paths.size() ? "," : "");
+            }
+            file << "\n";
+        }
+        file.close();
+    } 
+    else {
+        std::cerr << "Could not open the file for writing" << std::endl;
+        return false;
+    }
+    return true;
 }
 
 /**
@@ -70,10 +102,10 @@ void run() {
 int main(int argc, char** argv) {
 	Simulator simulator;
     std::string houseFilePath;
-    std::regex house_path_pattern(R"(^-house_path=([^ ]+))");
-    std::regex algo_path_pattern(R"(^-algo_path=([^ ]+))");
-    std::regex summary_only_pattern(R"(^-summary_only)");
-    std::regex num_threads_pattern(R"(^-num_threads=(\d+))");
+    std::regex house_path_pattern(R"(-house_path=([^ ]+))");
+    std::regex algo_path_pattern(R"(-algo_path=([^ ]+))");
+    std::regex summary_only_pattern(R"(-summary_only)");
+    std::regex num_threads_pattern(R"(-num_threads=(\d+))");
     std::regex arg_patterns[4] = {house_path_pattern, algo_path_pattern, summary_only_pattern, num_threads_pattern};
     std::filesystem::path algo_path = std::filesystem::current_path();
     std::filesystem::path house_path = std::filesystem::current_path();
@@ -89,19 +121,14 @@ int main(int argc, char** argv) {
     }
 
     for (int i = 1; i < argc; i++) {
-        args += argv[i];
+        args += std::string(argv[i]) + " ";
     }
 
     // extract arguments
     for (size_t p = 0; p < sizeof(arg_patterns)/sizeof(arg_patterns[0]); p++)
     {
         std::smatch matches;
-        if(std::regex_match(args, matches, arg_patterns[p])) {
-            if(matches.size() > 1) {
-                std::cerr << "Same argument specified more than once" << std::endl;
-                return EXIT_FAILURE;
-            }
-
+        if(std::regex_search(args, matches, arg_patterns[p])) {
             if(p==2) {
                 summary_only = true;
             }
@@ -146,20 +173,32 @@ int main(int argc, char** argv) {
 
     algorithms = AlgorithmRegistrar::getAlgorithmRegistrar().getAlgorithmFactories();
 
-    // only for error ignoring:
-    num_threads = num_threads;
-    summary_only = summary_only;
+    results.reserve(algorithms.size() * house_file_paths.size());
 
     // TODO: Additional Requirements 2,3 in the pdf
+    std::vector<std::thread> threads;
+    threads.reserve(num_threads);
 
-    // just one thread for now;
-    std::thread t1(run);
+    for (size_t i = 0; i < num_threads; i++) {
+        threads.emplace_back(run_simulations, summary_only);
+    }
 
-    t1.join();
+    for (auto& thread : threads) {
+        thread.join();
+    }
+    
+    if(!write_results_csv_file()) {
+        return EXIT_FAILURE;
+    } 
 
     // dlclose
     for(auto handle : handles) {
-        dlclose(handle);
+        if(dlclose(handle)) {
+            std::cerr << "Failed to close library: " << dlerror() << std::endl;
+            return EXIT_FAILURE;
+        }
     }
+
+    return EXIT_SUCCESS;
 }
 

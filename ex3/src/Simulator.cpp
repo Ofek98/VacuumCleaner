@@ -8,7 +8,7 @@
 
 
 
-bool Simulator::run() {
+size_t Simulator::run(bool write_output_file) {
     std::vector<char> steps_taken;
     steps_taken.reserve(maxSteps+1);
     bool finished = false;
@@ -74,15 +74,6 @@ bool Simulator::run() {
         }
     }
 
-
-    std::string output_file_name = input_file_path.filename().replace_extension("").string() + "-" + algo_name + ".txt";
-    std::ofstream file(input_file_path.parent_path() /= std::filesystem::path(output_file_name)); // Open output file
-
-    if (!file) {
-        std::cerr << "Failed to open the output file" << std::endl;
-        return false;
-    }
-
     size_t dirt_left = house.getTotalDirt();
     size_t num_steps = steps_taken.size();
     Coords docking_station = house.getDockingStationCoords();
@@ -100,21 +91,31 @@ bool Simulator::run() {
     }
 
     // writing to output file
-    file << "NumSteps = " << num_steps - finished << std::endl;
-    file << "DirtLeft = " << dirt_left << std::endl;
-    file << "Status = " << (finished ? "FINISHED" : (battery_left > 0 ? "WORKING" : "DEAD")) << std::endl;
-    file << "InDock = " << (in_dock ? "TRUE" : "FALSE") << std::endl;
-    file << "Score = " << score << std::endl;
-    file << "Steps:" << std::endl;
-    for (size_t i = 0; i < steps_taken.size(); i++)
-    {
-        file << steps_taken[i];
+    if(write_output_file) {
+        std::string output_file_name = input_file_path.filename().replace_extension("").string() + "-" + algo_name + ".txt";
+        std::ofstream file(input_file_path.parent_path() /= std::filesystem::path(output_file_name)); // Open output file
+
+        if (!file) {
+            std::cerr << "Failed to open the output file" << std::endl;
+            return 0;
+        }
+
+        file << "NumSteps = " << num_steps - finished << std::endl;
+        file << "DirtLeft = " << dirt_left << std::endl;
+        file << "Status = " << (finished ? "FINISHED" : (battery_left > 0 ? "WORKING" : "DEAD")) << std::endl;
+        file << "InDock = " << (in_dock ? "TRUE" : "FALSE") << std::endl;
+        file << "Score = " << score << std::endl;
+        file << "Steps:" << std::endl;
+        for (size_t i = 0; i < steps_taken.size(); i++)
+        {
+            file << steps_taken[i];
+        }
+        file << std::endl;
+
+        file.close();
     }
-    file << std::endl;
 
-    file.close();
-
-    return true;
+    return score;
 }
 
 

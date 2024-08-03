@@ -57,7 +57,7 @@ class Simulator {
     void charge();
 
 public:
-    bool run();
+    size_t run(bool write_output_file);
 
     bool readHouseFile(std::string file_path);
 
