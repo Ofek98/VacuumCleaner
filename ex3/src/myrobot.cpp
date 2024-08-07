@@ -45,7 +45,7 @@ std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::
 void run_simulations(bool summary_only, std::vector<size_t>& results) {
     size_t my_task;
     while((my_task = ++counter) < algorithm_instances.size()) {
-        auto my_house_path = house_file_paths[my_task / house_file_paths.size()];
+        auto my_house_path = house_file_paths[my_task / (algorithm_instances.size() / house_file_paths.size())];
         auto my_algo = &algorithm_instances[my_task];
         std::cout << std::this_thread::get_id() << std::endl;
         
@@ -57,7 +57,8 @@ void run_simulations(bool summary_only, std::vector<size_t>& results) {
         
         simulator.setAlgorithm(std::move(my_algo->first));
         simulator.setAlgorithmName(my_algo->second);
-        auto timeout = std::chrono::milliseconds(simulator.getMaxSteps());
+        // TODO: change to milliseconds!!!
+        auto timeout = std::chrono::seconds(simulator.getMaxSteps());
 
         std::thread([summary_only, &results, timeout, my_task]() {
             std::this_thread::sleep_for(timeout);
@@ -181,7 +182,7 @@ int main(int argc, char** argv) {
             algorithm_instances.emplace_back(algo.create(), algo.name());
         }
     }
-    std::vector<size_t> results(algorithm_instances.size() * house_file_paths.size(), 0);
+    std::vector<size_t> results(algorithm_instances.size(), 0);
 
     // TODO: Additional Requirements 2,3 in the pdf
     std::vector<std::thread> threads;

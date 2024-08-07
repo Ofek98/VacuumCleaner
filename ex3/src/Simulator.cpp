@@ -11,7 +11,7 @@ size_t Simulator::run(bool write_output_file) {
     steps_taken.reserve(maxSteps+1);
     bool finished = false;
     size_t initial_dirt = house.getTotalDirt();
-    int timeout = maxSteps;
+    auto timeout = std::chrono::milliseconds(maxSteps);
     auto start = std::chrono::high_resolution_clock::now();
 
     for (size_t i = 0; i < maxSteps+1 && !finished; i++)
@@ -22,7 +22,7 @@ size_t Simulator::run(bool write_output_file) {
 
         Step next_step = algo->nextStep();
 
-        if((std::chrono::high_resolution_clock::now() - start).count() > timeout) {
+        if((std::chrono::high_resolution_clock::now() - start) > timeout) {
             return maxSteps * 2 + initial_dirt * 300 + 2000;
         }
 
