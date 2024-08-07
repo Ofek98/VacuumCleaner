@@ -4,14 +4,15 @@
  */
 
 #include "Simulator.h"
-#include <regex>
-
 
 
 size_t Simulator::run(bool write_output_file) {
     std::vector<char> steps_taken;
     steps_taken.reserve(maxSteps+1);
     bool finished = false;
+    size_t initial_dirt = house.getTotalDirt();
+    int timeout = maxSteps;
+    auto start = std::chrono::high_resolution_clock::now();
 
     for (size_t i = 0; i < maxSteps+1 && !finished; i++)
     {
@@ -20,6 +21,11 @@ size_t Simulator::run(bool write_output_file) {
         }
 
         Step next_step = algo->nextStep();
+
+        if((std::chrono::high_resolution_clock::now() - start).count() > timeout) {
+            return maxSteps * 2 + initial_dirt * 300 + 2000;
+        }
+
         if(next_step == Step::Finish) {
             finished = true;
             steps_taken.push_back('F');
@@ -258,4 +264,8 @@ float Simulator::decreaseBattery() {
         throw std::runtime_error("Battery is dead and cannot perform the requested move!");
     }
     return battery_left--;
+}
+
+size_t Simulator::getMaxSteps() {
+    return maxSteps;
 }

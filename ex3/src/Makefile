@@ -18,8 +18,3 @@ $(TARGET): $(SOURCES)
 
 clean:
 	rm -rf $(TARGET)
-
-
-
-
-

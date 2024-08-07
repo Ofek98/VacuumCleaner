@@ -11,13 +11,13 @@
 #include <regex>
 #include <dlfcn.h>
 #include <thread>
-#include "AlgorithmRegistrar.h"
+#include "common/AlgorithmRegistrar.h"
+#include <utility>
 #include <atomic>
 
 std::atomic<int> counter(-1);
 std::vector<std::filesystem::path> house_file_paths;
-std::vector<AlgorithmRegistrar::AlgorithmFactoryPair> algorithms;
-std::vector<size_t> results;
+std::vector<std::pair<std::unique_ptr<AbstractAlgorithm>, std::string>> algorithm_instances;
 
 std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::path dir_path, std::string extension) {
     std::vector<std::filesystem::path> paths;
@@ -42,12 +42,11 @@ std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::
     return paths;
 }
 
-
-void run_simulations(bool summary_only) {
+void run_simulations(bool summary_only, std::vector<size_t>& results) {
     size_t my_task;
-    while((my_task = ++counter) < algorithms.size() * house_file_paths.size()) {
-        auto my_house_path = house_file_paths[my_task / algorithms.size()];
-        auto my_algo_factory = algorithms[my_task % algorithms.size()];
+    while((my_task = ++counter) < algorithm_instances.size()) {
+        auto my_house_path = house_file_paths[my_task / house_file_paths.size()];
+        auto my_algo = &algorithm_instances[my_task];
         std::cout << std::this_thread::get_id() << std::endl;
         
         Simulator simulator;
@@ -56,13 +55,21 @@ void run_simulations(bool summary_only) {
             continue;
         }
         
-        simulator.setAlgorithmName(my_algo_factory.name());
-        simulator.setAlgorithm(std::move(my_algo_factory.create()));
+        simulator.setAlgorithm(std::move(my_algo->first));
+        simulator.setAlgorithmName(my_algo->second);
+        auto timeout = std::chrono::milliseconds(simulator.getMaxSteps());
+
+        std::thread([summary_only, &results, timeout, my_task]() {
+            std::this_thread::sleep_for(timeout);
+            if(results[my_task] == 0)
+                run_simulations(summary_only, results);
+        }).detach();
+        
         results[my_task] = simulator.run(!summary_only);
     }
 }
 
-bool write_results_csv_file() {
+bool write_results_csv_file(const std::vector<size_t>& results) {
     std::ofstream file("summary.csv");
 
     if (file.is_open()) {
@@ -74,12 +81,10 @@ bool write_results_csv_file() {
         file << "\n";
 
         // write a row for each algorithm
-        for (size_t i = 0; i < algorithms.size(); i++)
-        {
-            file << algorithms[i].name() << ",";
-            for (size_t j = 0; j < house_file_paths.size(); j++)
-            {
-                file << results[i*algorithms.size() + j] << (j+1 < house_file_paths.size() ? "," : "");
+        for (size_t i = 0; i < algorithm_instances.size(); i++) {
+            file << algorithm_instances[i].second << ",";
+            for (size_t j = 0; j < house_file_paths.size(); j++) {
+                file << results[i*algorithm_instances.size() + j] << (j+1 < house_file_paths.size() ? "," : "");
             }
             file << "\n";
         }
@@ -171,23 +176,26 @@ int main(int argc, char** argv) {
         handles.push_back(handle);
     }
 
-    algorithms = AlgorithmRegistrar::getAlgorithmRegistrar().getAlgorithmFactories();
-
-    results.reserve(algorithms.size() * house_file_paths.size());
+    for (size_t i = 0; i < house_file_paths.size(); i++) {
+        for(const auto& algo: AlgorithmRegistrar::getAlgorithmRegistrar()) {
+            algorithm_instances.emplace_back(algo.create(), algo.name());
+        }
+    }
+    std::vector<size_t> results(algorithm_instances.size() * house_file_paths.size(), 0);
 
     // TODO: Additional Requirements 2,3 in the pdf
     std::vector<std::thread> threads;
     threads.reserve(num_threads);
 
     for (size_t i = 0; i < num_threads; i++) {
-        threads.emplace_back(run_simulations, summary_only);
+        threads.emplace_back(run_simulations, summary_only, std::ref(results));
     }
 
     for (auto& thread : threads) {
         thread.join();
     }
     
-    if(!write_results_csv_file()) {
+    if(!write_results_csv_file(results)) {
         return EXIT_FAILURE;
     } 
 

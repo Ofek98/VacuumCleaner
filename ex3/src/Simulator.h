@@ -3,12 +3,17 @@
 
 #include "common.h"
 #include "House.h"
-#include "Algo_214166027.h"
+#include "common/BatteryMeter.h"
+#include "common/DirtSensor.h"
+#include "common/WallSensor.h"
+#include "common/AbstractAlgorithm.h"
 #include <stdexcept>
 #include <fstream>
 #include <string>
 #include <filesystem>
 #include <memory>
+#include <regex>
+#include <chrono>
 
 /**
  * @brief The Simulator class represents a vacuum cleaner simulator.
@@ -64,6 +69,8 @@ public:
     void setAlgorithm(std::unique_ptr<AbstractAlgorithm> algo);
 
     void setAlgorithmName(std::string algo_name);
+
+    size_t getMaxSteps();
 };
 
 #endif // SIMULATOR_H

@@ -6,7 +6,7 @@
  * @brief This file contains the declaration of the Coords class, StepType enum, Step struct, and other constants and variables used in the vacuum cleaner program.
  */
 
-#include "enums.h"
+#include "common/enums.h"
 #include <stddef.h>
 #include <vector>
 #include <iostream>

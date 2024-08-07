@@ -6,8 +6,8 @@
  * @brief This file contains the declaration of the Algo_214166027 class.
  */
 
-#include "common.h"
-#include "abstract_algorithm.h"
+#include "../common.h"
+#include "../common/AbstractAlgorithm.h"
 #include <unordered_map>
 #include <deque>
 #include <cstdlib>
