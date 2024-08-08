@@ -6,11 +6,10 @@
 #include "Simulator.h"
 
 
-size_t Simulator::run(bool write_output_file) {
+int Simulator::run(bool write_output_file) {
     std::vector<char> steps_taken;
     steps_taken.reserve(maxSteps+1);
     bool finished = false;
-    size_t initial_dirt = house.getTotalDirt();
     auto timeout = std::chrono::milliseconds(maxSteps);
     auto start = std::chrono::high_resolution_clock::now();
 
@@ -23,7 +22,7 @@ size_t Simulator::run(bool write_output_file) {
         Step next_step = algo->nextStep();
 
         if((std::chrono::high_resolution_clock::now() - start) > timeout) {
-            return maxSteps * 2 + initial_dirt * 300 + 2000;
+            return -1;
         }
 
         if(next_step == Step::Finish) {
@@ -223,6 +222,7 @@ bool Simulator::readHouseFile(std::string house_file_path)
 
     battery_left = battery_capacity;
     location = house.getDockingStationCoords();
+    initial_dirt = house.getTotalDirt();
 
     file.close();
     return true;
@@ -268,4 +268,8 @@ float Simulator::decreaseBattery() {
 
 size_t Simulator::getMaxSteps() {
     return maxSteps;
+}
+
+size_t Simulator::getInitialDirt() {
+    return initial_dirt;
 }

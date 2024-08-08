@@ -53,6 +53,7 @@ class Simulator {
     Coords location; /**< The current location of the robot. */
     std::size_t battery_capacity; /**< The battery capacity of the robot. */
     float battery_left; /**< The remaining battery level of the robot. */
+    size_t initial_dirt;
     std::unique_ptr<AbstractAlgorithm> algo;
     std::string algo_name;
     std::filesystem::path input_file_path;
@@ -62,7 +63,7 @@ class Simulator {
     void charge();
 
 public:
-    size_t run(bool write_output_file);
+    int run(bool write_output_file);
 
     bool readHouseFile(std::string file_path);
 
@@ -71,6 +72,8 @@ public:
     void setAlgorithmName(std::string algo_name);
 
     size_t getMaxSteps();
+
+    size_t getInitialDirt();
 };
 
 #endif // SIMULATOR_H
