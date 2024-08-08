@@ -15,9 +15,22 @@
             "problemMatcher": [],
         },
         {
-            "label": "build algorithm",
+            "label": "build algorithm1",
             "type": "shell",
             "command": "make -f Algo_214166027_Makefile clean; make -f Algo_214166027_Makefile",
+            "options": {
+                "cwd": "${workspaceFolder}/src/algorithm"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+        },
+        {
+            "label": "build algorithm2",
+            "type": "shell",
+            "command": "make -f Algo_123456789_Makefile clean; make -f Algo_123456789_Makefile",
             "options": {
                 "cwd": "${workspaceFolder}/src/algorithm"
             },
@@ -38,7 +51,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "dependsOn": ["build simulator", "build algorithm"],
+            "dependsOn": ["build simulator", "build algorithm1", "build algorithm2"],
             "dependsOrder": "sequence",        
             "problemMatcher": ["$gcc"]
         }
