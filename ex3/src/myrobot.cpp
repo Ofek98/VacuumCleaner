@@ -53,7 +53,6 @@ void run_simulations(RunValues& rv) {
     while((my_task = ++counter) < rv.algorithm_instances.size()) {
         auto my_house_path = rv.house_file_paths[my_task / (rv.algorithm_instances.size() / rv.house_file_paths.size())];
         auto my_algo = &rv.algorithm_instances[my_task];
-        std::cout << std::this_thread::get_id() << std::endl;
         
         Simulator simulator;
         if(!simulator.readHouseFile(my_house_path)) {
@@ -72,7 +71,6 @@ void run_simulations(RunValues& rv) {
             std::this_thread::sleep_for(timeout);
             std::lock_guard<std::mutex> lock(results_task_mutex);
             if(rv.results[my_task] == -1) {
-                std::cout << "68 from " << std::this_thread::get_id() << std::endl;
                 rv.results[my_task] = default_score;
                 results_task_mutex.unlock(); // this line is important
                 run_simulations(rv);
@@ -83,14 +81,10 @@ void run_simulations(RunValues& rv) {
         std::lock_guard<std::mutex> lock(results_task_mutex);
         if(rv.results[my_task] == -1) {
             // we usually reach here
-            
             rv.results[my_task] = run_score;
-            std::cout << "77 from " << std::this_thread::get_id() << std::endl;
         } 
         else {
             // we only reach here when the simulator finished after timeout and another thread replaced the current thread
-
-            std::cout << "81 from " << std::this_thread::get_id() << std::endl;
             break;
         }
     }
@@ -222,13 +216,15 @@ int main(int argc, char** argv) {
     for (auto& thread : threads) {
         thread.join();
     }
+
+    AlgorithmRegistrar::getAlgorithmRegistrar().clear();
     
     if(!write_results_csv_file(rv)) {
         return EXIT_FAILURE;
     } 
 
     // dlclose
-    for(auto handle : handles) {
+     for(auto handle : handles) {
         if(dlclose(handle)) {
             std::cerr << "Failed to close library: " << dlerror() << std::endl;
             return EXIT_FAILURE;

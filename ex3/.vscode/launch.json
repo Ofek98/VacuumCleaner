@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/src/myrobot",
-            "args": ["", "-num_threads=1", "-algo_path=algorithm"],
+            "args": ["", "-num_threads=2", "-algo_path=algorithm"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/src",
             "environment": [],
