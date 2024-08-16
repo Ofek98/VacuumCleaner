@@ -1,24 +1,40 @@
 /**
- * @file Algo_214166027.cpp
- * @brief Implementation file for the Algo_214166027 class.
+ * @file CommonAlgorithm.cpp
+ * @brief Implementation file for the CommonAlgorithm class.
  */
-#include "Algo_214166027.h"
-
-REGISTER_ALGORITHM(Algo_214166027);
+#include "CommonAlgorithm.h"
 
 
-Algo_214166027::Algo_214166027(){
+void CommonAlgorithm::setMaxSteps(std::size_t maxSteps){
+    this->max_steps = maxSteps + 1;
+    remaining_steps = max_steps; // +1 for Finish
+}
+
+void CommonAlgorithm::setWallsSensor(const WallsSensor& wallSensor) {
+    this->wall_sensor = &wallSensor;
+}
+void CommonAlgorithm::setDirtSensor(const DirtSensor& dirtSensor) {
+    this->dirt_sensor = &dirtSensor;
+}
+void CommonAlgorithm::setBatteryMeter(const BatteryMeter& batteryMeter) {
+    this->battery_meter = &batteryMeter;
+    max_battery = battery_meter->getBatteryState();
+    is_charging_cap_updated = true;
+    charging_cap = max_battery;
+}
+
+CommonAlgorithm::CommonAlgorithm(bool is_deterministic) 
+    : is_deterministic(is_deterministic) {
     curr_loc = Coords(0, 0);
-    coords_info[Coords(0,0)] = UNEXPLORED;
+    coords_info[Coords(0, 0)] = UNEXPLORED;
     dist_from_docking = 0;
     is_dist_from_docking_updated = true;
 }
-
-/*
+/**
 Updating curr_loc maping in coords_info to its real level,
 and adding its neighbors if needed (we can only know if they're walls or explorable) 
 */
-void Algo_214166027::updateDetailsAboutCurrLocAndItsNeighbors(){
+void CommonAlgorithm::updateDetailsAboutCurrLocAndItsNeighbors(){
         coords_info[curr_loc] = curr_loc == Coords(0, 0)? DOCKING_STATION : dirt_sensor->dirtLevel();
         for(int i = 0; i < 4; i++){
             Direction dir = static_cast<Direction>(i);
@@ -29,7 +45,7 @@ void Algo_214166027::updateDetailsAboutCurrLocAndItsNeighbors(){
         }
 }
 
-void Algo_214166027::updateDistFromDocking(int dist){
+void CommonAlgorithm::updateDistFromDocking(int dist){
     dist_from_docking = dist;
     is_dist_from_docking_updated = true;
 }
@@ -41,7 +57,7 @@ It returns if we can finish our bfs run, which means:
 If to_docking - we can generate a path to the docking station. 
 If not - we can generate a path to an unexplored or a cleanable cell.
 */
-bool Algo_214166027::appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool to_docking){
+bool CommonAlgorithm::appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool to_docking){
     bool can_finish = false;
     for(int i = 0; i < 4; i++){
         Direction dir = static_cast<Direction>(i);
@@ -73,7 +89,7 @@ bool Algo_214166027::appendNeighbors(const Coords& current, std::deque<Coords>& 
 /*
 Creates a path from start to target using "parents" map
 */
-CoordsVector createPathByParents(Coords start,Coords target,std::unordered_map<Coords,Coords> parents){
+CoordsVector CommonAlgorithm::createPathByParents(Coords start,Coords target,std::unordered_map<Coords,Coords> parents){
     CoordsVector next_path;
     next_path.push_back(target);
     Coords current = target;
@@ -90,7 +106,7 @@ If to_docking - creates a shortest path from curr_loc to the docking station.
 Else, a shortest path to the closest or unexplored cell (If there are many at the same level - to the known most dirty).
 If there is no path that allows us to reach target and go back to the docking safely, returns an empty path.
 */
-CoordsVector Algo_214166027::bfs(bool to_docking, size_t limiting_factor){
+CoordsVector CommonAlgorithm::bfs(bool to_docking, size_t limiting_factor, bool is_deterministic){
      
     Coords target = Coords(0,0);
     bool can_finish = false;
@@ -109,7 +125,7 @@ CoordsVector Algo_214166027::bfs(bool to_docking, size_t limiting_factor){
             //No unknown or dirty cells are reachable
             return {};
         }
-        for (size_t j = 0; j < len; j++){ //Popping out all the coords from the current level and entering their relevant neighbors
+        for (size_t j = 0; j < len; j++){ //Popping out all the coords from the current level and adding their relevant neighbors
             Coords current = queue.front();
             queue.pop_front();
             if(appendNeighbors(current, queue, parents, to_docking)){//Adds neighbors to queue and parents if they're not there yet
@@ -117,7 +133,20 @@ CoordsVector Algo_214166027::bfs(bool to_docking, size_t limiting_factor){
                 can_finish = true;
             } 
         }
+        if (!is_deterministic){
+            /*
+            If not deterministic, we shuffle the order of the Coords in the queue.
+            This way, we will pick one of the shortest paths randomly. 
+            This will also mean that if there are two possible targets with the same dirt level at the same distance, the algorithm will choose one of them at random.
+            */
 
+             // Create a random number generator
+            std::random_device rd;
+            std::mt19937 g(rd());
+
+            // Shuffle the queue
+            std::shuffle(queue.begin(), queue.end(), g);
+        }
         if (can_finish){
             if (!to_docking) {//Finds the dirtiest known cell in this level and sets it as the target
                 Coords candidate = queue.front();
@@ -145,9 +174,9 @@ If there's a path to a unexplored/cleanable cell within the limit of limiting_fa
 it will construct a path to there. 
 Else, it will construct a path to the docking station.
 */
-CoordsVector Algo_214166027::constructNextPath(size_t limiting_factor) {
-    CoordsVector path_to_docking = bfs(true,limiting_factor);
-    CoordsVector path_to_closet_cleanable_cell = bfs(false,limiting_factor-path_to_docking.size()); 
+CoordsVector CommonAlgorithm::constructNextPath(size_t limiting_factor, bool is_deterministic) {
+    CoordsVector path_to_docking = bfs(true,limiting_factor, is_deterministic);
+    CoordsVector path_to_closet_cleanable_cell = bfs(false,limiting_factor-path_to_docking.size(), is_deterministic); 
     //limiting_factor-path_to_docking.size() as limiting_factor so the robot will be able to return to its original place with enough steps to return to the docking after it
     return path_to_closet_cleanable_cell.empty()? path_to_docking : path_to_closet_cleanable_cell;
 }
@@ -155,7 +184,7 @@ CoordsVector Algo_214166027::constructNextPath(size_t limiting_factor) {
 /*
 Marches the next step of the path, including needed fields' updates
 */
-Step Algo_214166027::marchTheNextStepOfThePath(){
+Step CommonAlgorithm::marchTheNextStepOfThePath(){
     bool in_the_way_to_docking = (path.front() == Coords(0,0));
     Coords next_loc = path.back();
     path.pop_back();
@@ -173,13 +202,13 @@ Step Algo_214166027::marchTheNextStepOfThePath(){
 /*
 Calculates how many steps the robot will need to charge to make battery_state >= amount.
 */
-size_t Algo_214166027::stepsNumberToCharge(size_t amount){
+size_t CommonAlgorithm::stepsNumberToCharge(size_t amount){
     size_t amount_left = amount - battery_meter->getBatteryState();
     float charging_size = float(max_battery)/20;
     return std::ceil(float(amount_left)/charging_size);
 }
 
-Step Algo_214166027::nextStep() {
+Step CommonAlgorithm::nextStep(bool is_deterministic){
     Step res;
     /* Limiting_factor is the actual number of steps until robot must return to the docking_station
     We consider limiting_factor-1 for the finishing step */
@@ -202,7 +231,7 @@ Step Algo_214166027::nextStep() {
     if (dirt_sensor->dirtLevel() >= 1){
          
         if (!is_dist_from_docking_updated) { //Make sure dist_from_docking_is_updated
-            CoordsVector path_to_docking = bfs(true,limiting_factor);
+            CoordsVector path_to_docking = bfs(true,limiting_factor, is_deterministic);
             updateDistFromDocking(path_to_docking.size()); //The length of the path to the docking received from bfs 
         }
         if (dist_from_docking + 1 <= limiting_factor){ //Enough steps to clean and return to the docking station
@@ -237,7 +266,7 @@ Step Algo_214166027::nextStep() {
                 if(battery_meter->getBatteryState() >= charging_cap){ //We charged enough 
                      
                     is_charging_cap_updated = false;
-                    path = bfs(false,limiting_factor); //Calculate next path
+                    path = bfs(false,limiting_factor, is_deterministic); //Calculate next path
                     if (!path.empty()){
                     res = marchTheNextStepOfThePath();
                     }
@@ -252,7 +281,7 @@ Step Algo_214166027::nextStep() {
             }
             else{ //Else, we need to calculate how much to charge 
                  
-                CoordsVector optional_path = bfs(false, std::min(max_battery,remaining_steps-1)); //Checks the shortest path available, assuming battery is not limiting us 
+                CoordsVector optional_path = bfs(false, std::min(max_battery,remaining_steps-1),is_deterministic); //Checks the shortest path available, assuming battery is not limiting us 
                 size_t cleaning_duty_min_steps = 2*optional_path.size()+1; //Steps that it will take to clean the path's target at least once 
                 if(optional_path.empty()){ //There is no reachable cleanable cells
                     res = Step::Finish;
@@ -279,27 +308,10 @@ Step Algo_214166027::nextStep() {
         We will construct our next path to a cleanable/unexplored cell, or to the docking station If there isn't any.
         */
         else{ 
-            path = constructNextPath(limiting_factor);
+            path = constructNextPath(limiting_factor, is_deterministic);
             res = marchTheNextStepOfThePath();
         }
     }
     remaining_steps -=1;
     return res;
-}
-
-void Algo_214166027::setMaxSteps(std::size_t maxSteps) {
-    this->max_steps = maxSteps + 1;
-    remaining_steps = max_steps; // +1 for Finish
-}
-void Algo_214166027::setWallsSensor(const WallsSensor& wallSensor) {
-    this->wall_sensor = &wallSensor;
-}
-void Algo_214166027::setDirtSensor(const DirtSensor& dirtSensor) {
-    this->dirt_sensor = &dirtSensor;
-}
-void Algo_214166027::setBatteryMeter(const BatteryMeter& batteryMeter) {
-    this->battery_meter = &batteryMeter;
-    max_battery = battery_meter->getBatteryState();
-    is_charging_cap_updated = true;
-    charging_cap = max_battery;
 }
