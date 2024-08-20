@@ -18,6 +18,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <cmath>
+#include <algorithm>
+#include <random>
 
 /**
  * @class CommonAlgorithm
@@ -41,24 +43,25 @@ class CommonAlgorithm : public AbstractAlgorithm {
     protected:
         CommonAlgorithm(bool is_deterministic);
           // Function to be called by derived classes
-        void updateDetailsAboutCurrLocAndItsNeighbors();
+        void updateInformation(size_t limiting_factor);
         void updateDistFromDocking(int dist);
-        bool appendNeighbors(const Coords& current, std::deque<Coords>& queue, std::unordered_map<Coords, Coords>& parents, bool to_docking);
-        CoordsVector bfs(bool to_docking, size_t limiting_factor, bool is_deterministic);
+        void appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool to_docking, std::deque<Coords> &candidates, int i, size_t limiting_factor);
+        CoordsVector bfs(size_t limiting_factor, bool is_deterministic, bool updating_distances_from_docking);
         CoordsVector constructNextPath(size_t limiting_factor, bool is_deterministic);
         Step marchTheNextStepOfThePath();
         size_t stepsNumberToCharge(size_t amount);
         Step nextStep(bool is_deterministic);
         CoordsVector createPathByParents(Coords start,Coords target,std::unordered_map<Coords,Coords> parents);
+
         
         bool is_deterministic;
         CoordsVector path;
         std::unordered_map<Coords, float> coords_info;
+        std::unordered_map<Coords, size_t> distances_from_docking;
+        std::unordered_map<Coords,Coords> path_from_docking_parents;
         Coords curr_loc;
         size_t max_battery;
         size_t remaining_steps;
-        size_t dist_from_docking;
-        bool is_dist_from_docking_updated;
         size_t charging_cap;
         bool is_charging_cap_updated;
 };

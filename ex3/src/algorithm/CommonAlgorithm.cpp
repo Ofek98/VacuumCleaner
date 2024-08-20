@@ -27,27 +27,31 @@ CommonAlgorithm::CommonAlgorithm(bool is_deterministic)
     : is_deterministic(is_deterministic) {
     curr_loc = Coords(0, 0);
     coords_info[Coords(0, 0)] = UNEXPLORED;
-    dist_from_docking = 0;
-    is_dist_from_docking_updated = true;
 }
 /**
 Updating curr_loc maping in coords_info to its real level,
 and adding its neighbors if needed (we can only know if they're walls or explorable) 
 */
-void CommonAlgorithm::updateDetailsAboutCurrLocAndItsNeighbors(){
-        coords_info[curr_loc] = curr_loc == Coords(0, 0)? DOCKING_STATION : dirt_sensor->dirtLevel();
-        for(int i = 0; i < 4; i++){
-            Direction dir = static_cast<Direction>(i);
-            Coords loc = curr_loc + dir;
-            if (coords_info.find(loc) == coords_info.end()){ 
-                coords_info[loc] = wall_sensor->isWall(dir)? WALL : UNEXPLORED;
+void CommonAlgorithm::updateInformation(size_t limiting_factor){
+    bool added_new_cell = false;
+    coords_info[curr_loc] = curr_loc == Coords(0, 0)? DOCKING_STATION : dirt_sensor->dirtLevel();
+    for(int i = 0; i < 4; i++){
+        Direction dir = static_cast<Direction>(i);
+        Coords loc = curr_loc + dir;
+        if (coords_info.find(loc) == coords_info.end()){  
+            coords_info[loc] = wall_sensor->isWall(dir)? WALL : UNEXPLORED;
+            if (coords_info[loc] == UNEXPLORED){
+                //An explored cell got revealed
+                added_new_cell = true;
             }
         }
-}
-
-void CommonAlgorithm::updateDistFromDocking(int dist){
-    dist_from_docking = dist;
-    is_dist_from_docking_updated = true;
+    }
+    if (added_new_cell){
+        bfs(limiting_factor,is_deterministic, true); //Distances and paths from docking might need to be updated
+        if (!path.empty()){
+            path = constructNextPath(limiting_factor,is_deterministic); //If we're in the middle of a travel path, there might be a better one now
+        }
+    }
 }
 
 /*
@@ -57,10 +61,9 @@ It returns if we can finish our bfs run, which means:
 If to_docking - we can generate a path to the docking station. 
 If not - we can generate a path to an unexplored or a cleanable cell.
 */
-bool CommonAlgorithm::appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool to_docking){
-    bool can_finish = false;
-    for(int i = 0; i < 4; i++){
-        Direction dir = static_cast<Direction>(i);
+void CommonAlgorithm::appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool updating_distances_from_docking, std::deque<Coords> &candidates, int i, size_t limiting_factor){
+    for(int j = 0; j < 4; j++){
+        Direction dir = static_cast<Direction>(j);
         Coords neighbor = current + dir;
 
         if (parents.find(neighbor) == parents.end() && coords_info.find(neighbor) != coords_info.end() && coords_info[neighbor] != WALL){
@@ -68,23 +71,16 @@ bool CommonAlgorithm::appendNeighbors(const Coords& current, std::deque<Coords>&
 
             parents[neighbor] = current;
             queue.push_back(neighbor);
-
-            if (to_docking){
-                if (neighbor == Coords(0,0)){ //We found the docking so we can return immediately
-                    can_finish = true;
-                    return can_finish;
-                }
-            }
-            else{
-                if (coords_info[neighbor] > 0){ 
-                    // We found dirty or unexplored cell, so we can finish the bfs after finishing to construct this level
-                    can_finish = true;
-                }
+            int neighbor_distance_from_curr_loc = i+1;
+            int min_path_length = neighbor_distance_from_curr_loc + distances_from_docking[neighbor]+1;//TODO: plus 1? 
+            if (!updating_distances_from_docking && min_path_length <= limiting_factor && coords_info[neighbor] > 0){ 
+                //We're looking for cleanable cell, the neighbor is indeed cleanable, and we can complete a traversal to it, clean it and return to the docking within the limiting factor
+                candidates.push_back(neighbor); 
             }
         }
     }
-    return can_finish;
 }
+
 
 /*
 Creates a path from start to target using "parents" map
@@ -106,62 +102,69 @@ If to_docking - creates a shortest path from curr_loc to the docking station.
 Else, a shortest path to the closest or unexplored cell (If there are many at the same level - to the known most dirty).
 If there is no path that allows us to reach target and go back to the docking safely, returns an empty path.
 */
-CoordsVector CommonAlgorithm::bfs(bool to_docking, size_t limiting_factor, bool is_deterministic){
+CoordsVector CommonAlgorithm::bfs(size_t limiting_factor, bool is_deterministic, bool updating_distances_from_docking){
      
-    Coords target = Coords(0,0);
-    bool can_finish = false;
-    int max_iterations = to_docking? limiting_factor : ((limiting_factor-(curr_loc == Coords(0,0))) / 2);
+    //int max_iterations = to_docking? limiting_factor : ((limiting_factor-(curr_loc == Coords(0,0))) / 2);
     /*
     If we just need to return to the docking, we could use all the steps.
     If we want to explore something, We need half of the remaining steps to return.
     If we're starting at the docking station, we want to be able to clean the explored cell, so we assign one step to this.  
     */
-    std::deque<Coords> queue = {curr_loc}; 
-    std::unordered_map<Coords,Coords> parents;//We will use it to map children to their parents and to remember where we already visited
-    parents[curr_loc] = curr_loc; //Arbitrary mapping, we won't use it as we just need to have curr_loc in the parents; 
+    Coords current = updating_distances_from_docking ? Coords(0,0) : curr_loc;
+    std::deque<Coords> queue = {current}; 
+    std::unordered_map<Coords, Coords> local_parents;
+    std::unordered_map<Coords, Coords>& parents = updating_distances_from_docking ? path_from_docking_parents : local_parents;
+
+    if (updating_distances_from_docking) {
+        path_from_docking_parents.clear();  // Reset path_from_docking_parents
+    }
+    parents[current] = current; //Arbitrary mapping, we won't use it as we just need to have current in the parents mapping; 
+    std::deque<Coords> candidates;
+    int max_iterations = updating_distances_from_docking? max_steps : limiting_factor; 
+    // If we're updating the distances from the docking we want to have information about all the cells that are reachable to the docking at any time, so we perform max_steps iterations
+    // Otherwise, we want to search for cleanable cells that we can reach within the limiting_factor steps frame 
     for (int i = 0; i < max_iterations; i++){
         size_t len = queue.size();
         if (len == 0){
-            //No unknown or dirty cells are reachable
+            //We've scanned all the cells
             return {};
         }
         for (size_t j = 0; j < len; j++){ //Popping out all the coords from the current level and adding their relevant neighbors
-            Coords current = queue.front();
+            current = queue.front();
             queue.pop_front();
-            if(appendNeighbors(current, queue, parents, to_docking)){//Adds neighbors to queue and parents if they're not there yet
-                //If true - we can finish our run after this iteration
-                can_finish = true;
-            } 
+            if (updating_distances_from_docking){
+                distances_from_docking[current] = i; 
+            }
+            appendNeighbors(current, queue, parents, updating_distances_from_docking, candidates,i, limiting_factor);
+
         }
         if (!is_deterministic){
             /*
-            If not deterministic, we shuffle the order of the Coords in the queue.
-            This way, we will pick one of the shortest paths randomly. 
-            This will also mean that if there are two possible targets with the same dirt level at the same distance, the algorithm will choose one of them at random.
+            If not deterministic, we shuffle the order of the Coords in the queue and the candidates for the bfs's target.
+            This way, we will pick one of the shortest paths randomly and even the target randomly (from the most prioritized targets)
             */
 
              // Create a random number generator
             std::random_device rd;
             std::mt19937 g(rd());
 
-            // Shuffle the queue
+            // Shuffle the queue and the candidates
             std::shuffle(queue.begin(), queue.end(), g);
+            std::shuffle(candidates.begin(), candidates.end(),g);
         }
-        if (can_finish){
-            if (!to_docking) {//Finds the dirtiest known cell in this level and sets it as the target
-                Coords candidate = queue.front();
-                float candidate_status = coords_info[candidate];
-                queue.pop_front();
-                while (!queue.empty()){
-                    if (coords_info[queue.front()] > candidate_status) {
-                        candidate = queue.front();
-                        candidate_status = coords_info[candidate];
-                    }
-                    queue.pop_front();
+
+        if (!candidates.empty()){ // Can happen only when looking for cleanable cells, otherwise we will run until no more reachable cells within the max_steps limit
+            Coords candidate = candidates.front();
+            float candidate_status = coords_info[candidate];
+            candidates.pop_front();
+            while (!candidates.empty()){
+                if (coords_info[queue.front()] > candidate_status) {
+                    candidate = queue.front();
+                    candidate_status = coords_info[candidate];
                 }
-                target = candidate;
+                queue.pop_front();
             }
-            return createPathByParents(curr_loc,target,parents); 
+            return createPathByParents(curr_loc,candidate,parents); 
         }
     }
     //No dirty or unknown cell was reachable within max_iterations allowed steps
@@ -175,27 +178,23 @@ it will construct a path to there.
 Else, it will construct a path to the docking station.
 */
 CoordsVector CommonAlgorithm::constructNextPath(size_t limiting_factor, bool is_deterministic) {
-    CoordsVector path_to_docking = bfs(true,limiting_factor, is_deterministic);
-    CoordsVector path_to_closet_cleanable_cell = bfs(false,limiting_factor-path_to_docking.size(), is_deterministic); 
-    //limiting_factor-path_to_docking.size() as limiting_factor so the robot will be able to return to its original place with enough steps to return to the docking after it
-    return path_to_closet_cleanable_cell.empty()? path_to_docking : path_to_closet_cleanable_cell;
+    CoordsVector path_to_closet_cleanable_cell = bfs(limiting_factor, is_deterministic,false); 
+    if (!path_to_closet_cleanable_cell.empty()){
+        return path_to_closet_cleanable_cell;
+    }
+    CoordsVector reversed_path_to_docking = createPathByParents(Coords(0,0),curr_loc,path_from_docking_parents);
+    std::reverse(reversed_path_to_docking.begin(),reversed_path_to_docking.end());
+    return reversed_path_to_docking;
 }
 
 /*
 Marches the next step of the path, including needed fields' updates
 */
 Step CommonAlgorithm::marchTheNextStepOfThePath(){
-    bool in_the_way_to_docking = (path.front() == Coords(0,0));
     Coords next_loc = path.back();
     path.pop_back();
     Step res = Step(next_loc-curr_loc);
     curr_loc = next_loc;
-    if (in_the_way_to_docking){
-        updateDistFromDocking(path.size()); //This is a shortest path to the docking station so we know we can update it
-    }
-    else{
-        is_dist_from_docking_updated = false; //We can't guarantee real distance from the docking in this case 
-    }
     return res;
 }
 
@@ -220,7 +219,7 @@ Step CommonAlgorithm::nextStep(bool is_deterministic){
     For curr_loc we can know its dirt level, and for the neighbors we can know if they're walls
     */
     if (coords_info[curr_loc] == UNEXPLORED) {
-        updateDetailsAboutCurrLocAndItsNeighbors();
+        updateInformation(limiting_factor);
     }
 
     //Now we're deciding the next step
@@ -228,27 +227,17 @@ Step CommonAlgorithm::nextStep(bool is_deterministic){
     /*
     Condition 1: curr_loc is cleanable
     */
-    if (dirt_sensor->dirtLevel() >= 1){
-         
-        if (!is_dist_from_docking_updated) { //Make sure dist_from_docking_is_updated
-            CoordsVector path_to_docking = bfs(true,limiting_factor, is_deterministic);
-            updateDistFromDocking(path_to_docking.size()); //The length of the path to the docking received from bfs 
-        }
-        if (dist_from_docking + 1 <= limiting_factor){ //Enough steps to clean and return to the docking station
-            coords_info[curr_loc] -= 1; //The robot cleans the cell
-            remaining_steps -=1; 
-            return Step::Stay;
-        }
+    if (dirt_sensor->dirtLevel() >= 1 && distances_from_docking[curr_loc] + 1 <= limiting_factor){ //Enough steps to clean and return to the docking station
+        coords_info[curr_loc] -= 1; //The robot cleans the cell
+        remaining_steps -=1; 
+        return Step::Stay;
     }
 
     /*
     Condition 2: Curr_loc is not cleanable, and there is already a path that the algo constructed,
-    so the robot will march another step in this path towards its destination.
-    Note this is not an else condition regarding to condition 1, because it is possible
-    to have a non empty path to the docking station which some of its nodes are cleanable
+    so the robot will march another step in this path towards its destination
     */
     if (!path.empty()){
-         
         res = marchTheNextStepOfThePath();
     }
 
@@ -266,9 +255,9 @@ Step CommonAlgorithm::nextStep(bool is_deterministic){
                 if(battery_meter->getBatteryState() >= charging_cap){ //We charged enough 
                      
                     is_charging_cap_updated = false;
-                    path = bfs(false,limiting_factor, is_deterministic); //Calculate next path
+                    path = bfs(limiting_factor, is_deterministic, false); //Calculate next path
                     if (!path.empty()){
-                    res = marchTheNextStepOfThePath();
+                        res = marchTheNextStepOfThePath();
                     }
                     else{
                         res = Step::Finish;
@@ -281,7 +270,7 @@ Step CommonAlgorithm::nextStep(bool is_deterministic){
             }
             else{ //Else, we need to calculate how much to charge 
                  
-                CoordsVector optional_path = bfs(false, std::min(max_battery,remaining_steps-1),is_deterministic); //Checks the shortest path available, assuming battery is not limiting us 
+                CoordsVector optional_path = bfs(std::min(max_battery,remaining_steps-1),is_deterministic,false); //Checks the shortest path available, assuming battery is not limiting us 
                 size_t cleaning_duty_min_steps = 2*optional_path.size()+1; //Steps that it will take to clean the path's target at least once 
                 if(optional_path.empty()){ //There is no reachable cleanable cells
                     res = Step::Finish;
