@@ -71,6 +71,16 @@
         "stop_token": "cpp",
         "thread": "cpp",
         "filesystem": "cpp",
-        "condition_variable": "cpp"
+        "condition_variable": "cpp",
+        "csignal": "cpp",
+        "any": "cpp",
+        "coroutine": "cpp",
+        "list": "cpp",
+        "set": "cpp",
+        "optional": "cpp",
+        "source_location": "cpp",
+        "future": "cpp",
+        "cinttypes": "cpp",
+        "typeindex": "cpp"
     }
 }
