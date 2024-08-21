@@ -48,20 +48,33 @@ std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::
     return paths;
 }
 
+bool write_error_file(std::string filename, std::string content) {
+    std::ofstream file(filename);
+    
+    if (file.is_open()) {
+        file << content;
+        file.close();
+        return true;
+    } 
+    std::cerr << "Could not open " << filename << " for writing error" << std::endl;
+    return false;
+}
+
 void run_simulations(RunValues& rv) {
     size_t my_task;
     while((my_task = ++counter) < rv.algorithm_instances.size()) {
         auto my_house_path = rv.house_file_paths[my_task / (rv.algorithm_instances.size() / rv.house_file_paths.size())];
         auto my_algo = &rv.algorithm_instances[my_task];
         
-        Simulator simulator;
-        if(!simulator.readHouseFile(my_house_path)) {
-            std::cerr << "Error in input file: ^^^" << std::endl;
-            continue;
-        }
-        
+        Simulator simulator;        
         simulator.setAlgorithm(std::move(my_algo->first));
         simulator.setAlgorithmName(my_algo->second);
+
+        if(!simulator.readHouseFile(my_house_path)) {
+            write_error_file(my_house_path.filename().replace_extension("error"), "Error in house file");
+            continue;
+        }
+
         const size_t FILE_OPS_TIMEOUT = 3000;
         auto timeout = std::chrono::milliseconds(simulator.getMaxSteps() + FILE_OPS_TIMEOUT);
         size_t default_score = simulator.getMaxSteps() * 2 + simulator.getInitialDirt() * 300 + 2000;
@@ -119,6 +132,8 @@ bool write_results_csv_file(const RunValues& rv) {
     }
     return true;
 }
+
+
 
 /**
  * @brief The main function of the program.
@@ -191,12 +206,19 @@ int main(int argc, char** argv) {
     {
         void* handle = dlopen(path.c_str(), RTLD_NOW | RTLD_GLOBAL);
         if(!handle) {
-            std::cerr << "Failed to open library: " << dlerror() << std::endl;
-            return EXIT_FAILURE;
+            write_error_file(path.filename().replace_extension("error"), "Failed to open library: " + std::string(dlerror()));
+            continue;
         }
+
         // Clear any existing errors
         dlerror();
+        
         handles.push_back(handle);
+
+        if(AlgorithmRegistrar::getAlgorithmRegistrar().count() != handles.size()) {
+            write_error_file(path.filename().replace_extension("error"), "Failed to register algorithm");
+            continue;
+        }
     }
 
     for (size_t i = 0; i < rv.house_file_paths.size(); i++) {
@@ -216,13 +238,12 @@ int main(int argc, char** argv) {
     for (auto& thread : threads) {
         thread.join();
     }
-
-    AlgorithmRegistrar::getAlgorithmRegistrar().clear();
     
     if(!write_results_csv_file(rv)) {
         return EXIT_FAILURE;
     } 
 
+    AlgorithmRegistrar::getAlgorithmRegistrar().clear();
     // dlclose
      for(auto handle : handles) {
         if(dlclose(handle)) {

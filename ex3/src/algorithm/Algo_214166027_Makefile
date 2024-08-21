@@ -11,7 +11,7 @@ LDFLAGS = -shared
 TARGET = Algo_214166027.so
 
 # Source files
-SRC = Algo_214166027.cpp
+SRC = Algo_214166027.cpp ../common.cpp
 
 # Object files
 OBJ = $(SRC:.cpp=.o)
