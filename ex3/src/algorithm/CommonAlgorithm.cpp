@@ -47,9 +47,9 @@ void CommonAlgorithm::updateInformation(size_t limiting_factor){
         }
     }
     if (added_new_cell){
-        bfs(limiting_factor,is_deterministic, true); //Distances and paths from docking might need to be updated
+        bfs(limiting_factor, true); //Distances and paths from docking might need to be updated
         if (!path.empty()){
-            path = constructNextPath(limiting_factor,is_deterministic); //If we're in the middle of a travel path, there might be a better one now
+            path = constructNextPath(limiting_factor); //If we're in the middle of a travel path, there might be a better one now
         }
     }
 }
@@ -72,7 +72,7 @@ void CommonAlgorithm::appendNeighbors(const Coords& current, std::deque<Coords>&
             parents[neighbor] = current;
             queue.push_back(neighbor);
             int neighbor_distance_from_curr_loc = i+1;
-            int min_path_length = neighbor_distance_from_curr_loc + distances_from_docking[neighbor]+1;//TODO: plus 1? 
+            size_t min_path_length = neighbor_distance_from_curr_loc + distances_from_docking[neighbor] + 1;
             if (!updating_distances_from_docking && min_path_length <= limiting_factor && coords_info[neighbor] > 0){ 
                 //We're looking for cleanable cell, the neighbor is indeed cleanable, and we can complete a traversal to it, clean it and return to the docking within the limiting factor
                 candidates.push_back(neighbor); 
@@ -102,9 +102,8 @@ If to_docking - creates a shortest path from curr_loc to the docking station.
 Else, a shortest path to the closest or unexplored cell (If there are many at the same level - to the known most dirty).
 If there is no path that allows us to reach target and go back to the docking safely, returns an empty path.
 */
-CoordsVector CommonAlgorithm::bfs(size_t limiting_factor, bool is_deterministic, bool updating_distances_from_docking){
-     
-    //int max_iterations = to_docking? limiting_factor : ((limiting_factor-(curr_loc == Coords(0,0))) / 2);
+CoordsVector CommonAlgorithm::bfs(size_t limiting_factor, bool updating_distances_from_docking){
+    static std::random_device rd;
     /*
     If we just need to return to the docking, we could use all the steps.
     If we want to explore something, We need half of the remaining steps to return.
@@ -145,7 +144,6 @@ CoordsVector CommonAlgorithm::bfs(size_t limiting_factor, bool is_deterministic,
             */
 
              // Create a random number generator
-            std::random_device rd;
             std::mt19937 g(rd());
 
             // Shuffle the queue and the candidates
@@ -158,11 +156,11 @@ CoordsVector CommonAlgorithm::bfs(size_t limiting_factor, bool is_deterministic,
             float candidate_status = coords_info[candidate];
             candidates.pop_front();
             while (!candidates.empty()){
-                if (coords_info[queue.front()] > candidate_status) {
-                    candidate = queue.front();
+                if (coords_info[candidates.front()] > candidate_status) {
+                    candidate = candidates.front();
                     candidate_status = coords_info[candidate];
                 }
-                queue.pop_front();
+                candidates.pop_front();
             }
             return createPathByParents(curr_loc,candidate,parents); 
         }
@@ -177,13 +175,15 @@ If there's a path to a unexplored/cleanable cell within the limit of limiting_fa
 it will construct a path to there. 
 Else, it will construct a path to the docking station.
 */
-CoordsVector CommonAlgorithm::constructNextPath(size_t limiting_factor, bool is_deterministic) {
-    CoordsVector path_to_closet_cleanable_cell = bfs(limiting_factor, is_deterministic,false); 
+CoordsVector CommonAlgorithm::constructNextPath(size_t limiting_factor) {
+    CoordsVector path_to_closet_cleanable_cell = bfs(limiting_factor, false); 
     if (!path_to_closet_cleanable_cell.empty()){
         return path_to_closet_cleanable_cell;
     }
     CoordsVector reversed_path_to_docking = createPathByParents(Coords(0,0),curr_loc,path_from_docking_parents);
+    reversed_path_to_docking.push_back(Coords(0,0)); // adding docking station to the end of the path
     std::reverse(reversed_path_to_docking.begin(),reversed_path_to_docking.end());
+    reversed_path_to_docking.pop_back(); // removing our current location from the path
     return reversed_path_to_docking;
 }
 
@@ -207,7 +207,7 @@ size_t CommonAlgorithm::stepsNumberToCharge(size_t amount){
     return std::ceil(float(amount_left)/charging_size);
 }
 
-Step CommonAlgorithm::nextStep(bool is_deterministic){
+Step CommonAlgorithm::nextStep(){
     Step res;
     /* Limiting_factor is the actual number of steps until robot must return to the docking_station
     We consider limiting_factor-1 for the finishing step */
@@ -255,7 +255,7 @@ Step CommonAlgorithm::nextStep(bool is_deterministic){
                 if(battery_meter->getBatteryState() >= charging_cap){ //We charged enough 
                      
                     is_charging_cap_updated = false;
-                    path = bfs(limiting_factor, is_deterministic, false); //Calculate next path
+                    path = bfs(limiting_factor, false); //Calculate next path
                     if (!path.empty()){
                         res = marchTheNextStepOfThePath();
                     }
@@ -270,7 +270,7 @@ Step CommonAlgorithm::nextStep(bool is_deterministic){
             }
             else{ //Else, we need to calculate how much to charge 
                  
-                CoordsVector optional_path = bfs(std::min(max_battery,remaining_steps-1),is_deterministic,false); //Checks the shortest path available, assuming battery is not limiting us 
+                CoordsVector optional_path = bfs(std::min(max_battery,remaining_steps-1), false); //Checks the shortest path available, assuming battery is not limiting us 
                 size_t cleaning_duty_min_steps = 2*optional_path.size()+1; //Steps that it will take to clean the path's target at least once 
                 if(optional_path.empty()){ //There is no reachable cleanable cells
                     res = Step::Finish;
@@ -297,7 +297,7 @@ Step CommonAlgorithm::nextStep(bool is_deterministic){
         We will construct our next path to a cleanable/unexplored cell, or to the docking station If there isn't any.
         */
         else{ 
-            path = constructNextPath(limiting_factor, is_deterministic);
+            path = constructNextPath(limiting_factor);
             res = marchTheNextStepOfThePath();
         }
     }

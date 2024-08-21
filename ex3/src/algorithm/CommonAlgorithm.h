@@ -38,7 +38,6 @@ class CommonAlgorithm : public AbstractAlgorithm {
         void setWallsSensor(const WallsSensor& wallSensor) override;
         void setDirtSensor(const DirtSensor& dirtSensor) override;
         void setBatteryMeter(const BatteryMeter& batteryMeter) override;
-        virtual Step nextStep() override = 0;
     
     protected:
         CommonAlgorithm(bool is_deterministic);
@@ -46,11 +45,11 @@ class CommonAlgorithm : public AbstractAlgorithm {
         void updateInformation(size_t limiting_factor);
         void updateDistFromDocking(int dist);
         void appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool to_docking, std::deque<Coords> &candidates, int i, size_t limiting_factor);
-        CoordsVector bfs(size_t limiting_factor, bool is_deterministic, bool updating_distances_from_docking);
-        CoordsVector constructNextPath(size_t limiting_factor, bool is_deterministic);
+        CoordsVector bfs(size_t limiting_factor, bool updating_distances_from_docking);
+        CoordsVector constructNextPath(size_t limiting_factor);
         Step marchTheNextStepOfThePath();
         size_t stepsNumberToCharge(size_t amount);
-        Step nextStep(bool is_deterministic);
+        Step nextStep();
         CoordsVector createPathByParents(Coords start,Coords target,std::unordered_map<Coords,Coords> parents);
 
         

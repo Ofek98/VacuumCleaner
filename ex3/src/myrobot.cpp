@@ -37,6 +37,7 @@ std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::
                         paths.push_back(file_path);
                     }
                 }
+                
             }
         }
         else {
@@ -62,36 +63,36 @@ bool write_error_file(std::string filename, std::string content) {
 
 void run_simulations(RunValues& rv) {
     size_t my_task;
+    std::mutex results_mutex;
     while((my_task = ++counter) < rv.algorithm_instances.size()) {
         auto my_house_path = rv.house_file_paths[my_task / (rv.algorithm_instances.size() / rv.house_file_paths.size())];
-        auto my_algo = &rv.algorithm_instances[my_task];
+        auto my_algo = std::move(rv.algorithm_instances[my_task]);
         
         Simulator simulator;        
-        simulator.setAlgorithm(std::move(my_algo->first));
-        simulator.setAlgorithmName(my_algo->second);
 
         if(!simulator.readHouseFile(my_house_path)) {
             write_error_file(my_house_path.filename().replace_extension("error"), "Error in house file");
             continue;
         }
+        simulator.setAlgorithm(std::move(my_algo.first));
+        simulator.setAlgorithmName(my_algo.second);
 
         const size_t FILE_OPS_TIMEOUT = 3000;
         auto timeout = std::chrono::milliseconds(simulator.getMaxSteps() + FILE_OPS_TIMEOUT);
         size_t default_score = simulator.getMaxSteps() * 2 + simulator.getInitialDirt() * 300 + 2000;
-        std::mutex results_task_mutex;
 
-        std::thread([&rv, my_task, default_score, timeout, &results_task_mutex]() {
+        std::thread([&rv, my_task, default_score, timeout, &results_mutex]() {           
             std::this_thread::sleep_for(timeout);
-            std::lock_guard<std::mutex> lock(results_task_mutex);
+            std::unique_lock<std::mutex> lck(results_mutex);
             if(rv.results[my_task] == -1) {
                 rv.results[my_task] = default_score;
-                results_task_mutex.unlock(); // this line is important
+                lck.unlock(); // this line is important
                 run_simulations(rv);
             }
         }).detach();
 
         size_t run_score = simulator.run(!rv.summary_only);
-        std::lock_guard<std::mutex> lock(results_task_mutex);
+        std::lock_guard<std::mutex> lock(results_mutex);
         if(rv.results[my_task] == -1) {
             // we usually reach here
             rv.results[my_task] = run_score;
@@ -158,7 +159,7 @@ int main(int argc, char** argv) {
     RunValues rv;
 
     // Check the number of arguments
-    if (argc > 4) {
+    if (argc > 5) {
         std::cerr << "Too many arguments!" << std::endl;
         return EXIT_FAILURE;
     }
@@ -201,9 +202,11 @@ int main(int argc, char** argv) {
     
     std::vector<void*> handles;
     handles.reserve(algo_file_paths.size());
+
     // dlopen
     for (auto path : algo_file_paths)
     {
+
         void* handle = dlopen(path.c_str(), RTLD_NOW | RTLD_GLOBAL);
         if(!handle) {
             write_error_file(path.filename().replace_extension("error"), "Failed to open library: " + std::string(dlerror()));
@@ -219,6 +222,7 @@ int main(int argc, char** argv) {
             write_error_file(path.filename().replace_extension("error"), "Failed to register algorithm");
             continue;
         }
+
     }
 
     for (size_t i = 0; i < rv.house_file_paths.size(); i++) {

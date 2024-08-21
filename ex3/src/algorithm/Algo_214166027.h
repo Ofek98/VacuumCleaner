@@ -6,7 +6,7 @@
  * @brief This file contains the declaration of the Algo_214166027 class.
  */
 
-#include "commonAlgorithm.h"
+#include "CommonAlgorithm.h"
 
 /**
  * @class Algo_214166027
@@ -16,7 +16,6 @@ class Algo_214166027 : public CommonAlgorithm {
 
     public:
         Algo_214166027();
-        Step nextStep() override;
 };
 
 #endif // ALGO_214166027_H

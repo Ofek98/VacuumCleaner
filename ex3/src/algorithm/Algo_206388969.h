@@ -16,7 +16,6 @@ class Algo_206388969 : public CommonAlgorithm {
 
     public:
         Algo_206388969();
-        Step nextStep() override;
 };
 
 #endif // ALGO_214166027_H

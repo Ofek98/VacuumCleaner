@@ -1,7 +1,7 @@
-NumSteps = 99
-DirtLeft = 19
+NumSteps = 100
+DirtLeft = 20
 Status = FINISHED
 InDock = TRUE
-Score = 5800
+Score = 6101
 Steps:
-EENEEEEESSssNWWWWWWWssssssssssssssssssssSsEssEsssEssssENWWWWssssssssssssssssssssWSSEEEEENsssssNWWWWF
+ESssEsssNESssssWWWsNssssssssssssssssssssWSSEEEEEEENssWWWWNWWssssssssssssssssssssEENEEEESSssssWNWWWWWF

@@ -8,10 +8,10 @@ CXXFLAGS = -std=c++20 -fPIC -Wall -Wextra -Werror -pedantic -g
 LDFLAGS = -shared
 
 # Target name (shared object)
-TARGET = Algo_123456789.so
+TARGET = Algo_206388969.so
 
 # Source files
-SRC = Algo_123456789.cpp ../common.cpp
+SRC = Algo_206388969.cpp ../common.cpp CommonAlgorithm.cpp
 
 # Object files
 OBJ = $(SRC:.cpp=.o)
