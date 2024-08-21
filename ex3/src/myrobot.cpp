@@ -66,16 +66,15 @@ void run_simulations(RunValues& rv) {
     std::mutex results_mutex;
     while((my_task = ++counter) < rv.algorithm_instances.size()) {
         auto my_house_path = rv.house_file_paths[my_task / (rv.algorithm_instances.size() / rv.house_file_paths.size())];
-        auto my_algo = std::move(rv.algorithm_instances[my_task]);
-        
-        Simulator simulator;        
+        auto my_algo = std::move(rv.algorithm_instances[my_task].first); // important move, ensures algo deletion in case of house file errors
 
+        Simulator simulator;        
         if(!simulator.readHouseFile(my_house_path)) {
             write_error_file(my_house_path.filename().replace_extension("error"), "Error in house file");
             continue;
         }
-        simulator.setAlgorithm(std::move(my_algo.first));
-        simulator.setAlgorithmName(my_algo.second);
+        simulator.setAlgorithm(std::move(my_algo));
+        simulator.setAlgorithmName(rv.algorithm_instances[my_task].second);
 
         const size_t FILE_OPS_TIMEOUT = 3000;
         auto timeout = std::chrono::milliseconds(simulator.getMaxSteps() + FILE_OPS_TIMEOUT);

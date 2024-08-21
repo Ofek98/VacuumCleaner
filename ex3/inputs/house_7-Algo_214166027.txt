@@ -4,4 +4,4 @@ Status = FINISHED
 InDock = TRUE
 Score = 4211
 Steps:
-WsEssssEsWF
+EsWssssWsEF
