@@ -97,6 +97,17 @@ CoordsVector CommonAlgorithm::createPathByParents(Coords start,Coords target,std
     return next_path; //There is a copy elision compiler optimization so we didn't use std::move here 
 }
 
+float CommonAlgorithm::neighbors_rating(Coords loc){
+    float cnt = 0;
+    for(int j = 0; j < 4; j++){
+        Direction dir = static_cast<Direction>(j);
+        Coords neighbor = loc+dir;
+        if (coords_info.find(neighbor) == coords_info.end()){
+            cnt += 0.2;
+        }
+    }
+}
+
 /*
 If to_docking - creates a shortest path from curr_loc to the docking station.
 Else, a shortest path to the closest or unexplored cell (If there are many at the same level - to the known most dirty).
@@ -152,13 +163,16 @@ CoordsVector CommonAlgorithm::bfs(size_t limiting_factor, bool updating_distance
         }
 
         if (!candidates.empty()){ // Can happen only when looking for cleanable cells, otherwise we will run until no more reachable cells within the max_steps limit
-            Coords candidate = candidates.front();
-            float candidate_status = coords_info[candidate];
+            Coords target = candidates.front();
+            float target_status = coords_info[target];
             candidates.pop_front();
             while (!candidates.empty()){
-                if (coords_info[candidates.front()] > candidate_status) {
-                    candidate = candidates.front();
-                    candidate_status = coords_info[candidate];
+                Coords candidate = candidates.front();
+                float candidate_status = coords_info[candidate];
+                if ((candidate_status > target_status)||
+                    (target_status == candidate_status && neighbors_rating(candidate) > neighbors_rating(target)) && !is_deterministic){
+                    target = candidate;
+                    target_status = candidate_status;
                 }
                 candidates.pop_front();
             }
