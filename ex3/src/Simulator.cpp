@@ -4,6 +4,8 @@
  */
 
 #include "Simulator.h"
+#include <sstream>
+
 
 
 int Simulator::run(bool write_output_file) {
@@ -13,8 +15,19 @@ int Simulator::run(bool write_output_file) {
     auto timeout = std::chrono::milliseconds(maxSteps);
     auto start = std::chrono::high_resolution_clock::now();
 
+    std::string log_info;
+
+
     for (size_t i = 0; i < maxSteps+1 && !finished; i++)
     {
+        // Append details to the log string before executing each step
+        log_info += "******* Step " + std::to_string(i + 1) + " *******\n";
+        log_info += "Current Location: " + (std::ostringstream() << location).str() + "\n";  // Using the overloaded << operator
+        log_info += "Remaining Steps Number: " + std::to_string(maxSteps - i) + "\n";
+        log_info += "Battery Left: " + std::to_string(battery_left) + "\n";
+        
+        
+
         if(battery_left == 0 && location != house.getDockingStationCoords()) {
             break;
         }
@@ -77,6 +90,8 @@ int Simulator::run(bool write_output_file) {
         if(house.isWall(location)) {
             break;
         }
+
+        log_info += "Chosen Step: " + (std::ostringstream() << next_step).str() + "\n";
     }
 
     size_t dirt_left = house.getTotalDirt();

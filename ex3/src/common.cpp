@@ -82,6 +82,15 @@ std::ostream& operator<<(std::ostream& os, const std::vector<Coords>& vec) {
     return os;
 }
 
+std::ostream& operator<<(std::ostream& os, const Step& step) {
+    return os << (step == Step::North ? "North" :
+                  step == Step::South ? "South" :
+                  step == Step::East ? "East" :
+                  step == Step::West ? "West" :
+                  step == Step::Stay ? "Stay" : "Finish");
+}
+
+
 namespace std {
     std::size_t hash<Coords>::operator()(const Coords& c) const noexcept {
         return std::hash<int>()(c.x) ^ std::hash<int>()(c.y);
