@@ -16,6 +16,7 @@ int Simulator::run(bool write_output_file) {
     auto start = std::chrono::high_resolution_clock::now();
 
     std::string log_info;
+    log_info += "Docking Station Location: " + (std::ostringstream() << house.getDockingStationCoords()).str() + "\n";
 
 
     for (size_t i = 0; i < maxSteps+1 && !finished; i++)
