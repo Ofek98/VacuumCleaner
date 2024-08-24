@@ -51,8 +51,6 @@ class CommonAlgorithm : public AbstractAlgorithm {
         size_t stepsNumberToCharge(size_t amount);
         Step nextStep();
         CoordsVector createPathByParents(Coords start,Coords target,std::unordered_map<Coords,Coords> parents);
-        float score(Coords loc);
-
         
         bool is_deterministic;
         CoordsVector path;

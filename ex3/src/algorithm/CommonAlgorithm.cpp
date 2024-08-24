@@ -97,21 +97,6 @@ CoordsVector CommonAlgorithm::createPathByParents(Coords start,Coords target,std
     return next_path; //There is a copy elision compiler optimization so we didn't use std::move here 
 }
 
-float CommonAlgorithm::score(Coords loc){
-    float score = 0;
-    score += coords_info[loc] * 4; //Times 4 to give the score on the current cell a same weight as all its neighbors combined
-    for(int j = 0; j < 4; j++){
-        Direction dir = static_cast<Direction>(j);
-        Coords neighbor = loc+dir;
-        if (coords_info.find(neighbor) == coords_info.end()){
-            score += 0.25; //A cell that is not been discovered yet is better than a clean cell (0 score) but worse than a discovered cell with unknown dirt level (0.5)
-        }
-        else if (coords_info[neighbor] != DOCKING_STATION){ //We save docking station constant status as -2 and we don't want to punish for having the docking station as a neighbor
-                score += coords_info[neighbor]; 
-        }
-    }
-}
-
 /*
 If to_docking - creates a shortest path from curr_loc to the docking station.
 Else, a shortest path to the closest or unexplored cell (If there are many at the same level - to the known most dirty).
@@ -165,21 +150,19 @@ CoordsVector CommonAlgorithm::bfs(size_t limiting_factor, bool updating_distance
             std::shuffle(queue.begin(), queue.end(), g);
             std::shuffle(candidates.begin(), candidates.end(),g);
         }
-
+        
         if (!candidates.empty()){ // Can happen only when looking for cleanable cells, otherwise we will run until no more reachable cells within the max_steps limit
-            Coords target = candidates.front();
-            float target_score = score(target);
+            Coords candidate = candidates.front();
+            float candidate_status = coords_info[candidate];
             candidates.pop_front();
             while (!candidates.empty()){
-                Coords candidate = candidates.front();
-                float candidate_score = score(candidate);
-                if (candidate_score > target_score){
-                    target = candidate;
-                    target_score = candidate_score;
+                if (coords_info[candidates.front()] > candidate_status) {
+                    candidate = candidates.front();
+                    candidate_status = coords_info[candidate];
                 }
                 candidates.pop_front();
             }
-            return createPathByParents(curr_loc,target,parents); 
+            return createPathByParents(curr_loc,candidate,parents); 
         }
     }
     //No dirty or unknown cell was reachable within max_iterations allowed steps

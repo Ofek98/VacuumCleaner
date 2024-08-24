@@ -1,0 +1,23 @@
+Super Complex House
+MaxSteps = 250
+MaxBattery = 250
+Rows = 500
+Cols = 500
+WWWWWWWWWWWWWWWWWWWWWWWWW
+W    1                  W
+W        2      3       W
+W   4                 6 W
+W              3        W
+W        32          5  W
+W   7    9        9     W
+W            9 3   9    W
+W      6   9  5 D       W
+W           9   9  9    W
+W      1        9  5    W
+W       4   6           W
+W                  3    W
+W                       W
+W         2             W
+W                   6   W
+W                       W
+WWWWWWWWWWWWWWWWWWWWWWWWW
