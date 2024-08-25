@@ -5,25 +5,25 @@ Ofek Kasif
 PLEASE NOTE Known_Issues file and bonus.txt
 
 Folders:
-    algorithm_A:
-        contains the implementation of the first (non-deterministic) algorithm.
-    algorithm_B:
-        contains the implementation of the second (deterministic) algorithm.
-    common:
-        exactly equals the 'common' folder in the project's skeleton provided to us.
-    common_algo_sim:
-        includes a file that's common for both the algorithm and simulator (mainly helper classes like Coords)
-    common_algorithm:
-        contains an implemntation of the common part between both our algorithm (preventing code repetition)
-    simulator:
-        contains the main (myrobot) program, as well as Simulator class and House class (and Registrar of course)
+algorithm_A:
+    contains the implementation of the first (non-deterministic) algorithm.
+algorithm_B:
+    contains the implementation of the second (deterministic) algorithm.
+common:
+    exactly equals the 'common' folder in the project's skeleton provided to us.
+common_algo_sim:
+    includes a file that's common for both the algorithm and simulator (mainly helper classes like Coords)
+common_algorithm:
+    contains an implemntation of the common part between both our algorithm (preventing code repetition)
+simulator:
+    contains the main (myrobot) program, as well as Simulator class and House class (and Registrar of course)
 
 Makefiles and building:
-    The folders: algorithm_A, algorithm_B, simulator, each contains its own Makefile (activated simply by calling make), but the whole project can be built by using the Makefile that's in the main directory of the project (it simply triggers the other smaller Makefiles) by calling make.
+The folders: algorithm_A, algorithm_B, simulator, each contains its own Makefile (activated simply by calling make), but the whole project can be built by using the Makefile that's in the main directory of the project (it simply triggers the other smaller Makefiles) by calling make.
 
 Running the project:
-    Our 'main' program is myrobot, just build and run as follows (from the main directory of the project):
-    ./simulator/myrobot <params>
+Our 'main' program is myrobot, just build and run as follows (from the main directory of the project):
+./simulator/myrobot <params>
 
  
 Algorithm Design:
