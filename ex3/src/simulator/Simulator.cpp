@@ -24,8 +24,8 @@ std::string Simulator::run() {
         rres.log_info += "Battery Left: " + std::to_string(battery_left) + "\n";
         rres.log_info += "House Total Dirt: " + std::to_string(house.getTotalDirt()) + "\n";
         
-
         if(battery_left == 0 && location != house.getDockingStationCoords()) {
+            // Robot is DEAD
             break;
         }
 
@@ -40,11 +40,13 @@ std::string Simulator::run() {
         catch (...) {
             return "Unknown exception from algorithm";
         }
+
+        // Timeout handling right after next_step()
         if((std::chrono::high_resolution_clock::now() - start) > timeout) {
             rres.timeout_reached = true;
             return "";
         }
-
+        
         if(next_step == Step::Finish) {
             rres.finished = true;
             rres.steps_taken.push_back('F');
@@ -113,16 +115,16 @@ size_t Simulator::calcScoreAndWriteResults(bool write_output_file) {
     bool in_dock = location == docking_station;
     size_t score;
     // calculating score
-    if(rres.timeout_reached) {
+    if(rres.timeout_reached) {  // default score
         score = maxSteps * 2 + initial_dirt * 300 + 2000;
     }
     else if(!rres.finished && battery_left <= 0 && !in_dock) { // DEAD
         score = maxSteps + dirt_left * 300 + 2000;
     }
-    else if(rres.finished && !in_dock) {
+    else if(rres.finished && !in_dock) { // FINISHED
         score = maxSteps + dirt_left * 300 + 3000;
     }
-    else {
+    else {  // WORKING
         score = num_steps + dirt_left * 300 + (in_dock ? 0 : 1000);
     }
 
@@ -133,6 +135,7 @@ size_t Simulator::calcScoreAndWriteResults(bool write_output_file) {
         return 0;
     }
 
+    // writing output file
     if(write_output_file) {
         output_file << "NumSteps = " << num_steps - rres.finished << std::endl;
         output_file << "DirtLeft = " << dirt_left << std::endl;
@@ -149,6 +152,7 @@ size_t Simulator::calcScoreAndWriteResults(bool write_output_file) {
         output_file.close();
     }
 
+    // writing log file
     std::ofstream log_file(house_file_path.filename().replace_extension("").string() + "-" + algo_name + ".log"); // Open log file
 
     if (!log_file) {
@@ -161,7 +165,7 @@ size_t Simulator::calcScoreAndWriteResults(bool write_output_file) {
     return score;
 }
 
-
+// this function creates a common HouseValues object by reading a house file, it saves us from reading every time we want to use that house in the simulation
 Simulator::HouseValues Simulator::readHouseFile(std::filesystem::path house_file_path)
 {
     HouseValues hv;

@@ -23,8 +23,12 @@ struct RunValues{
     bool summary_only = false;
 };
 
+
+// atomic counter for task synchronization
 std::atomic<int> counter(-1);
 
+
+// extract all path names matching the given extention in the given directory
 std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::path dir_path, std::string extension) {
     std::vector<std::filesystem::path> paths;
     try {
@@ -61,6 +65,8 @@ bool write_error_file(std::string filename, std::string content) {
     return false;
 }
 
+
+// this function is run by every thread that runs tasks (task is a house&algorithm combination)
 void run_simulations(RunValues& rv) {
     size_t my_task;
     std::mutex results_mutex;
@@ -71,10 +77,9 @@ void run_simulations(RunValues& rv) {
         simulator.setAlgorithm(std::move(rv.algorithm_instances[my_task].first));
         simulator.setAlgorithmName(rv.algorithm_instances[my_task].second);
 
-        const size_t FILE_OPS_TIMEOUT = 3000;
-        auto timeout = std::chrono::milliseconds(simulator.getMaxSteps() + FILE_OPS_TIMEOUT);
+        auto timeout = std::chrono::milliseconds(simulator.getMaxSteps());
 
-
+        // create a backup timeout thread
         timeout_threads.emplace_back([&rv, my_task, &simulator, timeout, &results_mutex]() {           
             std::this_thread::sleep_for(timeout);
             std::unique_lock<std::mutex> lck(results_mutex);
@@ -82,12 +87,14 @@ void run_simulations(RunValues& rv) {
                 simulator.rres.timeout_reached = true;
                 rv.results[my_task] = simulator.calcScoreAndWriteResults(!rv.summary_only);
                 lck.unlock(); // this line is important
+                // the backup thread effectively replaces the original task thread here by running tasks instead of it
                 run_simulations(rv);
             }
         });
 
         std::string err = simulator.run();
         std::lock_guard<std::mutex> lock(results_mutex);
+        // equivalent to saying "if nobody written this task's score yet"
         if(rv.results[my_task] == -1) {
             // we usually reach here
             if(err != "" ) {
@@ -201,7 +208,10 @@ int main(int argc, char** argv) {
         }
     }
 
+    // get all .house files
     std::vector<std::filesystem::path> house_paths = get_file_path_list_from_dir(house_path, ".house");
+
+    // read and validate each .house file exactly once
     for (auto house_path : house_paths)
     {
         Simulator::HouseValues hv = std::move(Simulator::readHouseFile(house_path));
@@ -211,12 +221,13 @@ int main(int argc, char** argv) {
             write_error_file(house_path.filename().replace_extension("error"), "Error in house file: " + hv.error_message);
     }
     
+    // get all .so files
     std::vector<std::filesystem::path> algo_file_paths = get_file_path_list_from_dir(algo_path, ".so");
     
     std::vector<void*> handles;
     handles.reserve(algo_file_paths.size());
 
-    // dlopen
+    // dlopen each .so file
     for (auto path : algo_file_paths)
     {
 
@@ -238,6 +249,8 @@ int main(int argc, char** argv) {
 
     }
 
+
+    // create num_houses instances of each algorithm that registered susccefully
     for (size_t i = 0; i < rv.house_values.size(); i++) {
         for(const auto& algo: AlgorithmRegistrar::getAlgorithmRegistrar()) {
             rv.algorithm_instances.emplace_back(algo.create(), algo.name());
@@ -248,6 +261,7 @@ int main(int argc, char** argv) {
     std::vector<std::thread> threads;
     threads.reserve(num_threads);
 
+    // creating the actual working threads (that run our tasks)
     for (size_t i = 0; i < num_threads; i++) {
         threads.emplace_back(run_simulations, std::ref(rv));
     }
