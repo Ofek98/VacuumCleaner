@@ -29,8 +29,10 @@ CommonAlgorithm::CommonAlgorithm(bool is_deterministic)
     coords_info[Coords(0, 0)] = UNEXPLORED;
 }
 /**
-Updating curr_loc maping in coords_info to its real level,
-and adding its neighbors if needed (we can only know if they're walls or explorable) 
+Updating curr_loc maping in coords_info to its real dirt level. 
+If there's a neighbor of curr loc that we encounter for the first time, the function adds it to curr_loc, 
+and since the house's graph have been changed, we update the distances and paths to all the cells from the docking station, 
+and the path that was designated to the robot by the algorithm, if there's one.
 */
 void CommonAlgorithm::updateInformation(size_t limiting_factor){
     bool added_new_cell = false;
@@ -55,11 +57,9 @@ void CommonAlgorithm::updateInformation(size_t limiting_factor){
 }
 
 /*
-Adds the relevant neighbors of current to the queue and adds their mapping in parents map. 
-A neighbor is relevant if we know it can be accessed, and we didn't travel it yet during the bfs run.
-It returns if we can finish our bfs run, which means:
-If to_docking - we can generate a path to the docking station. 
-If not - we can generate a path to an unexplored or a cleanable cell.
+Adds the relevant neighbors of current to the BFS's queue and adds their mapping in parents map - so we'll know how to construct the BFS output path
+If we look for a path to a cleanable cell, and the function encounter such a cell (that we can reach within the limiting_factor steps frame),
+it adds its to the candidates vector, as it's a candidate to be the target of the forming path
 */
 void CommonAlgorithm::appendNeighbors(const Coords& current, std::deque<Coords>& queue,std::unordered_map<Coords,Coords> &parents, bool updating_distances_from_docking, std::deque<Coords> &candidates, int i, size_t limiting_factor){
     for(int j = 0; j < 4; j++){
@@ -74,7 +74,7 @@ void CommonAlgorithm::appendNeighbors(const Coords& current, std::deque<Coords>&
             int neighbor_distance_from_curr_loc = i+1;
             size_t min_path_length = neighbor_distance_from_curr_loc + distances_from_docking[neighbor] + 1;
             if (!updating_distances_from_docking && min_path_length <= limiting_factor && coords_info[neighbor] > 0){ 
-                //We're looking for cleanable cell, the neighbor is indeed cleanable, and we can complete a traversal to it, clean it and return to the docking within the limiting factor
+                //We're looking for cleanable cell, the neighbor is indeed cleanable, and we can complete a traversal to it and return to the docking within the limiting factor
                 candidates.push_back(neighbor); 
             }
         }
@@ -98,21 +98,20 @@ CoordsVector CommonAlgorithm::createPathByParents(Coords start,Coords target,std
 }
 
 /*
-If to_docking - creates a shortest path from curr_loc to the docking station.
-Else, a shortest path to the closest or unexplored cell (If there are many at the same level - to the known most dirty).
+If updating_distances_from_docking - updates the distances to each cell from the docking, and its father in the path from the docking to it.
+Else, returns a shortest path to the closest or unexplored cell (If there are many at the same level - to the known most dirty).
 If there is no path that allows us to reach target and go back to the docking safely, returns an empty path.
+The target in the case of !updating_distances_from_docking will be the closest cleanable cell. 
+If there are many in the same distance, the most dirty one will be elected as the target.
+If is_deterministic, same target and same path to it will be elected in each run. 
+If !is_deterministic, some target will be chosen (from the most dirty closest cells), and some shortest path to it will be created.
 */
 CoordsVector CommonAlgorithm::bfs(size_t limiting_factor, bool updating_distances_from_docking){
     static std::random_device rd;
-    /*
-    If we just need to return to the docking, we could use all the steps.
-    If we want to explore something, We need half of the remaining steps to return.
-    If we're starting at the docking station, we want to be able to clean the explored cell, so we assign one step to this.  
-    */
-    Coords current = updating_distances_from_docking ? Coords(0,0) : curr_loc;
+    Coords current = updating_distances_from_docking ? Coords(0,0) : curr_loc; //Our starting point changes by our mission
     std::deque<Coords> queue = {current}; 
     std::unordered_map<Coords, Coords> local_parents;
-    std::unordered_map<Coords, Coords>& parents = updating_distances_from_docking ? path_from_docking_parents : local_parents;
+    std::unordered_map<Coords, Coords>& parents = updating_distances_from_docking ? path_from_docking_parents : local_parents; 
 
     if (updating_distances_from_docking) {
         path_from_docking_parents.clear();  // Reset path_from_docking_parents
@@ -171,7 +170,7 @@ CoordsVector CommonAlgorithm::bfs(size_t limiting_factor, bool updating_distance
 
 /*
 Constructs the robot's next path:
-If there's a path to a unexplored/cleanable cell within the limit of limiting_factor and the distance from the docking.
+If there's a path to a unexplored/cleanable cell within the limit of limiting_factor and the distance from the docking,
 it will construct a path to there. 
 Else, it will construct a path to the docking station.
 */
@@ -180,7 +179,7 @@ CoordsVector CommonAlgorithm::constructNextPath(size_t limiting_factor) {
     if (!path_to_closet_cleanable_cell.empty()){
         return path_to_closet_cleanable_cell;
     }
-    CoordsVector reversed_path_to_docking = createPathByParents(Coords(0,0),curr_loc,path_from_docking_parents);
+    CoordsVector reversed_path_to_docking = createPathByParents(Coords(0,0),curr_loc,path_from_docking_parents); //creating a path from the docking station to curr_loc
     reversed_path_to_docking.push_back(Coords(0,0)); // adding docking station to the end of the path
     std::reverse(reversed_path_to_docking.begin(),reversed_path_to_docking.end());
     reversed_path_to_docking.pop_back(); // removing our current location from the path
@@ -215,8 +214,7 @@ Step CommonAlgorithm::nextStep(){
     // 
 
     /*
-    First we make sure that the current location and its neighbors are updated in coords_info.
-    For curr_loc we can know its dirt level, and for the neighbors we can know if they're walls
+    First we make sure that all the class members are updated 
     */
     if (coords_info[curr_loc] == UNEXPLORED) {
         updateInformation(limiting_factor);
@@ -225,19 +223,19 @@ Step CommonAlgorithm::nextStep(){
     //Now we're deciding the next step
 
     /*
-    Condition 1: curr_loc is cleanable
+    Condition 1: curr_loc is cleanable within the limiting_factor steps frame
     */
     if (dirt_sensor->dirtLevel() >= 1 && distances_from_docking[curr_loc] + 1 <= limiting_factor){ //Enough steps to clean and return to the docking station
         coords_info[curr_loc] -= 1; //The robot cleans the cell
         remaining_steps -=1; 
-        return Step::Stay;
+        res = Step::Stay;
     }
 
     /*
     Condition 2: Curr_loc is not cleanable, and there is already a path that the algo constructed,
     so the robot will march another step in this path towards its destination
     */
-    if (!path.empty()){
+    else if (!path.empty()){
         res = marchTheNextStepOfThePath();
     }
 
@@ -256,10 +254,12 @@ Step CommonAlgorithm::nextStep(){
                      
                     is_charging_cap_updated = false;
                     path = bfs(limiting_factor, false); //Calculate next path
-                    if (!path.empty()){
+                    if (!path.empty()){ //There's a path to a cleanable cell 
                         res = marchTheNextStepOfThePath();
                     }
-                    else{
+                    else{ 
+                    //There isn't a path to a cleanable cell, and we're already at the docking station and charged enough, 
+                    //so no cleanable cell is accessible within the limiting_factor steps frame, so we finish
                         res = Step::Finish;
                     }
                 }
