@@ -140,7 +140,6 @@ bool write_results_csv_file(const RunValues& rv) {
 }
 
 
-
 /**
  * @brief The main function of the program.
  * 

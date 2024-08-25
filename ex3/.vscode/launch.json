@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/src/simulator/myrobot",
-            "args": ["", "-num_threads=2", "", "-house_path=../inputs"],
+            "args": ["", "-num_threads=4", "", "-house_path=../inputs"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/src",
             "environment": [],

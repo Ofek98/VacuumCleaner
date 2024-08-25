@@ -1,0 +1,7 @@
+NumSteps = 170
+DirtLeft = 2
+Status = WORKING
+InDock = TRUE
+Score = 15900
+Steps:
+ENEEEEESSsssssssSSSSWNNNNssssssNWSsNWWWWssssssssssssssssssssNWSSssEsssEssssEEEssssSSSSNWNNSWSWNNWNNssssssssssssssssssssWWNWSSEsSESESSEWWNWsssssssssNssssssNNNEEsssssssssss

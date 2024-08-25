@@ -130,14 +130,14 @@ Current Location: (2, 3)
 Remaining Steps Number: 82
 Battery Left: 2.000000
 House Total Dirt: 38
-Chosen Step: West
+Chosen Step: North
 
 ******* Step 20 *******
-Current Location: (2, 2)
+Current Location: (1, 3)
 Remaining Steps Number: 81
 Battery Left: 1.000000
 House Total Dirt: 38
-Chosen Step: North
+Chosen Step: West
 
 ******* Step 21 *******
 Current Location: (1, 2)
@@ -326,63 +326,63 @@ Current Location: (2, 5)
 Remaining Steps Number: 54
 Battery Left: 14.000000
 House Total Dirt: 36
-Chosen Step: North
+Chosen Step: East
 
 ******* Step 48 *******
-Current Location: (1, 5)
+Current Location: (2, 6)
 Remaining Steps Number: 53
 Battery Left: 13.000000
 House Total Dirt: 36
-Chosen Step: East
+Chosen Step: Stay
 
 ******* Step 49 *******
-Current Location: (1, 6)
+Current Location: (2, 6)
 Remaining Steps Number: 52
 Battery Left: 12.000000
-House Total Dirt: 36
+House Total Dirt: 35
 Chosen Step: Stay
 
 ******* Step 50 *******
-Current Location: (1, 6)
+Current Location: (2, 6)
 Remaining Steps Number: 51
 Battery Left: 11.000000
-House Total Dirt: 35
-Chosen Step: South
+House Total Dirt: 34
+Chosen Step: Stay
 
 ******* Step 51 *******
 Current Location: (2, 6)
 Remaining Steps Number: 50
 Battery Left: 10.000000
-House Total Dirt: 35
+House Total Dirt: 33
 Chosen Step: Stay
 
 ******* Step 52 *******
 Current Location: (2, 6)
 Remaining Steps Number: 49
 Battery Left: 9.000000
-House Total Dirt: 34
+House Total Dirt: 32
 Chosen Step: Stay
 
 ******* Step 53 *******
 Current Location: (2, 6)
 Remaining Steps Number: 48
 Battery Left: 8.000000
-House Total Dirt: 33
-Chosen Step: Stay
+House Total Dirt: 31
+Chosen Step: North
 
 ******* Step 54 *******
-Current Location: (2, 6)
+Current Location: (1, 6)
 Remaining Steps Number: 47
 Battery Left: 7.000000
-House Total Dirt: 32
+House Total Dirt: 31
 Chosen Step: Stay
 
 ******* Step 55 *******
-Current Location: (2, 6)
+Current Location: (1, 6)
 Remaining Steps Number: 46
 Battery Left: 6.000000
-House Total Dirt: 31
-Chosen Step: Stay
+House Total Dirt: 30
+Chosen Step: South
 
 ******* Step 56 *******
 Current Location: (2, 6)
@@ -410,14 +410,14 @@ Current Location: (2, 3)
 Remaining Steps Number: 42
 Battery Left: 2.000000
 House Total Dirt: 30
-Chosen Step: North
+Chosen Step: West
 
 ******* Step 60 *******
-Current Location: (1, 3)
+Current Location: (2, 2)
 Remaining Steps Number: 41
 Battery Left: 1.000000
 House Total Dirt: 30
-Chosen Step: West
+Chosen Step: North
 
 ******* Step 61 *******
 Current Location: (1, 2)
@@ -564,14 +564,14 @@ Current Location: (1, 2)
 Remaining Steps Number: 20
 Battery Left: 20.000000
 House Total Dirt: 30
-Chosen Step: East
+Chosen Step: South
 
 ******* Step 82 *******
-Current Location: (1, 3)
+Current Location: (2, 2)
 Remaining Steps Number: 19
 Battery Left: 19.000000
 House Total Dirt: 30
-Chosen Step: South
+Chosen Step: East
 
 ******* Step 83 *******
 Current Location: (2, 3)
@@ -592,102 +592,116 @@ Current Location: (2, 5)
 Remaining Steps Number: 16
 Battery Left: 16.000000
 House Total Dirt: 30
-Chosen Step: East
+Chosen Step: North
 
 ******* Step 86 *******
-Current Location: (2, 6)
+Current Location: (1, 5)
 Remaining Steps Number: 15
 Battery Left: 15.000000
 House Total Dirt: 30
 Chosen Step: East
 
 ******* Step 87 *******
-Current Location: (2, 7)
+Current Location: (1, 6)
 Remaining Steps Number: 14
 Battery Left: 14.000000
 House Total Dirt: 30
-Chosen Step: Stay
+Chosen Step: East
 
 ******* Step 88 *******
-Current Location: (2, 7)
+Current Location: (1, 7)
 Remaining Steps Number: 13
 Battery Left: 13.000000
-House Total Dirt: 29
-Chosen Step: Stay
+House Total Dirt: 30
+Chosen Step: South
 
 ******* Step 89 *******
 Current Location: (2, 7)
 Remaining Steps Number: 12
 Battery Left: 12.000000
-House Total Dirt: 28
+House Total Dirt: 30
 Chosen Step: Stay
 
 ******* Step 90 *******
 Current Location: (2, 7)
 Remaining Steps Number: 11
 Battery Left: 11.000000
-House Total Dirt: 27
+House Total Dirt: 29
 Chosen Step: Stay
 
 ******* Step 91 *******
 Current Location: (2, 7)
 Remaining Steps Number: 10
 Battery Left: 10.000000
-House Total Dirt: 26
+House Total Dirt: 28
 Chosen Step: Stay
 
 ******* Step 92 *******
 Current Location: (2, 7)
 Remaining Steps Number: 9
 Battery Left: 9.000000
-House Total Dirt: 25
+House Total Dirt: 27
 Chosen Step: Stay
 
 ******* Step 93 *******
 Current Location: (2, 7)
 Remaining Steps Number: 8
 Battery Left: 8.000000
-House Total Dirt: 24
-Chosen Step: West
+House Total Dirt: 26
+Chosen Step: Stay
 
 ******* Step 94 *******
-Current Location: (2, 6)
+Current Location: (2, 7)
 Remaining Steps Number: 7
 Battery Left: 7.000000
-House Total Dirt: 24
-Chosen Step: West
+House Total Dirt: 25
+Chosen Step: Stay
 
 ******* Step 95 *******
-Current Location: (2, 5)
+Current Location: (2, 7)
 Remaining Steps Number: 6
 Battery Left: 6.000000
 House Total Dirt: 24
 Chosen Step: West
 
 ******* Step 96 *******
-Current Location: (2, 4)
+Current Location: (2, 6)
 Remaining Steps Number: 5
 Battery Left: 5.000000
 House Total Dirt: 24
 Chosen Step: West
 
 ******* Step 97 *******
-Current Location: (2, 3)
+Current Location: (2, 5)
 Remaining Steps Number: 4
 Battery Left: 4.000000
 House Total Dirt: 24
 Chosen Step: West
 
 ******* Step 98 *******
-Current Location: (2, 2)
+Current Location: (2, 4)
 Remaining Steps Number: 3
 Battery Left: 3.000000
 House Total Dirt: 24
-Chosen Step: North
+Chosen Step: West
 
 ******* Step 99 *******
-Current Location: (1, 2)
+Current Location: (2, 3)
 Remaining Steps Number: 2
 Battery Left: 2.000000
+House Total Dirt: 24
+Chosen Step: West
+
+******* Step 100 *******
+Current Location: (2, 2)
+Remaining Steps Number: 1
+Battery Left: 1.000000
+House Total Dirt: 24
+Chosen Step: North
+
+******* Step 101 *******
+Current Location: (1, 2)
+Remaining Steps Number: 0
+Battery Left: 0.000000
 House Total Dirt: 24
 Chosen Step: Finish
