@@ -227,15 +227,14 @@ Step CommonAlgorithm::nextStep(){
     */
     if (dirt_sensor->dirtLevel() >= 1 && distances_from_docking[curr_loc] + 1 <= limiting_factor){ //Enough steps to clean and return to the docking station
         coords_info[curr_loc] -= 1; //The robot cleans the cell
-        remaining_steps -=1; 
-        return Step::Stay;
+        res = Step::Stay;
     }
 
     /*
     Condition 2: Curr_loc is not cleanable, and there is already a path that the algo constructed,
     so the robot will march another step in this path towards its destination
     */
-    if (!path.empty()){
+    else if (!path.empty()){
         res = marchTheNextStepOfThePath();
     }
 
