@@ -7,40 +7,48 @@
 #include <sstream>
 
 
-int Simulator::run(bool write_output_file) {
-    std::vector<char> steps_taken;
-    steps_taken.reserve(maxSteps+1);
-    bool finished = false;
+std::string Simulator::run() {
+    
+    rres.steps_taken.reserve(maxSteps+1);
     auto timeout = std::chrono::milliseconds(maxSteps);
     auto start = std::chrono::high_resolution_clock::now();
 
-    std::string log_info;
-    log_info += "Docking Station Location: " + (std::ostringstream() << house.getDockingStationCoords()).str() + "\n";
+    rres.log_info += "Docking Station Location: " + (std::ostringstream() << house.getDockingStationCoords()).str() + "\n";
 
-    for (size_t i = 0; i < maxSteps+1 && !finished; i++)
+    for (size_t i = 0; i < maxSteps+1 && !rres.finished; i++)
     {
         // Append details to the log string before executing each step
-        log_info += "******* Step " + std::to_string(i + 1) + " *******\n";
-        log_info += "Current Location: " + (std::ostringstream() << location).str() + "\n";  // Using the overloaded << operator
-        log_info += "Remaining Steps Number: " + std::to_string(maxSteps - i) + "\n";
-        log_info += "Battery Left: " + std::to_string(battery_left) + "\n";
-        log_info += "House Total Dirt: " + std::to_string(house.getTotalDirt()) + "\n";
+        rres.log_info += "******* Step " + std::to_string(i + 1) + " *******\n";
+        rres.log_info += "Current Location: " + (std::ostringstream() << location).str() + "\n";  // Using the overloaded << operator
+        rres.log_info += "Remaining Steps Number: " + std::to_string(maxSteps - i) + "\n";
+        rres.log_info += "Battery Left: " + std::to_string(battery_left) + "\n";
+        rres.log_info += "House Total Dirt: " + std::to_string(house.getTotalDirt()) + "\n";
         
 
         if(battery_left == 0 && location != house.getDockingStationCoords()) {
             break;
         }
 
-        Step next_step = algo->nextStep();
-
+        Step next_step;
+        try {
+            next_step = algo->nextStep();
+        }
+        catch (const std::exception& e) {
+            std::string what = e.what();
+            return "Caught an exception from algorithm: " + what;
+        }
+        catch (...) {
+            return "Unknown exception from algorithm";
+        }
         if((std::chrono::high_resolution_clock::now() - start) > timeout) {
-            return -1;
+            rres.timeout_reached = true;
+            return "";
         }
 
         if(next_step == Step::Finish) {
-            finished = true;
-            steps_taken.push_back('F');
-            log_info += "Chosen Step: " + (std::ostringstream() << next_step).str() + "\n";
+            rres.finished = true;
+            rres.steps_taken.push_back('F');
+            rres.log_info += "Chosen Step: " + (std::ostringstream() << next_step).str() + "\n";
             break;
         }
         else if(i == maxSteps) {
@@ -51,25 +59,25 @@ int Simulator::run(bool write_output_file) {
         {
         case Step::North:
             location += Direction::North;
-            steps_taken.push_back('N');
+            rres.steps_taken.push_back('N');
             decreaseBattery();
             break;
         
         case Step::South:
             location += Direction::South;
-            steps_taken.push_back('S');
+            rres.steps_taken.push_back('S');
             decreaseBattery();
             break;
 
         case Step::East:
             location += Direction::East;
-            steps_taken.push_back('E');
+            rres.steps_taken.push_back('E');
             decreaseBattery();
             break;
         
         case Step::West:
             location += Direction::West;
-            steps_taken.push_back('W');
+            rres.steps_taken.push_back('W');
             decreaseBattery();
             break;
 
@@ -80,7 +88,7 @@ int Simulator::run(bool write_output_file) {
                 house.cleanOnce(location);
                 decreaseBattery();
             }
-            steps_taken.push_back('s');
+            rres.steps_taken.push_back('s');
             break;
 
         default:
@@ -91,58 +99,64 @@ int Simulator::run(bool write_output_file) {
             break;
         }
 
-        log_info += "Chosen Step: " + (std::ostringstream() << next_step).str() + "\n";
-        log_info += "\n"; // line break
+        rres.log_info += "Chosen Step: " + (std::ostringstream() << next_step).str() + "\n";
+        rres.log_info += "\n"; // line break
     }
 
+    return "";
+}
+
+size_t Simulator::calcScoreAndWriteResults(bool write_output_file) {
     size_t dirt_left = house.getTotalDirt();
-    size_t num_steps = steps_taken.size();
+    size_t num_steps = rres.steps_taken.size();
     Coords docking_station = house.getDockingStationCoords();
     bool in_dock = location == docking_station;
     size_t score;
     // calculating score
-    if(!finished && battery_left <= 0 && !in_dock) { // DEAD
+    if(rres.timeout_reached) {
+        score = maxSteps * 2 + initial_dirt * 300 + 2000;
+    }
+    else if(!rres.finished && battery_left <= 0 && !in_dock) { // DEAD
         score = maxSteps + dirt_left * 300 + 2000;
     }
-    else if(finished && !in_dock) {
+    else if(rres.finished && !in_dock) {
         score = maxSteps + dirt_left * 300 + 3000;
     }
     else {
         score = num_steps + dirt_left * 300 + (in_dock ? 0 : 1000);
     }
 
-    // writing to output file
-    if(write_output_file) {
-        std::ofstream file(input_file_path.filename().replace_extension("").string() + "-" + algo_name + ".txt"); // Open output file
+    std::ofstream output_file(house_file_path.filename().replace_extension("").string() + "-" + algo_name + ".txt"); // Open output file
 
-        if (!file) {
-            std::cerr << "Failed to open the output file" << std::endl;
-            return 0;
-        }
-
-        file << "NumSteps = " << num_steps - finished << std::endl;
-        file << "DirtLeft = " << dirt_left << std::endl;
-        file << "Status = " << (finished ? "FINISHED" : (battery_left > 0 ? "WORKING" : "DEAD")) << std::endl;
-        file << "InDock = " << (in_dock ? "TRUE" : "FALSE") << std::endl;
-        file << "Score = " << score << std::endl;
-        file << "Steps:" << std::endl;
-        for (size_t i = 0; i < steps_taken.size(); i++)
-        {
-            file << steps_taken[i];
-        }
-        file << std::endl;
-
-        file.close();
-    }
-
-    std::ofstream file(input_file_path.filename().replace_extension("").string() + "-" + algo_name + ".log"); // Open log file
-
-    if (!file) {
+    if (!output_file) {
         std::cerr << "Failed to open the output file" << std::endl;
         return 0;
     }
-    file << log_info;
-    file.close();
+
+    if(write_output_file) {
+        output_file << "NumSteps = " << num_steps - rres.finished << std::endl;
+        output_file << "DirtLeft = " << dirt_left << std::endl;
+        output_file << "Status = " << (rres.finished ? "FINISHED" : (battery_left > 0 ? "WORKING" : "DEAD")) << std::endl;
+        output_file << "InDock = " << (in_dock ? "TRUE" : "FALSE") << std::endl;
+        output_file << "Score = " << score << std::endl;
+        output_file << "Steps:" << std::endl;
+        for (size_t i = 0; i < rres.steps_taken.size(); i++)
+        {
+            output_file << rres.steps_taken[i];
+        }
+        output_file << std::endl;
+
+        output_file.close();
+    }
+
+    std::ofstream log_file(house_file_path.filename().replace_extension("").string() + "-" + algo_name + ".log"); // Open log file
+
+    if (!log_file) {
+        std::cerr << "Failed to open the output file" << std::endl;
+        return 0;
+    }
+    log_file << rres.log_info;
+    log_file.close();
 
     return score;
 }
@@ -255,7 +269,7 @@ void Simulator::setHouseValues(Simulator::HouseValues hv) { // copy constructor 
     house.setTiles(std::move(hv.tiles));
     house.setDockingStation(hv.docking_station);
     house.setTotalDirt(hv.total_dirt);
-    input_file_path = hv.house_path;
+    house_file_path = hv.house_path;
     maxSteps = hv.maxSteps;
     battery_capacity = hv.battery_capacity;
     battery_left = battery_capacity;
@@ -307,4 +321,12 @@ size_t Simulator::getMaxSteps() {
 
 size_t Simulator::getInitialDirt() {
     return initial_dirt;
+}
+
+std::filesystem::path Simulator::getHousePath() {
+    return house_file_path;
+}
+
+std::string Simulator::getAlgorithmName() {
+    return algo_name;
 }

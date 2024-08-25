@@ -56,13 +56,23 @@ class Simulator {
     size_t initial_dirt;
     std::unique_ptr<AbstractAlgorithm> algo;
     std::string algo_name;
-    std::filesystem::path input_file_path;
+    std::filesystem::path house_file_path;
 
     float decreaseBattery();
     
     void charge();
 
 public:
+    struct RunResults {
+        std::string log_info = "";
+        std::vector<char> steps_taken;
+        bool finished = false;
+        bool timeout_reached = false;
+    };
+
+    RunResults rres;
+
+
     struct HouseValues {
         std::string error_message = "";
         Coords docking_station;
@@ -73,7 +83,9 @@ public:
         std::filesystem::path house_path;
     };
 
-    int run(bool write_output_file);
+    std::string run();
+
+    size_t calcScoreAndWriteResults(bool write_output_file);
 
     static HouseValues readHouseFile(std::filesystem::path file_path);
 
@@ -86,6 +98,10 @@ public:
     size_t getMaxSteps();
 
     size_t getInitialDirt();
+
+    std::filesystem::path getHousePath();
+
+    std::string getAlgorithmName();
 };
 
 #endif // SIMULATOR_H

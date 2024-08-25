@@ -50,7 +50,7 @@ std::vector<std::filesystem::path> get_file_path_list_from_dir(std::filesystem::
 }
 
 bool write_error_file(std::string filename, std::string content) {
-    std::ofstream file(filename);
+    std::ofstream file(filename, std::ios::app);
     
     if (file.is_open()) {
         file << content;
@@ -73,23 +73,28 @@ void run_simulations(RunValues& rv) {
 
         const size_t FILE_OPS_TIMEOUT = 3000;
         auto timeout = std::chrono::milliseconds(simulator.getMaxSteps() + FILE_OPS_TIMEOUT);
-        size_t default_score = simulator.getMaxSteps() * 2 + simulator.getInitialDirt() * 300 + 2000;
 
-        timeout_threads.emplace_back([&rv, my_task, default_score, timeout, &results_mutex]() {           
+
+        timeout_threads.emplace_back([&rv, my_task, &simulator, timeout, &results_mutex]() {           
             std::this_thread::sleep_for(timeout);
             std::unique_lock<std::mutex> lck(results_mutex);
             if(rv.results[my_task] == -1) {
-                rv.results[my_task] = default_score;
+                simulator.rres.timeout_reached = true;
+                rv.results[my_task] = simulator.calcScoreAndWriteResults(!rv.summary_only);
                 lck.unlock(); // this line is important
                 run_simulations(rv);
             }
         });
 
-        size_t run_score = simulator.run(!rv.summary_only);
+        std::string err = simulator.run();
         std::lock_guard<std::mutex> lock(results_mutex);
         if(rv.results[my_task] == -1) {
             // we usually reach here
-            rv.results[my_task] = run_score;
+            if(err != "" ) {
+                write_error_file(simulator.getAlgorithmName() + ".error", "Failed to run algorithm on " + simulator.getHousePath().filename().string() + ": " + err + "\n");
+            }
+            else
+                rv.results[my_task] = simulator.calcScoreAndWriteResults(!rv.summary_only);
         } 
         else {
             // we only reach here when the simulator finished after timeout and another thread replaced the current thread
