@@ -1,0 +1,7 @@
+NumSteps = 100
+DirtLeft = 30
+Status = DEAD
+InDock = TRUE
+Score = 9100
+Steps:
+SsEssEsssNWEEEWWWWssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss

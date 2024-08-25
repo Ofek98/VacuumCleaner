@@ -1,20 +1,17 @@
-# Compiler
-CXX = g++
+# Define the subdirectories
+SUBDIRS = simulator algorithm_A algorithm_B
 
-# Compiler flags
-CXXFLAGS = -std=c++20 -fPIC -Wall -Wextra -Werror -pedantic -g
+# Default target
+all: $(SUBDIRS)
 
-# Target name (executable)
-TARGET = myrobot
+# Rule to build each subdirectory
+$(SUBDIRS):
+	$(MAKE) -C $@
 
-# Get all .cpp files in the current directory
-ALL_SOURCES = $(wildcard *.cpp)
+.PHONY: all $(SUBDIRS) clean
 
-# Exclude files starting with "Algo_"
-SOURCES = $(filter-out Algo_%.cpp, $(ALL_SOURCES))
-
-$(TARGET): $(SOURCES)
-	$(CXX) -rdynamic $(CXXFLAGS) $^ -o $@
-
+# Clean target to clean all subdirectories
 clean:
-	rm -rf $(TARGET)
+	for dir in $(SUBDIRS); do \
+	    $(MAKE) -C $$dir clean; \
+	done

@@ -1,0 +1,7 @@
+NumSteps = 220
+DirtLeft = 16
+Status = DEAD
+InDock = TRUE
+Score = 5020
+Steps:
+NENssNNssEEEEsssESSSSEssssSNWWSSESSSSSssssWNNNNNWssssNNNNNWSSSsWSSssESsSSEsssSSWENNWWSWNWNNNsssEESNNNWWWWNWNsNNEEESNWWSNWWWSWNsWSSEssssSNNNEEESSSSsEEEssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss

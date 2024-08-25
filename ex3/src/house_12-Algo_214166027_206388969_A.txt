@@ -1,0 +1,7 @@
+NumSteps = 50
+DirtLeft = 0
+Status = DEAD
+InDock = TRUE
+Score = 50
+Steps:
+WSSSNNENssssssssssssssssssssssssssssssssssssssssss

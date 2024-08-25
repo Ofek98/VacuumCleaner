@@ -1,0 +1,1 @@
+For every algorithm and house we added a log file named HOUSENAME-Algo_ID.log.

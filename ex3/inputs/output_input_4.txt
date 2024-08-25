@@ -1,5 +1,0 @@
-NumSteps = 197
-DirtLeft = 0
-Status = FINISHED
-Steps:
-NEEEEEESSsssssssSSSSWNNNNssssssNWSsNWWWWssssssssssssssssssssSsssEssssEEEssssSSSSNWNNSWSWNNWSSSNNNNNssssssssssssssssssssWNWSSsEssSSSSWNsssssssssNssssssssNWNNEEEssssssssssssssssssssNWWWSSSSSSNNNNNEEEF

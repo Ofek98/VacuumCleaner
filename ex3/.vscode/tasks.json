@@ -2,58 +2,17 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build simulator",
-            "type": "shell",
-            "command": "make -f Makefile clean; make -f Makefile",
-            "options": {
-                "cwd": "${workspaceFolder}/src"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "problemMatcher": [],
-        },
-        {
-            "label": "build algorithm1",
-            "type": "shell",
-            "command": "make -f Algo_214166027_Makefile clean; make -f Algo_214166027_Makefile",
-            "options": {
-                "cwd": "${workspaceFolder}/src/algorithm"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "problemMatcher": [],
-        },
-        {
-            "label": "build algorithm2",
-            "type": "shell",
-            "command": "make -f Algo_206388969_Makefile clean; make -f Algo_206388969_Makefile",
-            "options": {
-                "cwd": "${workspaceFolder}/src/algorithm"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "problemMatcher": [],
-        },
-        {
             "label": "build",
             "type": "shell",
-            "command": "",
+            "command": "make clean; make",
             "options": {
                 "cwd": "${workspaceFolder}/src"
             },
             "group": {
                 "kind": "build",
-                "isDefault": true
+                "isDefault": false
             },
-            "dependsOn": ["build simulator", "build algorithm1", "build algorithm2"],
-            "dependsOrder": "sequence",        
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [],
         }
     ]
 }

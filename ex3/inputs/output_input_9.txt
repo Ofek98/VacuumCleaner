@@ -1,5 +1,0 @@
-NumSteps = 100
-DirtLeft = 10
-Status = FINISHED
-Steps:
-NEEEEEESSssssNWWWWWWssssssssssssssssssssSsEssEsssEssssENWWWWssssssssssssssssssssWNSSSEEEEENssssNWWWWF

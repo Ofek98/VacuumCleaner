@@ -1,5 +1,0 @@
-NumSteps = 5
-DirtLeft = 15
-Status = FINISHED
-Steps:
-EsEWWF
