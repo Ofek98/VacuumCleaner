@@ -1,7 +1,7 @@
-NumSteps = 200
+NumSteps = 193
 DirtLeft = 0
-Status = DEAD
+Status = FINISHED
 InDock = TRUE
-Score = 200
+Score = 194
 Steps:
-NNNEEEEEEEEEESSSSSSSSSSSSWNNNNNNNNNNNWWWWWWWSSWWssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+NNNEEEEEEEEEESSSSSSSSSSSSWNNNNNNNNNNNWWWWWWWSSWWssssssssssssssssssssSEEENNEEEEESSSSSSSSSSSEESSWNWWNNNNNNNNNNNWWWWWWWssssssssssssssssssssWNNNWSSSSESEEEEENEESSSSSSSSSSSWNNNNNNNNNNNNWWWWWsssNENWSSF

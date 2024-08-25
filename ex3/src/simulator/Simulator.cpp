@@ -257,7 +257,8 @@ void Simulator::setHouseValues(Simulator::HouseValues hv) { // copy constructor 
     house.setTotalDirt(hv.total_dirt);
     input_file_path = hv.house_path;
     maxSteps = hv.maxSteps;
-    battery_left = hv.battery_capacity;
+    battery_capacity = hv.battery_capacity;
+    battery_left = battery_capacity;
     location = house.getDockingStationCoords();
     initial_dirt = house.getTotalDirt();
 }
